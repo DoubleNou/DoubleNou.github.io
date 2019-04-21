@@ -5,9 +5,9 @@
   <subtitle>大大咧咧、情怀无限</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://bulintt.com/"/>
   <updated>2019-04-21T09:31:07.003Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://bulintt.com/</id>
   
   <author>
     <name>Nou</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>SpringBoot改造</title>
-    <link href="http://yoursite.com/2019/04/21/SpringBoot%E6%94%B9%E9%80%A0/"/>
-    <id>http://yoursite.com/2019/04/21/SpringBoot改造/</id>
+    <link href="https://bulintt.com/2019/04/21/SpringBoot%E6%94%B9%E9%80%A0/"/>
+    <id>https://bulintt.com/2019/04/21/SpringBoot改造/</id>
     <published>2019-04-21T08:52:10.000Z</published>
     <updated>2019-04-21T09:31:07.003Z</updated>
     
@@ -35,15 +35,15 @@
     </summary>
     
     
-      <category term="SpringBoot" scheme="http://yoursite.com/tags/SpringBoot/"/>
+      <category term="SpringBoot" scheme="https://bulintt.com/tags/SpringBoot/"/>
     
-      <category term="Dubbo" scheme="http://yoursite.com/tags/Dubbo/"/>
+      <category term="Dubbo" scheme="https://bulintt.com/tags/Dubbo/"/>
     
-      <category term="cloud" scheme="http://yoursite.com/tags/cloud/"/>
+      <category term="cloud" scheme="https://bulintt.com/tags/cloud/"/>
     
-      <category term="kafka" scheme="http://yoursite.com/tags/kafka/"/>
+      <category term="kafka" scheme="https://bulintt.com/tags/kafka/"/>
     
-      <category term="分布式" scheme="http://yoursite.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+      <category term="分布式" scheme="https://bulintt.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
   </entry>
   
