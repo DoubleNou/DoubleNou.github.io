@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[SpringBoot改造]]></title>
+    <url>%2F2019%2F04%2F21%2FSpringBoot%E6%94%B9%E9%80%A0%2F</url>
+    <content type="text"><![CDATA[刚入职的时候，发现我们接手项目是ssm和SpringBoot混用，这个”混用”听起来奇怪哈？一句话就是很多依赖项用了SpringBoot又用了原生，还用了ssm中的一些写法。直观看上去一句my god～～～对新入职的应届生来说，多少会有混淆，用起来也会很撇脚（碍手？）。但本菜狗认为这真是一个学习的好机会，从最原生的写一遍，写到SpringBoot，写到地老天荒。另外悄悄告诉你，我们的之前组件都是原生的哈哈哈哈，根本没有Compent，你知道怎么实现的吗？ 以上都是废话 干货 我介绍下SpringBoot的原理，也偷偷抓紧复习下。]]></content>
+      <tags>
+        <tag>SpringBoot</tag>
+        <tag>Dubbo</tag>
+        <tag>cloud</tag>
+        <tag>kafka</tag>
+        <tag>分布式</tag>
+      </tags>
+  </entry>
+</search>
