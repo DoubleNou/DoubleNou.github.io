@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Nou的技术逆袭</title>
+  <icon>https://www.gravatar.com/avatar/437514e75b4c3fbc3705e56df986d682</icon>
+  <subtitle>大大咧咧、情怀无限</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-04-21T09:31:07.003Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Nou</name>
+    <email>709824656@qq.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot改造</title>
+    <link href="http://yoursite.com/2019/04/21/SpringBoot%E6%94%B9%E9%80%A0/"/>
+    <id>http://yoursite.com/2019/04/21/SpringBoot改造/</id>
+    <published>2019-04-21T08:52:10.000Z</published>
+    <updated>2019-04-21T09:31:07.003Z</updated>
+    
+    <content type="html"><![CDATA[<p>刚入职的时候，发现我们接手项目是ssm和SpringBoot混用，这个”混用”听起来奇怪哈？一句话就是很多依赖项用了SpringBoot又用了原生，还用了ssm中的一些写法。直观看上去一句my god～～～<br>对新入职的应届生来说，多少会有混淆，用起来也会很撇脚（碍手？）。但本菜狗认为这真是一个学习的好机会，从最原生的写一遍，写到SpringBoot，写到地老天荒。另外悄悄告诉你，我们的之前组件都是原生的哈哈哈哈，根本没有Compent，你知道怎么实现的吗？</p><p>以上都是废话</p><hr><p>干货</p><p>我介绍下SpringBoot的原理，也偷偷抓紧复习下。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;刚入职的时候，发现我们接手项目是ssm和SpringBoot混用，这个”混用”听起来奇怪哈？一句话就是很多依赖项用了SpringBoot又用了原生，还用了ssm中的一些写法。直观看上去一句my god～～～&lt;br&gt;对新入职的应届生来说，多少会有混淆，用起来也会很撇脚（碍手？
+      
+    
+    </summary>
+    
+    
+      <category term="SpringBoot" scheme="http://yoursite.com/tags/SpringBoot/"/>
+    
+      <category term="Dubbo" scheme="http://yoursite.com/tags/Dubbo/"/>
+    
+      <category term="cloud" scheme="http://yoursite.com/tags/cloud/"/>
+    
+      <category term="kafka" scheme="http://yoursite.com/tags/kafka/"/>
+    
+      <category term="分布式" scheme="http://yoursite.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+</feed>
