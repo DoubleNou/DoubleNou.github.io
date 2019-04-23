@@ -433,7 +433,11 @@ Demo样例    /**
  * @param url  路径
  * @param jsonObject  参数(json类型)
  * @param encoding 编码格式
- *
+ * @return
+ * @throws ParseException
+ * @throws IOException
+ */
+public static String send(String url, JSONObject jsonObject,String encoding) throws Pars
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -636,8 +640,13 @@ Demo样例    /**
       
         
           
-          刚入职的时候，发现我们接手项目是ssm和SpringBoot混用，这个”混用”听起来奇怪哈？一句话就是很多依赖项用了SpringBoot又用了原生，还用了ssm中的一些写法。直观看上去一句my god～～～对新入职的应届生来说，多少会有混淆，用起来也会很撇脚（碍手？）。但本菜狗认为这真是一个学习的好
-          ...
+          刚入职的时候，发现我们接手项目是ssm和SpringBoot混用，这个”混用”听起来奇怪哈？一句话就是很多依赖项用了SpringBoot又用了原生，还用了ssm中的一些写法。直观看上去一句my god～～～对新入职的应届生来说，多少会有混淆，用起来也会很撇脚（碍手？）。但本菜狗认为这真是一个学习的好机会，从最原生的写一遍，写到SpringBoot，写到地老天荒。另外悄悄告诉你，我们的之前组件都是原生的哈哈哈哈，根本没有Compent，你知道怎么实现的吗？
+以上都是废话
+
+干货
+我介绍下SpringBoot的原理，也偷偷抓紧复习下。
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/21/SpringBoot改造/#more" rel="contents">
@@ -824,26 +833,6 @@ Demo样例    /**
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
-</div>
-
 
 
 
