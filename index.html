@@ -360,56 +360,22 @@
       
         
           
-            <p>习惯了在开发中运用工具（postman等）调试接口，几乎忘了用代码可以更好的处理实际情况。</p>
-<hr>
-<p>Demo样例<br>    /**</p>
-<pre><code> * 发送post请求
+          习惯了在开发中运用工具（postman等）调试接口，几乎忘了用代码可以更好的处理实际情况。
+
+Demo样例    /**
+ * 发送post请求
  * @param url  路径
  * @param jsonObject  参数(json类型)
  * @param encoding 编码格式
- * @return
- * @throws ParseException
- * @throws IOException
- */
-public static String send(String url, JSONObject jsonObject,String encoding) throws ParseException, IOException{
-    String body = &quot;&quot;;
-
-    //创建httpclient对象
-    CloseableHttpClient client = HttpClients.createDefault();
-    //创建post方式请求对象
-    HttpPost httpPost = new HttpPost(url);
-
-    //装填参数
-    StringEntity s = new StringEntity(jsonObject.toString(), &quot;utf-8&quot;);
-    //参数体有按要求也要进行Content-type赋值
-    s.setContentType(&quot;application/json&quot;);
-    s.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,
-            &quot;application/json&quot;));
-    //设置参数到请求对象中
-    httpPost.setEntity(s);
-    System.out.println(&quot;请求地址：&quot;+url);
-</code></pre><p>//        System.out.println(“请求参数：”+nvps.toString());</p>
-<pre><code>    //设置header信息
-    //指定报文头【Content-type】、【User-Agent】选择其一就ok
-    httpPost.setHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);
-    httpPost.setHeader(&quot;Content-type&quot;, &quot;application/json&quot;);
-    httpPost.setHeader(&quot;User-Agent&quot;, &quot;Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)&quot;);
-
-    //执行请求操作，并拿到结果（同步阻塞）
-    CloseableHttpResponse response = client.execute(httpPost);
-    //获取结果实体
-    HttpEntity entity = response.getEntity();
-    if (entity != null) {
-        //按指定编码转换结果实体为String类型
-        body = EntityUtils.toString(entity, encoding);
-    }
-    EntityUtils.consume(entity);
-    //释放链接
-    response.close();
-    return body;
-}
-</code></pre>
-          
+ *
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/23/java-代码请求URl样例/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -538,13 +504,15 @@ public static String send(String url, JSONObject jsonObject,String encoding) thr
       
         
           
-            <p>刚入职的时候，发现我们接手项目是ssm和SpringBoot混用，这个”混用”听起来奇怪哈？一句话就是很多依赖项用了SpringBoot又用了原生，还用了ssm中的一些写法。直观看上去一句my god～～～<br>对新入职的应届生来说，多少会有混淆，用起来也会很撇脚（碍手？）。但本菜狗认为这真是一个学习的好机会，从最原生的写一遍，写到SpringBoot，写到地老天荒。另外悄悄告诉你，我们的之前组件都是原生的哈哈哈哈，根本没有Compent，你知道怎么实现的吗？</p>
-<p>以上都是废话</p>
-<hr>
-<p>干货</p>
-<p>我介绍下SpringBoot的原理，也偷偷抓紧复习下。</p>
-
-          
+          刚入职的时候，发现我们接手项目是ssm和SpringBoot混用，这个”混用”听起来奇怪哈？一句话就是很多依赖项用了SpringBoot又用了原生，还用了ssm中的一些写法。直观看上去一句my god～～～对新入职的应届生来说，多少会有混淆，用起来也会很撇脚（碍手？）。但本菜狗认为这真是一个学习的好
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/21/SpringBoot改造/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
