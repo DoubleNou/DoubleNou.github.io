@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,My BLog">
+  <meta name="keywords" content="消息队列，kafka,producer,consumer,topic,">
 
 
 
@@ -73,17 +73,18 @@
 
 
 
-<meta name="description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
-<meta name="keywords" content="后端,HBase,IM,消息队列,dubbo,SpringBoot,SpringCloud,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Nou的技术逆袭">
-<meta property="og:url" content="https://bulintt.com/archives/2019/04/index.html">
+<meta name="description" content="消息队列的内容很丰富，目前我常用的是kafka，所以第一篇献给我的kafka，后续我们继续钻研下，RocketMQ、ActiveMQ。kafka的原生写法，不繁琐，直接看见配置项就👌，如果你是刚入门大数据或者是刚接手kafka的话难免有蒙圈的感觉，But！！！这不要紧，先蒙在其中，后续你接触多了大数据的东西，就会发现，很多组件用了很多的配置项，加载进配置项就可以用了。当然我说的还是比较原生的写法">
+<meta name="keywords" content="消息队列，kafka,producer,consumer,topic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kafka的生产+消费">
+<meta property="og:url" content="https://bulintt.com/2019/04/23/kafka的生产-消费/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
-<meta property="og:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta property="og:description" content="消息队列的内容很丰富，目前我常用的是kafka，所以第一篇献给我的kafka，后续我们继续钻研下，RocketMQ、ActiveMQ。kafka的原生写法，不繁琐，直接看见配置项就👌，如果你是刚入门大数据或者是刚接手kafka的话难免有蒙圈的感觉，But！！！这不要紧，先蒙在其中，后续你接触多了大数据的东西，就会发现，很多组件用了很多的配置项，加载进配置项就可以用了。当然我说的还是比较原生的写法">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-23T13:27:43.675Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nou的技术逆袭">
-<meta name="twitter:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta name="twitter:title" content="kafka的生产+消费">
+<meta name="twitter:description" content="消息队列的内容很丰富，目前我常用的是kafka，所以第一篇献给我的kafka，后续我们继续钻研下，RocketMQ、ActiveMQ。kafka的原生写法，不繁琐，直接看见配置项就👌，如果你是刚入门大数据或者是刚接手kafka的话难免有蒙圈的感觉，But！！！这不要紧，先蒙在其中，后续你接触多了大数据的东西，就会发现，很多组件用了很多的配置项，加载进配置项就可以用了。当然我说的还是比较原生的写法">
 
 
 
@@ -113,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="https://bulintt.com/archives/2019/04/">
+  <link rel="canonical" href="https://bulintt.com/2019/04/23/kafka的生产-消费/">
 
 
 
 
 
-  <title>归档 | Nou的技术逆袭</title>
+  <title>kafka的生产+消费 | Nou的技术逆袭</title>
   
 
 
@@ -138,7 +139,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -263,142 +264,329 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bulintt.com/2019/04/23/kafka的生产-消费/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nou">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nou的技术逆袭">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">kafka的生产+消费</h1>
         
+
+        <div class="post-meta">
           
-        
-        嗯..! 目前共计 3 篇日志。 继续努力。
-      </span>
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-23T18:17:18+08:00">
+                2019-04-23
+              </time>
+            
 
-      
+            
 
-        
-        
-        
+            
+          </span>
 
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/23/kafka的生产-消费/" itemprop="url">
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">kafka的生产+消费</span>
+                <span class="post-meta-item-text">分类于</span>
               
-            </a>
-        
-      </h2>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kafka/" itemprop="url" rel="index">
+                    <span itemprop="name">kafka</span>
+                  </a>
+                </span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-23T18:17:18+08:00" content="2019-04-23">
-          04-23
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/23/kafka的生产-消费/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/23/kafka的生产-消费/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
+          
+          
+             <span id="/2019/04/23/kafka的生产-消费/" class="leancloud_visitors" data-flag-title="kafka的生产+消费">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  953
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/23/java-代码请求URl样例/" itemprop="url">
-              
-                <span itemprop="name">java 代码请求URl样例</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-23T11:36:09+08:00" content="2019-04-23">
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <p>消息队列的内容很丰富，目前我常用的是kafka，所以第一篇献给我的kafka，后续我们继续钻研下，RocketMQ、ActiveMQ。<br>kafka的原生写法，不繁琐，直接看见配置项就👌，如果你是刚入门大数据或者是刚接手kafka的话难免有蒙圈的感觉，But！！！这不要紧，先蒙在其中，后续你接触多了大数据的东西，就会发现，很多组件用了很多的配置项，加载进配置项就可以用了。当然我说的还是比较原生的写法，刚刚写完了一遍HBase的原生，一时脱离不出底层的范围哈哈哈。</p>
+<h2 id="心灵鸡汤一下：刚入职的小白遇到不会的问题，甚者被批评，千万不要气馁，觉得自己不适合干这个。行业没有不适合的，只有干的开不开心。坚持一下没准你就有小骄傲了呢？废话少说，开始撸码"><a href="#心灵鸡汤一下：刚入职的小白遇到不会的问题，甚者被批评，千万不要气馁，觉得自己不适合干这个。行业没有不适合的，只有干的开不开心。坚持一下没准你就有小骄傲了呢？废话少说，开始撸码" class="headerlink" title="心灵鸡汤一下：刚入职的小白遇到不会的问题，甚者被批评，千万不要气馁，觉得自己不适合干这个。行业没有不适合的，只有干的开不开心。坚持一下没准你就有小骄傲了呢？废话少说，开始撸码"></a>心灵鸡汤一下：刚入职的小白遇到不会的问题，甚者被批评，千万不要气馁，觉得自己不适合干这个。行业没有不适合的，只有干的开不开心。坚持一下没准你就有小骄傲了呢？废话少说，开始撸码</h2><h2 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h2><p>public class KafkaProvider{</p>
+<pre><code>private final Producer&lt;String, String&gt; producer;
+public final static String TOPIC = &quot;TEST-TOPIC&quot;;
 
-        
-        
+public KafkaProvider(){
+    Properties props = new Properties();//配置项！这行代码是kafka的源头。
 
-        
+    props.put(&quot;bootstrap.servers&quot;, &quot;127.0.0.1:9092&quot;);//zookeeper地址，集群用逗号分隔
+      //这里如果不熟悉的同学，可以看看kafa的架构图。每一个
+      ![](kafka架构.jpg)
+    props.put(&quot;acks&quot;, &quot;all&quot;);//记录完整提交，最慢但是最大可能的持久化
+    props.put(&quot;retries&quot;, 3);//请求失败的重试次数
+    props.put(&quot;batch.size&quot;, 16384);//batch大小
+    props.put(&quot;linger.ms&quot;, 1);// 默认情况即使缓冲区有剩余的空间，也会立即发送请求，设置一段时间用来等待从而将缓冲区填的更多，单位为毫秒，producer发送数据会延迟1ms，可以减少发送到kafka服务器的请求数据
+    props.put(&quot;buffer.memory&quot;, 33554432);// 提供给生产者缓冲内存总量
+    props.put(&quot;key.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);//写话方式
+    props.put(&quot;value.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    //生成生产者
+    producer =  new KafkaProducer&lt;String, String&gt;(props);
+}
+//在入口函数调用即可，具体应用情形根据项目实际来看
+public void producer(){
+    int messageNo = 1;
+    final int COUNT =1000;
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/21/SpringBoot改造/" itemprop="url">
-              
-                <span itemprop="name">SpringBoot改造</span>
-              
-            </a>
-        
-      </h2>
+    while (1){
+        String num = String.valueOf(messageNo);
+        String data = &quot;hello kafka message:&quot; + num;
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-21T16:52:10+08:00" content="2019-04-21">
-          04-21
-        </time>
-      </div>
+        ProducerRecord record = new ProducerRecord(TOPIC,data);
 
-    </header>
-  </article>
-
-
+        producer.send(record);
+        messageNo ++ ;
+        System.out.println(messageNo);
+        try {
+            sleep(1000);
+        } catch ( InterruptedException e ) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre><h2 id><a href="#" class="headerlink" title="}"></a>}</h2><h2 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h2><p>public class KafkaConsumer {<br>    private final Consumer consumer ;<br>    public final static String TOPIC = “TEST-TOPIC”;<br>    private ExecutorService executors;</p>
+<pre><code>public KafkaCon(){
+    Properties props = new Properties();
+    props.put(&quot;bootstrap.servers&quot;, &quot;127.0.0.1:9092&quot;);//zk同生产者一致
+    props.put(&quot;group.id&quot;, &quot;2&quot;);//分组Id！！！！
+    props.put(&quot;enable.auto.commit&quot;, &quot;true&quot;);//自动提交，这是对offset的操作，有些需要对offset更加精准的处理，需要进行手动提交。
+    props.put(&quot;auto.commit.interval.ms&quot;, &quot;1000&quot;);
+    props.put(&quot;session.timeout.ms&quot;, &quot;30000&quot;);
+    props.put(&quot;key.deserializer&quot;, &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
+    props.put(&quot;value.deserializer&quot;, &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
+    consumer = new KafkaConsumer&lt;String, String&gt;(props);
+    consumer.subscribe(Arrays.asList(TOPIC));
+    execute(10);
+}
+public void execute(int workerNum) {
+    executors = new ThreadPoolExecutor(workerNum, workerNum, 0L, TimeUnit.MILLISECONDS,
+            new ArrayBlockingQueue(1000), new ThreadPoolExecutor.CallerRunsPolicy());
+    Thread t = new Thread(new Runnable(){//启动一个子线程来监听kafka消息
+        @Override
+        public void run(){
+            while (true) {
+                ConsumerRecords&lt;String, String&gt; records = consumer.poll(200);
+                for (final ConsumerRecord record : records) {
+                    System.out.println(&quot;【Kafka】监听到kafka的TOPIC【&quot; + record.topic() + &quot;】的消息&quot;);
+                    System.out.println(&quot;【Kafka】消息内容：&quot; + record.value());
+                    executors.submit(new ConsumerWorker(record));
+                }
+            }
+        }});
+    t.start();
+}
+</code></pre><p>}</p>
+<p>这是标准的一个kafka配置信息，生产实战中的应用很简单，千万记住几个关键词：produce、consumer、topic、group.id、partition、broker，schema的含义，主要还是理解吧。<br>提几个问题哈？如果你想多个消费者消费一个topic怎么办？partion中的消息是顺序的，多个partion间的消息呢？</p>
 
       
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏下哇 ，贡献更多优质原创</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.jpg" alt="Nou 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/消息队列，kafka/" rel="tag"># 消息队列，kafka</a>
+          
+            <a href="/tags/producer/" rel="tag"># producer</a>
+          
+            <a href="/tags/consumer/" rel="tag"># consumer</a>
+          
+            <a href="/tags/topic/" rel="tag"># topic</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/23/java-代码请求URl样例/" rel="next" title="java 代码请求URl样例">
+                <i class="fa fa-chevron-left"></i> java 代码请求URl样例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -406,6 +594,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -426,8 +621,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -496,6 +700,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#心灵鸡汤一下：刚入职的小白遇到不会的问题，甚者被批评，千万不要气馁，觉得自己不适合干这个。行业没有不适合的，只有干的开不开心。坚持一下没准你就有小骄傲了呢？废话少说，开始撸码"><span class="nav-number">1.</span> <span class="nav-text">心灵鸡汤一下：刚入职的小白遇到不会的问题，甚者被批评，千万不要气馁，觉得自己不适合干这个。行业没有不适合的，只有干的开不开心。坚持一下没准你就有小骄傲了呢？废话少说，开始撸码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生产者"><span class="nav-number">2.</span> <span class="nav-text">生产者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">}</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消费者"><span class="nav-number">4.</span> <span class="nav-text">消费者</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -650,6 +870,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

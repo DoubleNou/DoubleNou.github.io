@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://bulintt.com/"/>
-  <updated>2019-04-23T04:45:44.373Z</updated>
+  <updated>2019-04-23T13:27:43.675Z</updated>
   <id>https://bulintt.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kafka的生产+消费</title>
+    <link href="https://bulintt.com/2019/04/23/kafka%E7%9A%84%E7%94%9F%E4%BA%A7-%E6%B6%88%E8%B4%B9/"/>
+    <id>https://bulintt.com/2019/04/23/kafka的生产-消费/</id>
+    <published>2019-04-23T10:17:18.000Z</published>
+    <updated>2019-04-23T13:27:43.675Z</updated>
+    
+    <content type="html"><![CDATA[<p>消息队列的内容很丰富，目前我常用的是kafka，所以第一篇献给我的kafka，后续我们继续钻研下，RocketMQ、ActiveMQ。<br>kafka的原生写法，不繁琐，直接看见配置项就👌，如果你是刚入门大数据或者是刚接手kafka的话难免有蒙圈的感觉，But！！！这不要紧，先蒙在其中，后续你接触多了大数据的东西，就会发现，很多组件用了很多的配置项，加载进配置项就可以用了。当然我说的还是比较原生的写法，刚刚写完了一遍HBase的原生，一时脱离不出底层的范围哈哈哈。</p><h2 id="心灵鸡汤一下：刚入职的小白遇到不会的问题，甚者被批评，千万不要气馁，觉得自己不适合干这个。行业没有不适合的，只有干的开不开心。坚持一下没准你就有小骄傲了呢？废话少说，开始撸码"><a href="#心灵鸡汤一下：刚入职的小白遇到不会的问题，甚者被批评，千万不要气馁，觉得自己不适合干这个。行业没有不适合的，只有干的开不开心。坚持一下没准你就有小骄傲了呢？废话少说，开始撸码" class="headerlink" title="心灵鸡汤一下：刚入职的小白遇到不会的问题，甚者被批评，千万不要气馁，觉得自己不适合干这个。行业没有不适合的，只有干的开不开心。坚持一下没准你就有小骄傲了呢？废话少说，开始撸码"></a>心灵鸡汤一下：刚入职的小白遇到不会的问题，甚者被批评，千万不要气馁，觉得自己不适合干这个。行业没有不适合的，只有干的开不开心。坚持一下没准你就有小骄傲了呢？废话少说，开始撸码</h2><h2 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h2><p>public class KafkaProvider{</p><pre><code>private final Producer&lt;String, String&gt; producer;public final static String TOPIC = &quot;TEST-TOPIC&quot;;public KafkaProvider(){    Properties props = new Properties();//配置项！这行代码是kafka的源头。    props.put(&quot;bootstrap.servers&quot;, &quot;127.0.0.1:9092&quot;);//zookeeper地址，集群用逗号分隔      //这里如果不熟悉的同学，可以看看kafa的架构图。每一个      ![](kafka架构.jpg)    props.put(&quot;acks&quot;, &quot;all&quot;);//记录完整提交，最慢但是最大可能的持久化    props.put(&quot;retries&quot;, 3);//请求失败的重试次数    props.put(&quot;batch.size&quot;, 16384);//batch大小    props.put(&quot;linger.ms&quot;, 1);// 默认情况即使缓冲区有剩余的空间，也会立即发送请求，设置一段时间用来等待从而将缓冲区填的更多，单位为毫秒，producer发送数据会延迟1ms，可以减少发送到kafka服务器的请求数据    props.put(&quot;buffer.memory&quot;, 33554432);// 提供给生产者缓冲内存总量    props.put(&quot;key.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);//写话方式    props.put(&quot;value.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);    //生成生产者    producer =  new KafkaProducer&lt;String, String&gt;(props);}//在入口函数调用即可，具体应用情形根据项目实际来看public void producer(){    int messageNo = 1;    final int COUNT =1000;    while (1){        String num = String.valueOf(messageNo);        String data = &quot;hello kafka message:&quot; + num;        ProducerRecord record = new ProducerRecord(TOPIC,data);        producer.send(record);        messageNo ++ ;        System.out.println(messageNo);        try {            sleep(1000);        } catch ( InterruptedException e ) {            e.printStackTrace();        }    }}</code></pre><h2 id><a href="#" class="headerlink" title="}"></a>}</h2><h2 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h2><p>public class KafkaConsumer {<br>    private final Consumer consumer ;<br>    public final static String TOPIC = “TEST-TOPIC”;<br>    private ExecutorService executors;</p><pre><code>public KafkaCon(){    Properties props = new Properties();    props.put(&quot;bootstrap.servers&quot;, &quot;127.0.0.1:9092&quot;);//zk同生产者一致    props.put(&quot;group.id&quot;, &quot;2&quot;);//分组Id！！！！    props.put(&quot;enable.auto.commit&quot;, &quot;true&quot;);//自动提交，这是对offset的操作，有些需要对offset更加精准的处理，需要进行手动提交。    props.put(&quot;auto.commit.interval.ms&quot;, &quot;1000&quot;);    props.put(&quot;session.timeout.ms&quot;, &quot;30000&quot;);    props.put(&quot;key.deserializer&quot;, &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);    props.put(&quot;value.deserializer&quot;, &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);    consumer = new KafkaConsumer&lt;String, String&gt;(props);    consumer.subscribe(Arrays.asList(TOPIC));    execute(10);}public void execute(int workerNum) {    executors = new ThreadPoolExecutor(workerNum, workerNum, 0L, TimeUnit.MILLISECONDS,            new ArrayBlockingQueue(1000), new ThreadPoolExecutor.CallerRunsPolicy());    Thread t = new Thread(new Runnable(){//启动一个子线程来监听kafka消息        @Override        public void run(){            while (true) {                ConsumerRecords&lt;String, String&gt; records = consumer.poll(200);                for (final ConsumerRecord record : records) {                    System.out.println(&quot;【Kafka】监听到kafka的TOPIC【&quot; + record.topic() + &quot;】的消息&quot;);                    System.out.println(&quot;【Kafka】消息内容：&quot; + record.value());                    executors.submit(new ConsumerWorker(record));                }            }        }});    t.start();}</code></pre><p>}</p><p>这是标准的一个kafka配置信息，生产实战中的应用很简单，千万记住几个关键词：produce、consumer、topic、group.id、partition、broker，schema的含义，主要还是理解吧。<br>提几个问题哈？如果你想多个消费者消费一个topic怎么办？partion中的消息是顺序的，多个partion间的消息呢？</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;消息队列的内容很丰富，目前我常用的是kafka，所以第一篇献给我的kafka，后续我们继续钻研下，RocketMQ、ActiveMQ。&lt;br&gt;kafka的原生写法，不繁琐，直接看见配置项就👌，如果你是刚入门大数据或者是刚接手kafka的话难免有蒙圈的感觉，But！！！这不
+      
+    
+    </summary>
+    
+      <category term="kafka" scheme="https://bulintt.com/categories/kafka/"/>
+    
+    
+      <category term="消息队列，kafka" scheme="https://bulintt.com/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%EF%BC%8Ckafka/"/>
+    
+      <category term="producer" scheme="https://bulintt.com/tags/producer/"/>
+    
+      <category term="consumer" scheme="https://bulintt.com/tags/consumer/"/>
+    
+      <category term="topic" scheme="https://bulintt.com/tags/topic/"/>
+    
+  </entry>
   
   <entry>
     <title>java 代码请求URl样例</title>
