@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://bulintt.com/"/>
-  <updated>2019-04-21T09:31:07.003Z</updated>
+  <updated>2019-04-23T03:40:40.995Z</updated>
   <id>https://bulintt.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java 代码请求URl样例</title>
+    <link href="https://bulintt.com/2019/04/23/java-%E4%BB%A3%E7%A0%81%E8%AF%B7%E6%B1%82URl%E6%A0%B7%E4%BE%8B/"/>
+    <id>https://bulintt.com/2019/04/23/java-代码请求URl样例/</id>
+    <published>2019-04-23T03:36:09.000Z</published>
+    <updated>2019-04-23T03:40:40.995Z</updated>
+    
+    <content type="html"><![CDATA[<p>习惯了在开发中运用工具（postman等）调试接口，几乎忘了用代码可以更好的处理实际情况。</p><hr><p>Demo样例<br>    /**</p><pre><code> * 发送post请求 * @param url  路径 * @param jsonObject  参数(json类型) * @param encoding 编码格式 * @return * @throws ParseException * @throws IOException */public static String send(String url, JSONObject jsonObject,String encoding) throws ParseException, IOException{    String body = &quot;&quot;;    //创建httpclient对象    CloseableHttpClient client = HttpClients.createDefault();    //创建post方式请求对象    HttpPost httpPost = new HttpPost(url);    //装填参数    StringEntity s = new StringEntity(jsonObject.toString(), &quot;utf-8&quot;);    //参数体有按要求也要进行Content-type赋值    s.setContentType(&quot;application/json&quot;);    s.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,            &quot;application/json&quot;));    //设置参数到请求对象中    httpPost.setEntity(s);    System.out.println(&quot;请求地址：&quot;+url);</code></pre><p>//        System.out.println(“请求参数：”+nvps.toString());</p><pre><code>    //设置header信息    //指定报文头【Content-type】、【User-Agent】选择其一就ok    httpPost.setHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);    httpPost.setHeader(&quot;Content-type&quot;, &quot;application/json&quot;);    httpPost.setHeader(&quot;User-Agent&quot;, &quot;Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)&quot;);    //执行请求操作，并拿到结果（同步阻塞）    CloseableHttpResponse response = client.execute(httpPost);    //获取结果实体    HttpEntity entity = response.getEntity();    if (entity != null) {        //按指定编码转换结果实体为String类型        body = EntityUtils.toString(entity, encoding);    }    EntityUtils.consume(entity);    //释放链接    response.close();    return body;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;习惯了在开发中运用工具（postman等）调试接口，几乎忘了用代码可以更好的处理实际情况。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Demo样例&lt;br&gt;    /**&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; * 发送post请求
+ * @param url  路径
+ * @param jsonOb
+      
+    
+    </summary>
+    
+    
+      <category term="Http" scheme="https://bulintt.com/tags/Http/"/>
+    
+      <category term="SpringMVC" scheme="https://bulintt.com/tags/SpringMVC/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot改造</title>

@@ -278,6 +278,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bulintt.com/2019/04/23/java-代码请求URl样例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nou">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nou的技术逆袭">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/23/java-代码请求URl样例/" itemprop="url">java 代码请求URl样例</a></h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-23T11:36:09+08:00">
+                2019-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/23/java-代码请求URl样例/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/23/java-代码请求URl样例/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>习惯了在开发中运用工具（postman等）调试接口，几乎忘了用代码可以更好的处理实际情况。</p>
+<hr>
+<p>Demo样例<br>    /**</p>
+<pre><code> * 发送post请求
+ * @param url  路径
+ * @param jsonObject  参数(json类型)
+ * @param encoding 编码格式
+ * @return
+ * @throws ParseException
+ * @throws IOException
+ */
+public static String send(String url, JSONObject jsonObject,String encoding) throws ParseException, IOException{
+    String body = &quot;&quot;;
+
+    //创建httpclient对象
+    CloseableHttpClient client = HttpClients.createDefault();
+    //创建post方式请求对象
+    HttpPost httpPost = new HttpPost(url);
+
+    //装填参数
+    StringEntity s = new StringEntity(jsonObject.toString(), &quot;utf-8&quot;);
+    //参数体有按要求也要进行Content-type赋值
+    s.setContentType(&quot;application/json&quot;);
+    s.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,
+            &quot;application/json&quot;));
+    //设置参数到请求对象中
+    httpPost.setEntity(s);
+    System.out.println(&quot;请求地址：&quot;+url);
+</code></pre><p>//        System.out.println(“请求参数：”+nvps.toString());</p>
+<pre><code>    //设置header信息
+    //指定报文头【Content-type】、【User-Agent】选择其一就ok
+    httpPost.setHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);
+    httpPost.setHeader(&quot;Content-type&quot;, &quot;application/json&quot;);
+    httpPost.setHeader(&quot;User-Agent&quot;, &quot;Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)&quot;);
+
+    //执行请求操作，并拿到结果（同步阻塞）
+    CloseableHttpResponse response = client.execute(httpPost);
+    //获取结果实体
+    HttpEntity entity = response.getEntity();
+    if (entity != null) {
+        //按指定编码转换结果实体为String类型
+        body = EntityUtils.toString(entity, encoding);
+    }
+    EntityUtils.consume(entity);
+    //释放链接
+    response.close();
+    return body;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://bulintt.com/2019/04/21/SpringBoot改造/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -446,7 +624,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -459,7 +637,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
