@@ -9,9 +9,6 @@
       </categories>
       <tags>
         <tag>消息队列，kafka</tag>
-        <tag>producer</tag>
-        <tag>consumer</tag>
-        <tag>topic</tag>
       </tags>
   </entry>
   <entry>
@@ -35,10 +32,10 @@
       </categories>
       <tags>
         <tag>SpringBoot</tag>
-        <tag>Dubbo</tag>
         <tag>cloud</tag>
         <tag>kafka</tag>
         <tag>分布式</tag>
+        <tag>dubbo</tag>
       </tags>
   </entry>
 </search>
