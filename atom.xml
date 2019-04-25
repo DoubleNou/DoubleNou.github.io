@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://bulintt.com/"/>
-  <updated>2019-04-24T16:12:02.910Z</updated>
+  <updated>2019-04-25T03:24:57.093Z</updated>
   <id>https://bulintt.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>破解数据库连接工具navicat（亲测可用）</title>
+    <link href="https://bulintt.com/2019/04/25/%E7%A0%B4%E8%A7%A3%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7navicat%EF%BC%88%E4%BA%B2%E6%B5%8B%E5%8F%AF%E7%94%A8%EF%BC%89/"/>
+    <id>https://bulintt.com/2019/04/25/破解数据库连接工具navicat（亲测可用）/</id>
+    <published>2019-04-25T03:15:57.000Z</published>
+    <updated>2019-04-25T03:24:57.093Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="破解步骤"><a href="#破解步骤" class="headerlink" title="破解步骤"></a>破解步骤</h2><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><h2 id="1-最好下载Navicat-Premium-12版本，至于mac-还是-win-自行选择。另外选择破解版本也要看下网上的介绍。本人用12版本已经够用了。"><a href="#1-最好下载Navicat-Premium-12版本，至于mac-还是-win-自行选择。另外选择破解版本也要看下网上的介绍。本人用12版本已经够用了。" class="headerlink" title="1.最好下载Navicat Premium 12版本，至于mac 还是 win 自行选择。另外选择破解版本也要看下网上的介绍。本人用12版本已经够用了。"></a>1.最好下载Navicat Premium 12版本，至于mac 还是 win 自行选择。另外选择破解版本也要看下网上的介绍。本人用12版本已经够用了。</h2><h2 id="生成秘钥对"><a href="#生成秘钥对" class="headerlink" title="生成秘钥对"></a>生成秘钥对</h2><p>2.生成自己的RSA公钥私钥对<br>    （这里直接使用大神的密钥，也可以自己生成测试可以用）</p><p>这步与windows版破解相同，可以用open ssl工具生成，也可以使用其他工具生成，注意密钥是2048位的，PKCS#8格式<br>为了节省时间，可以使用我提供的一对密钥。<br>公钥：</p><p>—–BEGIN PUBLIC KEY—–<br>MIIBITANBgkqhkiG9w0BAQEFAAOCAQ4AMIIBCQKCAQB8vXG0ImYhLHvHhpi5FS3g<br>d2QhxSQiU6dQ04F1OHB0yRRQ3NXF5py2NNDw962i4WP1zpUOHh94/mg/KA8KHNJX<br>HtQVLXMRms+chomsQCwkDi2jbgUa4jRFN/6N3QejJ42jHasY3MJfALcnHCY3KDEF<br>h0N89FV4yGLyDLr+TLqpRecg9pkPnOp++UTSsxz/e0ONlPYrra/DiaBjsleAESZS<br>I69sPD9xZRt+EciXVQfybI/2SYeAdXMm1B7tHCcFlOxeUgqYV03VEqiC0jVMwRCd<br>+03NU3wvEmLBvGOmNGudocWIF/y3VOqyW1byXFLeZxl7s+Y/SthxOYXzu3mF+2/p<br>AgMBAAE=<br>—–END PUBLIC KEY—–</p><p>私钥：</p><p>—–BEGIN RSA PRIVATE KEY—–<br>MIIEogIBAAKCAQB8vXG0ImYhLHvHhpi5FS3gd2QhxSQiU6dQ04F1OHB0yRRQ3NXF<br>5py2NNDw962i4WP1zpUOHh94/mg/KA8KHNJXHtQVLXMRms+chomsQCwkDi2jbgUa<br>4jRFN/6N3QejJ42jHasY3MJfALcnHCY3KDEFh0N89FV4yGLyDLr+TLqpRecg9pkP<br>nOp++UTSsxz/e0ONlPYrra/DiaBjsleAESZSI69sPD9xZRt+EciXVQfybI/2SYeA<br>dXMm1B7tHCcFlOxeUgqYV03VEqiC0jVMwRCd+03NU3wvEmLBvGOmNGudocWIF/y3<br>VOqyW1byXFLeZxl7s+Y/SthxOYXzu3mF+2/pAgMBAAECggEAK5qZbYt8wenn1uZg<br>6onRwJ5bfUaJjApL+YAFx/ETtm83z9ByVbx4WWT7CNC7fK1nINy20/mJrOTZkgIx<br>x6otiNC4+DIsACJqol+RLoo8I9pk77Ucybn65ZteOz7hVZIU+8j6LzW0KDt6yowX<br>e75r7G/NEpfibNc3Zz81+oDd2x+bHyGbzc9QcePIVuEzkof6jgpbWrQZU14itx9l<br>VxEgj/fbMccvBx8brR/l9ClmDZd9Y6TWsF1rfJpF3+DPeqFkKCiD7PGz3bs4O/Zd<br>ZrfV21ZNVusBW49G6bU63gQVKsOf1qGo3efbAW1HVxgTQ/lExVdcMvdenZm+ADKp<br>L4/wUQKBgQDOfBjn3OC2IerUFu18EgCS7pSjTSibXw+TeX3D5zwszLC091G2rGlT<br>5DihBUhMfesNdpoZynrs4YB6Sz9C3wSGAB8AM/tNvPhtSVtbMHmrdT2DEEKCvLkO<br>RNBnt+8aTu2hGRanw9aL1189gzwrmXK5ZuuURfgLrB9ihrvjo4VznQKBgQCapx13<br>dEA1MwapBiIa3k8hVBCoGPsEPWqM33RBdUqUsP33f9/PCx00j/akwmjgQNnBlAJo<br>Y7LOqPCyiwOkEf40T4IlHdzYntWQQvHhfBwqSgdkTE9tKj43Ddr7JVFRL6yMSbW3<br>9qAp5UX/+VzOLGAlfzJ8CBnkXwGrnKPCVbnZvQKBgQCd+iof80jlcCu3GteVrjxM<br>LkcAbb8cqG1FWpVTNe4/JFgqDHKzPVPUgG6nG2CGTWxxv4UFKHpGE/11E28SHYjb<br>cOpHAH5LqsGy84X2za649JkcVmtclUFMXm/Ietxvl2WNdKF1t4rFMQFIEckOXnd8<br>y/Z/Wcz+OTFF82l7L5ehrQKBgFXl9m7v6e3ijpN5LZ5A1jDL0Yicf2fmePUP9DGb<br>ZTZbbGR46SXFpY4ZXEQ9GyVbv9dOT1wN7DXvDeoNXpNVzxzdAIt/H7hN2I8NL+4v<br>EjHG9n4WCJO4v9+yWWvfWWA/m5Y8JqusV1+N0iiQJ6T4btrE4JSVp1P6FSJtmWOK<br>W/T9AoGAcMhPMCL+N+AvWcYt4Y4mhelvDG8e/Jj4U+lwS3g7YmuQuYx7h5tjrS33<br>w4o20g/3XudPMJHhA3z+d8b3GaVM3ZtcRM3+Rvk+zSOcGSwn3yDy4NYlv9bdUj/4<br>H+aU1Qu1ZYojFM1Gmbe4HeYDOzRsJ5BhNrrV12h27JWkiRJ4F/Q=</p><h2 id="—–END-RSA-PRIVATE-KEY—–"><a href="#—–END-RSA-PRIVATE-KEY—–" class="headerlink" title="—–END RSA PRIVATE KEY—–"></a>—–END RSA PRIVATE KEY—–</h2><h2 id="安装程序"><a href="#安装程序" class="headerlink" title="安装程序"></a>安装程序</h2><p>3 安装程序，并替换应用包内容目录中rpk文件的公钥</p><h2 id="安装完毕后打开finder，找到应用程序，右键显示包内容，打开目录-Contents-Resources，编辑rpk文件，将公钥替换并保存。"><a href="#安装完毕后打开finder，找到应用程序，右键显示包内容，打开目录-Contents-Resources，编辑rpk文件，将公钥替换并保存。" class="headerlink" title="安装完毕后打开finder，找到应用程序，右键显示包内容，打开目录 /Contents/Resources，编辑rpk文件，将公钥替换并保存。"></a>安装完毕后打开finder，找到应用程序，右键显示包内容，打开目录 /Contents/Resources，编辑rpk文件，将公钥替换并保存。</h2><h2 id="算出有效的Mac版序列号密钥"><a href="#算出有效的Mac版序列号密钥" class="headerlink" title="算出有效的Mac版序列号密钥"></a>算出有效的Mac版序列号密钥</h2><p>4 使用我算好的密钥可以跳过此步，继续第四步，节省时间。<br>中文版64位密钥序列号： NAVH-T4PX-WT8W-QBL5</p><h2 id="英文版64位密钥序列号：-NAVG-UJ8Z-EVAP-JAUW"><a href="#英文版64位密钥序列号：-NAVG-UJ8Z-EVAP-JAUW" class="headerlink" title="英文版64位密钥序列号： NAVG-UJ8Z-EVAP-JAUW"></a>英文版64位密钥序列号： NAVG-UJ8Z-EVAP-JAUW</h2><h2 id="解密请求码，生成激活码"><a href="#解密请求码，生成激活码" class="headerlink" title="解密请求码，生成激活码"></a>解密请求码，生成激活码</h2><p>打开应用，断网！！！，点击注册，输入密钥 NAVH-T4PX-WT8W-QBL5，然后手动激活<br>复制请求码，使用私钥解密请求码，得到激活码明文<br>注意必须自己解密，因为解密后得到的“DI”是不同的<br>激活码明文示例：<br>{<br>  “K” : “NAVHT4PXWT8WQBL5”,<br>  “P” : “Mac 10.13”,<br>  “DI” : “ODQ2Yjg2ZDBjMTEzMjhh”<br>}<br>在线RSA私钥解密：<a href="http://tool.chacuo.net/cryptrsaprikey" target="_blank" rel="noopener">http://tool.chacuo.net/cryptrsaprikey</a></p><p>将得到的激活码明文进行修改，修改后格式如下<br>{“K”:”NAVHT4PXWT8WQBL5”, “N”:”52pojie”, “O”:”52pojie.cn”, “DI”:”ODQ2Yjg2ZDBjMTEzMjhh”, “T”:1516939200}<br>激活码明文格式最好复制我的，改变 “ “ 内的字符即可，在同一行哦，不要换行，否则激活失败！！！<br>“K” “DI” 都替换成自己机器解密的信息，”N” “O” “T”自己定义</p><p>加密激活码明文，使用私钥加密激活码明文<br>在线RSA私钥加密：<a href="http://tool.chacuo.net/cryptrsaprikey" target="_blank" rel="noopener">http://tool.chacuo.net/cryptrsaprikey</a></p><h2 id="复制加密后激活码信息到程序激活窗口，点击激活，即可成功激活"><a href="#复制加密后激活码信息到程序激活窗口，点击激活，即可成功激活" class="headerlink" title="复制加密后激活码信息到程序激活窗口，点击激活，即可成功激活"></a>复制加密后激活码信息到程序激活窗口，点击激活，即可成功激活</h2><h2 id="完整教程贴图地址"><a href="#完整教程贴图地址" class="headerlink" title="完整教程贴图地址"></a>完整教程贴图地址</h2><p><a href="https://blog.csdn.net/xhd731568849/article/details/79751188" target="_blank" rel="noopener">https://blog.csdn.net/xhd731568849/article/details/79751188</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;破解步骤&quot;&gt;&lt;a href=&quot;#破解步骤&quot; class=&quot;headerlink&quot; title=&quot;破解步骤&quot;&gt;&lt;/a&gt;破解步骤&lt;/h2&gt;&lt;h2 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="https://bulintt.com/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Rest微服务构建案例</title>
