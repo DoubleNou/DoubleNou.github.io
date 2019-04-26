@@ -291,16 +291,49 @@
       
       
       <div class="post-body">
-        
-        
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 11 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Http/" style="font-size: 12px; color: #ccc">Http</a> <a href="/tags/SpringBoot/" style="font-size: 12px; color: #ccc">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 12px; color: #ccc">SpringMVC</a> <a href="/tags/TCP/" style="font-size: 12px; color: #ccc">TCP</a> <a href="/tags/cloud/" style="font-size: 12px; color: #ccc">cloud</a> <a href="/tags/dubbo/" style="font-size: 12px; color: #ccc">dubbo</a> <a href="/tags/kafka/" style="font-size: 12px; color: #ccc">kafka</a> <a href="/tags/mysql/" style="font-size: 12px; color: #ccc">mysql</a> <a href="/tags/分布式/" style="font-size: 12px; color: #ccc">分布式</a> <a href="/tags/微服务/" style="font-size: 12px; color: #ccc">微服务</a> <a href="/tags/消息队列，kafka/" style="font-size: 12px; color: #ccc">消息队列，kafka</a>
-            </div>
-          </div>
+     
+     
+       <div class="tag-cloud">
+         <div class="tag-cloud-title">
+             目前共计 11 个标签
+         </div>
+         
+           
+         
+
+<div class="tags" id="myTags">
+  <canvas width="350" height="350" id="my3DTags">
+    <p>Anything in here will be replaced on browsers that support the canvas element</p>
+  </canvas>
+</div>
+<div class="tags" id="tags">
+  <ul style="display: none">
+    <a href="/tags/Http/" style="font-size: 16px; color: #f00">Http</a> <a href="/tags/SpringBoot/" style="font-size: 16px; color: #f00">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 16px; color: #f00">SpringMVC</a> <a href="/tags/TCP/" style="font-size: 16px; color: #f00">TCP</a> <a href="/tags/cloud/" style="font-size: 16px; color: #f00">cloud</a> <a href="/tags/dubbo/" style="font-size: 16px; color: #f00">dubbo</a> <a href="/tags/kafka/" style="font-size: 16px; color: #f00">kafka</a> <a href="/tags/mysql/" style="font-size: 16px; color: #f00">mysql</a> <a href="/tags/分布式/" style="font-size: 16px; color: #f00">分布式</a> <a href="/tags/微服务/" style="font-size: 16px; color: #f00">微服务</a> <a href="/tags/消息队列，kafka/" style="font-size: 16px; color: #f00">消息队列，kafka</a>
+  </ul>
+</div>
+<script type="text/javascript" src="/blog/js/src/tagcanvas.js"></script>
+<script type="text/javascript">
+  window.onload = function() {
+    try {
+      TagCanvas.Start('my3DTags','tags',{
+        textFont: 'Georgia,Optima',
+        textColour: null,
+        outlineColour: 'black',
+        weight: true,
+        reverse: true,
+        depth: 0.8,
+        maxSpeed: 0.05,
+        bgRadius: 1,
+        freezeDecel: true
+      });
+    } catch(e) {
+      // something went wrong, hide the canvas container
+      document.getElementById('myTags').style.display = 'none';
+    }
+  };
+</script>
+
+       </div>
         
       </div>
       
