@@ -81,7 +81,7 @@
 <meta property="og:site_name" content="Nou的技术逆袭">
 <meta property="og:description" content="前言和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是菜狗。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。唯一的欣慰点是这样的压力促进了我加快学习。压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—  目标 运用HBase把海量数据查询和写入搞定">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-28T08:34:46.514Z">
+<meta property="og:updated_time" content="2019-04-28T08:35:34.196Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅分析HDFS">
 <meta name="twitter:description" content="前言和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是菜狗。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。唯一的欣慰点是这样的压力促进了我加快学习。压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—  目标 运用HBase把海量数据查询和写入搞定">
@@ -446,8 +446,8 @@
 <h2 id="初识HDFS—分布式文件系统"><a href="#初识HDFS—分布式文件系统" class="headerlink" title="初识HDFS—分布式文件系统"></a>初识HDFS—分布式文件系统</h2><p>先不谈分布式、先说说文件系统：文件系统就是用来管理文件的一个系统，比如你今天送我的mac pro，我在命令行敲一个ls，就能看到当前目录的文件。就算你没有钱、没送我mac。没关系，你给我装一个linux系统，我运行ls出来的显示，同样是直观的文件系统。<br>文件系统官方来说是存储文件、管理文件，并且提供文件系统的crud。问题来了，这些文件存在哪？硬盘！</p>
 <p>知道了吧，万事万物想要持久化都要必进硬盘，别跟我扯什么云….云最后去哪了。</p>
 <p>单台机器，单个硬盘的场景。假设，我有一个文件（600G），但我的mac只有256G，我存个鬼。so，怎么办。有人跟我说加硬盘…你干点别的吧。<br>把这个文件拆开呀！！！我有钱，我有10台mac，那我就拆成10份。每份60G，完全可以放进单台256G的mac了。多台机器形成的系统就是分布式文件系统。那么这里又有一个问题，单台机器单台ls，多台机器每个都要ls吗？否，提供一个统一的查询接口，对使用者而言就像操作一台机器一样！这就是HDFS下的 hdfs dfs -ls ，命令的精髓。也就是分布式文件系统的意思。</p>
-<h2 id="文件切片"><a href="#文件切片" class="headerlink" title="文件切片"></a>文件切片</h2><p>赵栋请吃饭，一下子来20多人，怎么可能坐一桌，拆啊！！！这不就是文件切片的一个意思么。</p>
-
+<h2 id="文件切片"><a href="#文件切片" class="headerlink" title="文件切片"></a>文件切片</h2><p>赵栋请吃饭，一下子来20多人，怎么可能坐一桌，拆啊！！！这不就是文件切片的一个意思么。大文件切块后分别存储在多台机器，然后提供统一的操作接口，是不是分布式文件系统hdfs也是挺简单的。</p>
+<h2 id="潜在问题"><a href="#潜在问题" class="headerlink" title="潜在问题"></a>潜在问题</h2>
       
     </div>
     
@@ -669,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase的基础—HDFS"><span class="nav-number">2.</span> <span class="nav-text">HBase的基础—HDFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先给大家讲个故事"><span class="nav-number">3.</span> <span class="nav-text">先给大家讲个故事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初识HDFS—分布式文件系统"><span class="nav-number">4.</span> <span class="nav-text">初识HDFS—分布式文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件切片"><span class="nav-number">5.</span> <span class="nav-text">文件切片</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase的基础—HDFS"><span class="nav-number">2.</span> <span class="nav-text">HBase的基础—HDFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先给大家讲个故事"><span class="nav-number">3.</span> <span class="nav-text">先给大家讲个故事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初识HDFS—分布式文件系统"><span class="nav-number">4.</span> <span class="nav-text">初识HDFS—分布式文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件切片"><span class="nav-number">5.</span> <span class="nav-text">文件切片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#潜在问题"><span class="nav-number">6.</span> <span class="nav-text">潜在问题</span></a></li></ol></div>
             
 
           </div>
@@ -706,7 +706,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">6.3k</span>
+    <span title="Site words total count">6.4k</span>
   
 </div>
 
