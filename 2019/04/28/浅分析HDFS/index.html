@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,My BLog">
+  <meta name="keywords" content="HDFS,">
 
 
 
@@ -73,17 +73,18 @@
 
 
 
-<meta name="description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
-<meta name="keywords" content="后端,HBase,IM,消息队列,dubbo,SpringBoot,SpringCloud,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Nou的技术逆袭">
-<meta property="og:url" content="https://www.nouyc.com/categories/HTTP/index.html">
+<meta name="description" content="前言和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是菜狗。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。好在一点是这样的压力促进了我加快学习。压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—  目标 运用HBase把海量数据查询和写入搞定，代">
+<meta name="keywords" content="HDFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅分析HDFS">
+<meta property="og:url" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
-<meta property="og:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta property="og:description" content="前言和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是菜狗。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。好在一点是这样的压力促进了我加快学习。压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—  目标 运用HBase把海量数据查询和写入搞定，代">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-28T08:20:10.549Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nou的技术逆袭">
-<meta name="twitter:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta name="twitter:title" content="浅分析HDFS">
+<meta name="twitter:description" content="前言和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是菜狗。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。好在一点是这样的压力促进了我加快学习。压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—  目标 运用HBase把海量数据查询和写入搞定，代">
 
 
 
@@ -113,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="https://www.nouyc.com/categories/HTTP/">
+  <link rel="canonical" href="https://www.nouyc.com/2019/04/28/浅分析HDFS/">
 
 
 
 
 
-  <title>分类: HTTP | Nou的技术逆袭</title>
+  <title>浅分析HDFS | Nou的技术逆袭</title>
   
 
 
@@ -138,7 +139,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -273,53 +274,257 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>HTTP<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.nouyc.com/2019/04/28/浅分析HDFS/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nou">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nou的技术逆袭">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/23/java-代码请求URl样例/" itemprop="url">
-              
-                <span itemprop="name">java 代码请求URl样例</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">浅分析HDFS</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-23T11:36:09+08:00" content="2019-04-23">
-          04-23
-        </time>
-      </div>
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T15:37:46+08:00">
+                2019-04-28
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/28/浅分析HDFS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/28/浅分析HDFS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/04/28/浅分析HDFS/" class="leancloud_visitors" data-flag-title="浅分析HDFS">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  742
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是<div>菜狗</div>。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。好在一点是这样的压力促进了我加快学习。<br>压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—</p>
+<ol>
+<li>目标 运用HBase把海量数据查询和写入搞定，代替传统的关系型数据库mysql，我们的mysql日均写入量80万+。在接手的时候总库的量已经破了4亿。没错，你在一个亿量级的表里面找条数据（索引失效），你想想后果。其实可以避免索引失效的，具体什么场景我后续来说。</li>
+<li>HBase属于新应用，怎么搞自己去看吧，我tm居然从服务端学了起来，虽然很浅读，但基本HBase架构读了一遍。数据流怎么走的也有了基础掌握，返回头才看client端。我们应用方属于c端，大数据部门原来替我们做了server的管理。（其实我觉得，服务端和客户端都要学，因为调优的参数应用要懂吧、实际业务难免要做业务补偿，比如旧的历史消息bulkload进HBase、安全机制）</li>
+<li>实际业务需求，这里所说的就是我们不敢，甚至任何一家公司新运用HBase也不敢直接取代mysql的位置，选择手段只能是双写、双读。</li>
+<li>压测，我居然搞了jemeter接口测试，过程你懂的。其实HBase有专业的压测，支持多线程。YCSB！</li>
+</ol>
+<h2 id="HBase的基础—HDFS"><a href="#HBase的基础—HDFS" class="headerlink" title="HBase的基础—HDFS"></a>HBase的基础—HDFS</h2><p>大家不要被大数据搞晕了，其实没什么恐怖的，虽然学起来有些难度，HDFS是大数据存储的底层系统了，从这里我们可以了解到整个Hadoop生态圈，我们先搞定这个，再去玩HBase。进而玩起spark、sqoop、Flink。</p>
+<h2 id="先给大家讲个故事"><a href="#先给大家讲个故事" class="headerlink" title="先给大家讲个故事"></a>先给大家讲个故事</h2><p>一次赵栋请客吃饭，他叫了二十多个人，忆江南并没有大桌，只能分小桌落座。so，众口难调，为了照顾大家，每桌都是自己点菜，赵栋也是忙前忙后，忙着了解大家都点了些啥，毕竟他要结账。<br>服务员一下子面对六桌，菜有点多，有些菜忘了上哪桌，赵栋也会告诉他们。吃着吃着，突然博英桌点的一道猪蹄汤进了一个苍蝇。赵栋说：“没事儿，隔壁桌也点了这个汤。我去给你盛一碗。”</p>
+<p>吃完饭，大家都很开心，去小竹签的路上…</p>
+<h2 id="HDFS—分布式文件系统"><a href="#HDFS—分布式文件系统" class="headerlink" title="HDFS—分布式文件系统"></a>HDFS—分布式文件系统</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏下哇 ，贡献更多优质原创</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.jpg" alt="Nou 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HDFS/" rel="tag"># HDFS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/27/羊APP产品思路/" rel="next" title="羊APP产品思路">
+                <i class="fa fa-chevron-left"></i> 羊APP产品思路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -327,6 +532,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -347,8 +559,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -433,6 +654,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase的基础—HDFS"><span class="nav-number">2.</span> <span class="nav-text">HBase的基础—HDFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先给大家讲个故事"><span class="nav-number">3.</span> <span class="nav-text">先给大家讲个故事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS—分布式文件系统"><span class="nav-number">4.</span> <span class="nav-text">HDFS—分布式文件系统</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -593,6 +830,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
