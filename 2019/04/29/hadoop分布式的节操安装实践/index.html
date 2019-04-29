@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://www.nouyc.com/2019/04/29/hadoop分布式的节操安装实践/hadoop自带jar包.jpg">
 <meta property="og:image" content="https://www.nouyc.com/2019/04/29/hadoop分布式的节操安装实践/创建目录.jpg">
 <meta property="og:image" content="https://www.nouyc.com/2019/04/29/hadoop分布式的节操安装实践/echo.jpg">
-<meta property="og:updated_time" content="2019-04-29T04:48:01.477Z">
+<meta property="og:updated_time" content="2019-04-29T05:28:10.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop分布式的节操安装实践">
 <meta name="twitter:description" content="前言Hadoop是一个由Apache基金会所开发的分布式系统基础架构。Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了计算.本教程将指导如何用苹果macOS系统安装Hadoop。 安装介绍此篇来点真格的安装过程，可以按照流程走一遍，少走很多安装的大坑…..我当时安装了几乎小半个月，哎。菜是原罪…. 另外，为什么">
@@ -440,21 +440,36 @@
 <ol>
 <li>so，cd 到 /usr/local/Cellar/hadoop/3.1.1/libexec/etc/hadoop中 修改Core-site.xml这是hadoop和hdfs的核心配置，有些配置是公用的。</li>
 </ol>
-<p>修改为：</p>
-<configuration><br>    <property><br>        <name>hadoop.tmp.dir</name><br>        <value>/usr/local/Cellar/hadoop/hdfs/tmp</value><br>        <description>A base for other temporary directories</description><br>    </property><br>    <property><br>        <name>fs.default.name</name><br>        <value>hdfs://localhost:9000</value><br>    </property><br></configuration>
-
+<p>修改为：<br><!--     <configuration>
+        <property>
+            <name>hadoop.tmp.dir</name>
+            <value>/usr/local/Cellar/hadoop/hdfs/tmp</value>
+            <description>A base for other temporary directories</description>
+        </property>
+        <property>
+            <name>fs.default.name</name>
+            <value>hdfs://localhost:9000</value>
+        </property>
+    </configuration> --></p>
 <p>s.default.name 保存了NameNode的位置，HDFS和MapReduce组件都需要用到它，这就是它出现在core-site.xml 文件中而不是 hdfs-site.xml文件中的原因</p>
 <ol start="2">
 <li>修改mapred-site.xml.template</li>
 </ol>
-<p>修改为：</p>
-<configuration><br>    <property><br>        <name>mapred.job.tracker</name><br>        <value>localhost:9010</value><br>    </property><br></configuration>
-
+<p>修改为：<br><!--     <configuration>
+        <property>
+            <name>mapred.job.tracker</name>
+            <value>localhost:9010</value>
+        </property>
+    </configuration> --></p>
 <ol start="3">
 <li>hdfs-site.xml</li>
 </ol>
-<p>修改为：</p>
-<p><configuration><br>    <property><br>        <name>dfs.replication</name><br>        <value>1</value><br>    </property><br></configuration><br>变量dfs.replication指定了每个HDFS数据库的复制次数。 通常为3, 由于我们只有一台主机和一个伪分布式模式的DataNode，将此值修改为1。</p>
+<p>修改为：<br><!--     <configuration>
+        <property>
+            <name>dfs.replication</name>
+            <value>1</value>
+        </property>
+    </configuration> --><br>变量dfs.replication指定了每个HDFS数据库的复制次数。 通常为3, 由于我们只有一台主机和一个伪分布式模式的DataNode，将此值修改为1。</p>
 <p>hadoop namenode -format<br>./sbin/start-all.sh</p>
 <p>用示例测试</p>
 <p>估计圆周率PI的值</p>
