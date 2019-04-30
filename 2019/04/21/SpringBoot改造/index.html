@@ -87,10 +87,16 @@
 <meta property="og:site_name" content="Nou的技术逆袭">
 <meta property="og:description" content="刚入职的时候，发现我们接手项目是ssm和SpringBoot混用，这个”混用”听起来奇怪哈？一句话就是很多依赖项用了SpringBoot又用了原生，还用了ssm中的一些写法。直观看上去一句my god～～～对新入职的应届生来说，多少会有混淆，用起来也会很撇脚（碍手？）。但本菜狗认为这真是一个学习的好机会，从最原生的写一遍，写到SpringBoot，写到地老天荒。另外悄悄告诉你，我们的之前组件都是原">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-23T13:38:46.245Z">
+<meta property="og:image" content="https://www.nouyc.com/2019/04/21/SpringBoot改造/一个标配的启动类.jpg">
+<meta property="og:image" content="https://www.nouyc.com/2019/04/21/SpringBoot改造/新建第一步.jpg">
+<meta property="og:image" content="https://www.nouyc.com/2019/04/21/SpringBoot改造/构建项目.jpg">
+<meta property="og:image" content="https://www.nouyc.com/2019/04/21/SpringBoot改造/SpringBoot启动.jpg">
+<meta property="og:image" content="https://www.nouyc.com/2019/04/21/SpringBoot改造/boot入口.jpg">
+<meta property="og:updated_time" content="2019-04-30T02:27:55.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot改造">
 <meta name="twitter:description" content="刚入职的时候，发现我们接手项目是ssm和SpringBoot混用，这个”混用”听起来奇怪哈？一句话就是很多依赖项用了SpringBoot又用了原生，还用了ssm中的一些写法。直观看上去一句my god～～～对新入职的应届生来说，多少会有混淆，用起来也会很撇脚（碍手？）。但本菜狗认为这真是一个学习的好机会，从最原生的写一遍，写到SpringBoot，写到地老天荒。另外悄悄告诉你，我们的之前组件都是原">
+<meta name="twitter:image" content="https://www.nouyc.com/2019/04/21/SpringBoot改造/一个标配的启动类.jpg">
 
 
 
@@ -391,7 +397,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  187
+                  498
                 </span>
               
 
@@ -432,7 +438,15 @@
 <p>以上都是废话</p>
 <hr>
 <p>干货</p>
-<p>我介绍下SpringBoot的原理，也偷偷抓紧复习下。</p>
+<p>我介绍下SpringBoot的原理，也偷偷抓紧复习下。—2019年4月21日</p>
+<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>耽误了几天哈—2019年4月29日<br>本文不东扯西扯、只专注剖析SpringBoot。废话不多说，撸码！</p>
+<p><img src="/2019/04/21/SpringBoot改造/一个标配的启动类.jpg" alt><br>这是一个已经建好的启动类，我用的编译器是IDEA，我也推荐各位用上这款软件，我只专注java开发哈，至于kotlin，Lua….我是没有用这个软件玩过。<br>至于这么到这一步，麻烦看下标签中题目：构建微服务实战的介绍，很简单。简单说两句吧，我用IDEA构建项目一般都是用在线化构建，很方便，可以选择很多starter。不过新手我建议这么做， 还是老老实实用在线化下方的maven模块去构建。具体什么原因，请看完本篇再翻过头想想。</p>
+<p><img src="/2019/04/21/SpringBoot改造/新建第一步.jpg" alt></p>
+<p><img src="/2019/04/21/SpringBoot改造/构建项目.jpg" alt></p>
+<h2 id="自己造一个启动类"><a href="#自己造一个启动类" class="headerlink" title="自己造一个启动类"></a>自己造一个启动类</h2><p>在我们建好的工程中，添加一个启动函数，这个应该会吧？注意在入口函数上打上@SpringBootApplication，完整入口函数如下。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String []args) &#123;</span><br><span class="line">        SpringApplication.run(Main.<span class="keyword">class</span>, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>启动！没问题。<br><img src="/2019/04/21/SpringBoot改造/SpringBoot启动.jpg" alt></p>
+<h2 id="世界从-SpringBootApplication开始。"><a href="#世界从-SpringBootApplication开始。" class="headerlink" title="世界从@SpringBootApplication开始。"></a>世界从@SpringBootApplication开始。</h2><p>我刚让大家在启动类打上的@SpringBootApplication，为什么被称为世界的入口。来进入这个@看看。</p>
+<p><img src="/2019/04/21/SpringBoot改造/boot入口.jpg" alt></p>
 
       
     </div>
@@ -558,8 +572,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -645,6 +668,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建"><span class="nav-number">1.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自己造一个启动类"><span class="nav-number">2.</span> <span class="nav-text">自己造一个启动类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#世界从-SpringBootApplication开始。"><span class="nav-number">3.</span> <span class="nav-text">世界从@SpringBootApplication开始。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -675,7 +714,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">10k</span>
+    <span title="Site words total count">10.3k</span>
   
 </div>
 
