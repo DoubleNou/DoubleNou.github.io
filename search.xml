@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[我是菜鸟---java基础篇]]></title>
+    <title><![CDATA[我是菜鸟---java基础字符篇]]></title>
     <url>%2F2019%2F05%2F14%2F%E6%88%91%E6%98%AF%E8%8F%9C%E9%B8%9F-java%E5%9F%BA%E7%A1%80%E7%AF%87%2F</url>
     <content type="text"><![CDATA[局部变量、全局变量、静态变量的意思和生命周期注意点：局部变量是必须赋值才能使用，全局变量即使不赋值也有默认值，静态变量是全局的生命周期最长。 常量只要给的值就不能再改变了，int age = 1；1是常量，age是变量。final 修饰的字符又是字符常量final int age。 基本数据类型（primitive data） ----数值型 整数类型（byte、short、int、long）浮点类型(float、double) （3大类、8小类） ----基本数据类型 ----字符型 char 2个字节 ----布尔型 boolean 1位 注意⚠️ 一个bit 数据类型 ----引用数据类型 类、接口、数组 占用4个字节。代表对象地址 整型变量/常量byte、short、int、long 十进制正常数字、八进制015、十六进制0X16、二进制0b1101; 浮点型float、double float a = 3.14F; double b = 1.14;浮点数是不精确的 ，一定不要用做比较。如果想比较浮点数，要用java.math包下面的BigDecimal和BigInteger BigDecimal.valueOf(0.01); 布尔类型true and false]]></content>
       <tags>
@@ -12,6 +12,9 @@
     <title><![CDATA[java基础复习---jvm的几大分区和oom的情况]]></title>
     <url>%2F2019%2F05%2F13%2Fjava%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0-jvm%E7%9A%84%E5%87%A0%E5%A4%A7%E5%88%86%E5%8C%BA%E5%92%8Coom%E7%9A%84%E6%83%85%E5%86%B5%2F</url>
     <content type="text"></content>
+      <tags>
+        <tag>java基础</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[豪猪熔断器]]></title>
