@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.nouyc.com/"/>
-  <updated>2019-05-15T06:33:06.622Z</updated>
+  <updated>2019-05-16T14:15:19.842Z</updated>
   <id>https://www.nouyc.com/</id>
   
   <author>
@@ -17,13 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>我是菜鸟---java基础字符篇</title>
+    <title>我是菜鸟---java基础通用复习篇</title>
+    <link href="https://www.nouyc.com/2019/05/15/%E6%88%91%E6%98%AF%E8%8F%9C%E9%B8%9F-java%E5%9F%BA%E7%A1%80%E9%80%9A%E7%94%A8%E5%A4%8D%E4%B9%A0%E7%AF%87/"/>
+    <id>https://www.nouyc.com/2019/05/15/我是菜鸟-java基础通用复习篇/</id>
+    <published>2019-05-15T07:39:55.000Z</published>
+    <updated>2019-05-16T14:15:19.842Z</updated>
+    
+    <content type="html"><![CDATA[<p>java集合、java并发、java网络、java虚拟机</p><p>面向对象是java的一句代表</p><p>面向对象的特征？四点记住！封装、继承、多态、抽象。</p><h2 id="面向对象—封装"><a href="#面向对象—封装" class="headerlink" title="面向对象—封装"></a>面向对象—封装</h2><p>封装给对象提供了隐藏内部特性和行为的能力，对象提供一些给其他对象改变自己内部参数的方法。这么一说比较绕，简单来讲就是我们常见的四种类修饰符：<br>private、friendly、projected、public。这些修饰符给对象赋予了不同的访问权限。</p><p>封装的好处：通过隐藏对象的属性来保护对象内部的状态，提高了代码可读性、维护性。模块化。</p><h2 id="面向对象—继承"><a href="#面向对象—继承" class="headerlink" title="面向对象—继承"></a>面向对象—继承</h2><p>继承，给对象提供了从基类获取字段和方法的能力。继承提供了代码的重用行，也可以在不修改类的情况下给现存的类添加新特性。</p><h2 id="面向对象—多态"><a href="#面向对象—多态" class="headerlink" title="面向对象—多态"></a>面向对象—多态</h2><p>多态，是编程语言给不同的底层数据类型做相同的接口展示的一种能力。一个多态类型上的操作，可以应用到其他类型的值上面。</p><h2 id="面向对象—抽象"><a href="#面向对象—抽象" class="headerlink" title="面向对象—抽象"></a>面向对象—抽象</h2><p>抽象，是把想法从具体的实例中分离出来的步骤，因此，要根据他们的功能而不是实现细节来创建类。<br>Java 支持创建只暴漏接口而不包含方法实现的抽象的类。这种抽象技术的主要目的是把类的行为和实现细节分离开。</p><h2 id="面向过程与面向对象的区别"><a href="#面向过程与面向对象的区别" class="headerlink" title="面向过程与面向对象的区别"></a>面向过程与面向对象的区别</h2><p>性能高低不同，自己想想哪个高低？</p><h2 id="重载和重写的区别？"><a href="#重载和重写的区别？" class="headerlink" title="重载和重写的区别？"></a>重载和重写的区别？</h2><p>1）重写 override</p><p>方法名、参数、返回值相同。<br>子类方法不能缩小父类方法的访问权限。<br>子类方法不能抛出比父类方法更多的异常(但子类方法可以不抛出异常)。<br>存在于父类和子类之间。<br>方法被定义为 final 不能被重写。</p><p>2）重载 overload</p><p>参数类型、个数、顺序至少有一个不相同。<br>不能重载只有返回值不同的方法名。<br>存在于父类和子类、同类中。</p><h2 id="Java-中，什么是构造方法？什么是构造方法重载？什么是拷贝构造方法？"><a href="#Java-中，什么是构造方法？什么是构造方法重载？什么是拷贝构造方法？" class="headerlink" title="Java 中，什么是构造方法？什么是构造方法重载？什么是拷贝构造方法？"></a>Java 中，什么是构造方法？什么是构造方法重载？什么是拷贝构造方法？</h2><p>1）构造方法</p><p>当新对象被创建的时候，构造方法会被调用。每一个类都有构造方法。在程序员没有给类提供构造方法的情况下，Java 编译器会为这个类创建一个默认的构造方法。</p><p>2）构造方法重载</p><p>Java 中构造方法重载和方法重载很相似。可以为一个类创建多个构造方法。每一个构造方法必须有它自己唯一的参数列表。</p><p>3）拷贝构造方法</p><p>Java 不支持像 C++ 中那样的拷贝构造方法，这个不同点是因为如果你不自己写构造方法的情况下，Java 不会创建默认的拷贝构造方法。</p><h2 id="JDK、JRE、JVM-分别是什么关系？"><a href="#JDK、JRE、JVM-分别是什么关系？" class="headerlink" title="JDK、JRE、JVM 分别是什么关系？"></a>JDK、JRE、JVM 分别是什么关系？</h2><p>🐷JDK<br>JDK 即为 Java 开发工具包，包含编写 Java 程序所必须的编译、运行等开发工具以及 JRE。开发工具如：</p><p>用于编译 Java 程序的 javac 命令。<br>用于启动 JVM 运行 Java 程序的 Java 命令。<br>用于生成文档的 Javadoc 命令。<br>用于打包的 jar 命令等等。</p><p>简单说，就是 JDK 包含 JRE 包含 JVM。</p><p>🐷JRE</p><p>JRE 即为 Java 运行环境，提供了运行 Java 应用程序所必须的软件环境，包含有 Java 虚拟机（JVM）和丰富的系统类库。系统类库即为 Java 提前封装好的功能类，只需拿来直接使用即可，可以大大的提高开发效率。</p><p>简单说，就是 JRE 包含 JVM。</p><p>🐷JVM</p><h2 id="为什么-Java-被称作是“平台无关的编程语言”？"><a href="#为什么-Java-被称作是“平台无关的编程语言”？" class="headerlink" title="为什么 Java 被称作是“平台无关的编程语言”？"></a>为什么 Java 被称作是“平台无关的编程语言”？</h2><p>Java 源文件( .java )被编译成能被 Java 虚拟机执行的字节码文件( .class )。<br>Java 被设计成允许应用程序可以运行在任意的平台，而不需要程序员为每一个平台单独重写或者是重新编译。Java 虚拟机让这个变为可能，因为它知道底层硬件平台的指令长度和其他特性。</p><h2 id="JDK-各版本的新特性？"><a href="#JDK-各版本的新特性？" class="headerlink" title="JDK 各版本的新特性？"></a>JDK 各版本的新特性？</h2><p>JDK5 ~ JDK10 ，看 <a href="https://www.jianshu.com/p/37b52f1ebd4a" target="_blank" rel="noopener">https://www.jianshu.com/p/37b52f1ebd4a</a> 。<br>JDK11 ，看 <a href="https://www.jianshu.com/p/81b65eded96c" target="_blank" rel="noopener">https://www.jianshu.com/p/81b65eded96c</a> 。<br>对于大多数面试官，肯定不会问你 JDK 各版本的新特性，更多的会问 JDK8 引入了什么重要的特性？一般上，关键的回答是Lambda 表达式和集合之流式操作，然后说说你在项目中怎么使用的。</p><p>JVM 即为 Java 虚拟机，提供了字节码文件(.class)的运行环境支持。</p><h2 id="Java-和-C-的区别？"><a href="#Java-和-C-的区别？" class="headerlink" title="Java 和 C++ 的区别？"></a>Java 和 C++ 的区别？</h2><p>都是面向对象的语言，都支持封装、继承和多态。<br>Java 不提供指针来直接访问内存，程序内存更加安全。<br>Java 的类是单继承的，C++ 支持多重继承；虽然 Java 的类不可以多继承，但是接口可以多继承。<br>【重要】Java 有自动内存管理机制，不需要程序员手动释放无用内存。</p><h2 id="什么是字节码？采用字节码的最大好处是什么？"><a href="#什么是字节码？采用字节码的最大好处是什么？" class="headerlink" title="什么是字节码？采用字节码的最大好处是什么？"></a>什么是字节码？采用字节码的最大好处是什么？</h2><p>这个问题，面试官可以衍生提问，Java 是编译执行的语言，还是解释执行的语言。</p><p>Java 源代码<br>=&gt; 编译器 =&gt; JVM 可执行的 Java 字节码(即虚拟指令)<br>=&gt; JVM =&gt; JVM 中解释器 =&gt; 机器可执行的二进制机器码 =&gt; 程序运行</p><p>每一种平台的解释器是不同的，但是实现的虚拟机是相同的。Java 源程序经过编译器编译后变成字节码，字节码由虚拟机解释执行，虚拟机将每一条要执行的字节码送给解释器，解释器将其翻译成特定机器上的机器码，然后在特定的机器上运行。这也就是解释了 Java 的编译与解释并存的特点。</p><h2 id="java集合"><a href="#java集合" class="headerlink" title="java集合"></a>java集合</h2><p>集合框架我觉得不管是学习知识还死活开发实战都是必要的，不可苟且。</p><p>一个工具类中的集合可以提高很多的性能。</p><p>map collection</p><p>map set list。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;java集合、java并发、java网络、java虚拟机&lt;/p&gt;
+&lt;p&gt;面向对象是java的一句代表&lt;/p&gt;
+&lt;p&gt;面向对象的特征？四点记住！封装、继承、多态、抽象。&lt;/p&gt;
+&lt;h2 id=&quot;面向对象—封装&quot;&gt;&lt;a href=&quot;#面向对象—封装&quot; class=&quot;header
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="https://www.nouyc.com/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我是菜鸟---java基础类型篇</title>
     <link href="https://www.nouyc.com/2019/05/14/%E6%88%91%E6%98%AF%E8%8F%9C%E9%B8%9F-java%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
     <id>https://www.nouyc.com/2019/05/14/我是菜鸟-java基础篇/</id>
     <published>2019-05-14T14:45:09.000Z</published>
-    <updated>2019-05-15T06:33:06.622Z</updated>
+    <updated>2019-05-17T03:06:46.771Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="局部变量、全局变量、静态变量的意思和生命周期"><a href="#局部变量、全局变量、静态变量的意思和生命周期" class="headerlink" title="局部变量、全局变量、静态变量的意思和生命周期"></a>局部变量、全局变量、静态变量的意思和生命周期</h2><p>注意点：局部变量是必须赋值才能使用，全局变量即使不赋值也有默认值，静态变量是全局的生命周期最长。</p><h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>只要给的值就不能再改变了，int age = 1；1是常量，age是变量。final 修饰的字符又是字符常量final int age。</p><h2 id="基本数据类型（primitive-data）"><a href="#基本数据类型（primitive-data）" class="headerlink" title="基本数据类型（primitive data）"></a>基本数据类型（primitive data）</h2><pre><code>                ----数值型 整数类型（byte、short、int、long）浮点类型(float、double)  （3大类、8小类）----基本数据类型  ----字符型 char 2个字节                ----布尔型 boolean 1位  注意⚠️ 一个bit</code></pre><p>数据类型</p><pre><code>----引用数据类型 类、接口、数组 占用4个字节。代表对象地址</code></pre><h2 id="整型变量-常量"><a href="#整型变量-常量" class="headerlink" title="整型变量/常量"></a>整型变量/常量</h2><p>byte、short、int、long</p><p>十进制正常数字、八进制015、十六进制0X16、二进制0b1101;</p><h2 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h2><p>float、double</p><p>float a = 3.14F; double b = 1.14;浮点数是不精确的 ，一定不要用做比较。如果想比较浮点数，要用java.math包下面的BigDecimal和BigInteger</p><p>BigDecimal.valueOf(0.01);</p><h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><p>true and false</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="局部变量、全局变量、静态变量的意思和生命周期"><a href="#局部变量、全局变量、静态变量的意思和生命周期" class="headerlink" title="局部变量、全局变量、静态变量的意思和生命周期"></a>局部变量、全局变量、静态变量的意思和生命周期</h2><p>注意点：局部变量是必须赋值才能使用，全局变量即使不赋值也有默认值，静态变量是全局的生命周期最长。</p><h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>只要给的值就不能再改变了，int age = 1；1是常量，age是变量。final 修饰的字符又是字符常量final int age。</p><h2 id="基本数据类型（primitive-data）"><a href="#基本数据类型（primitive-data）" class="headerlink" title="基本数据类型（primitive data）"></a>基本数据类型（primitive data）</h2><pre><code>                ----数值型 整数类型（byte、short、int、long）浮点类型(float、double)  （3大类、8小类）----基本数据类型  ----字符型 char 2个字节                ----布尔型 boolean 1位  注意⚠️ 一个bit</code></pre><p>数据类型</p><pre><code>----引用数据类型 类、接口、数组 占用4个字节。代表对象地址</code></pre><h2 id="整型变量-常量"><a href="#整型变量-常量" class="headerlink" title="整型变量/常量"></a>整型变量/常量</h2><p>byte、short、int、long</p><p>十进制正常数字、八进制015、十六进制0X16、二进制0b1101;</p><h2 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h2><p>float、double</p><p>float a = 3.14F; double b = 1.14;浮点数是不精确的 ，一定不要用做比较。如果想比较浮点数，要用java.math包下面的BigDecimal和BigInteger</p><p>BigDecimal.valueOf(0.01);</p><h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><p>true and false</p><h2 id="顺序结构、选择结构、循环结构"><a href="#顺序结构、选择结构、循环结构" class="headerlink" title="顺序结构、选择结构、循环结构"></a>顺序结构、选择结构、循环结构</h2><p>这节其实很易懂，但很多人忽略了，一个很小很小的程序，或者大的操作系统说白了都是变量+选择结构+循环结构组成的。</p><h2 id="break、continue"><a href="#break、continue" class="headerlink" title="break、continue"></a>break、continue</h2><p>break跳出整套循、continue跳出本次循环。另外还有带标签的break、continue。这个是可以跳转的。<br>之前有个goto关键字，是java一个保留字读。如果大量使用goto语句，程序结构可能会失去控制。所以我们使用带标签的break和continue。</p><p>场景：希望在一个嵌套循环中，跳出到外侧循环，</p><p>outer:<br>for（）{<br>    if(){<br>    break outer;<br>}<br>}</p>]]></content>
     
     <summary type="html">
     
