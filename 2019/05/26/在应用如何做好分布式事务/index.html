@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Nou的技术逆袭">
 <meta property="og:description" content="XA模式  主讲（申海强）锁–我们在传统的系统进行请求访问的时候，一次请求都要经过XA，start-end，涉及了很多分布式事务的锁。 连接–如果说链路太长，那么这个连接不能释放。 TM begin-  TC 事务id -  RM 注册TC 统一用TC回溯（回追一些事务）— TM end ###本地模式必须遵守ACID 牛逼的点：undoLog TC - Rm 来嵌套下，saga tcc 模式 #">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-26T04:00:49.691Z">
+<meta property="og:updated_time" content="2019-05-26T08:41:33.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里dubbo---北京MeetUp会议记录2019.5.26">
 <meta name="twitter:description" content="XA模式  主讲（申海强）锁–我们在传统的系统进行请求访问的时候，一次请求都要经过XA，start-end，涉及了很多分布式事务的锁。 连接–如果说链路太长，那么这个连接不能释放。 TM begin-  TC 事务id -  RM 注册TC 统一用TC回溯（回追一些事务）— TM end ###本地模式必须遵守ACID 牛逼的点：undoLog TC - Rm 来嵌套下，saga tcc 模式 #">
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  506
+                  825
                 </span>
               
 
@@ -385,7 +385,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -444,6 +444,39 @@
 <li>如果是面对老系统，其实就是和旧世界作斗争，选择办法打通一条通往新世界的大门，开一个口子接入新系统</li>
 <li>eip目前还在处于构造中。</li>
 </ol>
+<h2 id="sentinel-网关限流-赵亦豪（宿何）"><a href="#sentinel-网关限流-赵亦豪（宿何）" class="headerlink" title="sentinel 网关限流 赵亦豪（宿何）"></a>sentinel 网关限流 赵亦豪（宿何）</h2><p>sentinel<br>微服务稳定性的场景</p>
+<p>场景：</p>
+<ol>
+<li>激增流量</li>
+<li>下游服务的不稳定性<br>可行性：</li>
+<li>流量控制</li>
+<li>流量整型</li>
+<li>熔断降级</li>
+<li>系统自适应保护</li>
+</ol>
+<p>要在系统出现堕机前进行，进行保护</p>
+<p>###1.6.0新特性</p>
+<ol>
+<li><p>注解的支持改进</p>
+</li>
+<li><p>异常类型限定</p>
+</li>
+<li><p>网关流量控制</p>
+</li>
+<li><p>更好的errorCallBack的返回</p>
+</li>
+<li><p>开源万岁</p>
+</li>
+</ol>
+<p>###提问环节</p>
+<ol>
+<li>一旦集成后，动态server的管理：可以搞成一种独立模式的一种agent。</li>
+<li>sentinel熔断没有一个半打开的功能。豪猪有</li>
+</ol>
+<h2 id="dubbo服务自省设计与实现-主讲（今天最牛逼的小马哥）"><a href="#dubbo服务自省设计与实现-主讲（今天最牛逼的小马哥）" class="headerlink" title="dubbo服务自省设计与实现 主讲（今天最牛逼的小马哥）"></a>dubbo服务自省设计与实现 主讲（今天最牛逼的小马哥）</h2><p>什么是服务自省</p>
+<p>dubbo可以暴露很多协议，dubbo应用在运行时处理和分析dubbo的服务元信息</p>
+<p>dubbo对外提供的是服务，cloud是接口。微服务还有些地方不是特别成熟，本次升级dubbo自省模式，加入了metaData原数据。</p>
+<h2 id="zk向nacos的迁移"><a href="#zk向nacos的迁移" class="headerlink" title="zk向nacos的迁移"></a>zk向nacos的迁移</h2><p>一句话，早晚的事，zk其实挺被诟病的，只是因为没有更好的一个选择，注册中心这个概念，正是因为确定保证它的稳定性，所以要开发出的一个良好的模式</p>
 
       
     </div>
@@ -660,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XA模式-主讲（申海强）"><span class="nav-number">1.</span> <span class="nav-text">XA模式  主讲（申海强）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-dubbo的设想-主讲（秦金卫）"><span class="nav-number">2.</span> <span class="nav-text">apache dubbo的设想 主讲（秦金卫）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XA模式-主讲（申海强）"><span class="nav-number">1.</span> <span class="nav-text">XA模式  主讲（申海强）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-dubbo的设想-主讲（秦金卫）"><span class="nav-number">2.</span> <span class="nav-text">apache dubbo的设想 主讲（秦金卫）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sentinel-网关限流-赵亦豪（宿何）"><span class="nav-number">3.</span> <span class="nav-text">sentinel 网关限流 赵亦豪（宿何）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dubbo服务自省设计与实现-主讲（今天最牛逼的小马哥）"><span class="nav-number">4.</span> <span class="nav-text">dubbo服务自省设计与实现 主讲（今天最牛逼的小马哥）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zk向nacos的迁移"><span class="nav-number">5.</span> <span class="nav-text">zk向nacos的迁移</span></a></li></ol></div>
             
 
           </div>
@@ -697,7 +730,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">18.4k</span>
+    <span title="Site words total count">18.7k</span>
   
 </div>
 
