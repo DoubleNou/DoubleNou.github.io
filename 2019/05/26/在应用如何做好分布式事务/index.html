@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta name="description" content="XA模式  主讲（申海强）锁–我们在传统的系统进行请求访问的时候，一次请求都要经过XA，start-end，涉及了很多分布式事务的锁。 连接–如果说链路太长，那么这个连接不能释放。 TM begin-  TC 事务id -  RM 注册TC 统一用TC回溯（回追一些事务）— TM end ###本地模式必须遵守ACID 牛逼的点：undoLog TC - Rm 来嵌套下，saga tcc 模式 #">
 <meta name="keywords" content="后端,HBase,IM,消息队列,dubbo,SpringBoot,SpringCloud,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Nou的技术逆袭">
-<meta property="og:url" content="https://www.nouyc.com/categories/kafka/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里dubbo---北京MeetUp会议记录2019.5.26">
+<meta property="og:url" content="https://www.nouyc.com/2019/05/26/在应用如何做好分布式事务/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
-<meta property="og:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta property="og:description" content="XA模式  主讲（申海强）锁–我们在传统的系统进行请求访问的时候，一次请求都要经过XA，start-end，涉及了很多分布式事务的锁。 连接–如果说链路太长，那么这个连接不能释放。 TM begin-  TC 事务id -  RM 注册TC 统一用TC回溯（回追一些事务）— TM end ###本地模式必须遵守ACID 牛逼的点：undoLog TC - Rm 来嵌套下，saga tcc 模式 #">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-26T04:00:49.691Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nou的技术逆袭">
-<meta name="twitter:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta name="twitter:title" content="阿里dubbo---北京MeetUp会议记录2019.5.26">
+<meta name="twitter:description" content="XA模式  主讲（申海强）锁–我们在传统的系统进行请求访问的时候，一次请求都要经过XA，start-end，涉及了很多分布式事务的锁。 连接–如果说链路太长，那么这个连接不能释放。 TM begin-  TC 事务id -  RM 注册TC 统一用TC回溯（回追一些事务）— TM end ###本地模式必须遵守ACID 牛逼的点：undoLog TC - Rm 来嵌套下，saga tcc 模式 #">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.nouyc.com/categories/kafka/">
+  <link rel="canonical" href="https://www.nouyc.com/2019/05/26/在应用如何做好分布式事务/">
 
 
 
 
 
-  <title>分类: kafka | Nou的技术逆袭</title>
+  <title>阿里dubbo---北京MeetUp会议记录2019.5.26 | Nou的技术逆袭</title>
   
 
 
@@ -144,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -269,53 +270,257 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>kafka<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.nouyc.com/2019/05/26/在应用如何做好分布式事务/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nou">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nou的技术逆袭">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/23/kafka的生产-消费/" itemprop="url">
-              
-                <span itemprop="name">kafka的生产+消费</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">阿里dubbo---北京MeetUp会议记录2019.5.26</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-23T18:17:18+08:00" content="2019-04-23">
-          04-23
-        </time>
-      </div>
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-26T10:45:53+08:00">
+                2019-05-26
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/26/在应用如何做好分布式事务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/26/在应用如何做好分布式事务/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/05/26/在应用如何做好分布式事务/" class="leancloud_visitors" data-flag-title="阿里dubbo---北京MeetUp会议记录2019.5.26">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  506
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="XA模式-主讲（申海强）"><a href="#XA模式-主讲（申海强）" class="headerlink" title="XA模式  主讲（申海强）"></a>XA模式  主讲（申海强）</h2><p>锁–我们在传统的系统进行请求访问的时候，一次请求都要经过XA，start-end，涉及了很多分布式事务的锁。</p>
+<p>连接–如果说链路太长，那么这个连接不能释放。</p>
+<p>TM begin-  TC 事务id -  RM 注册TC 统一用TC回溯（回追一些事务）— TM end</p>
+<p>###本地模式必须遵守ACID</p>
+<p>牛逼的点：undoLog TC - Rm</p>
+<p>来嵌套下，saga tcc 模式</p>
+<p>###提问环节</p>
+<ol>
+<li>对于olap也没有很好的办法，本架构也主要在oltp进行开展。</li>
+<li>TC高可用是否可以得到保障，一个新技术引入架构的话，是一个单点隐患，复杂的问题聚焦到一个点。</li>
+<li>undoLog确定是存在数据库中，这就解释了本地模式为什么是acid。</li>
+<li>TC对链路的控制，优先选择第一条链路。</li>
+<li>其他外国大厂并没有对微服务层次上对事务有把控、只是在数据库上做了。</li>
+</ol>
+<h2 id="apache-dubbo的设想-主讲（秦金卫）"><a href="#apache-dubbo的设想-主讲（秦金卫）" class="headerlink" title="apache dubbo的设想 主讲（秦金卫）"></a>apache dubbo的设想 主讲（秦金卫）</h2><p>dubbo的想法</p>
+<p>abc基础能力</p>
+<p>云一体化、人工智能、大数据。悄悄告诉大家，如果创业，这三方面一定占据几个</p>
+<p>###生态</p>
+<ol>
+<li><p>商场模式，all in one.所有东西都放在一个商场中，什么都有，吸引所有人进来。一旦全部链路打通后，就成了大家习惯的一种姿态。</p>
+</li>
+<li><p>容器模式 单独部署、单独建立</p>
+</li>
+</ol>
+<p>###如何发展</p>
+<ol>
+<li>聚焦于行业领域</li>
+<li>定制化</li>
+<li>社区完善</li>
+</ol>
+<p>###dubbo 一个发展很牛逼的东西，可以看成是eip、不用修改一行代码， 直接暴露出所有东西。</p>
+<p>###欢迎参与阿里开源</p>
+<p>###提问环节</p>
+<ol>
+<li>用新技术搭新工程其实是技术选型问题。</li>
+<li>如果是面对老系统，其实就是和旧世界作斗争，选择办法打通一条通往新世界的大门，开一个口子接入新系统</li>
+<li>eip目前还在处于构造中。</li>
+</ol>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏下哇 ，贡献更多优质原创</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.jpg" alt="Nou 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/15/我是菜鸟-java基础通用复习篇/" rel="next" title="我是菜鸟---java基础通用复习篇">
+                <i class="fa fa-chevron-left"></i> 我是菜鸟---java基础通用复习篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -323,6 +528,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -343,8 +555,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -429,6 +650,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XA模式-主讲（申海强）"><span class="nav-number">1.</span> <span class="nav-text">XA模式  主讲（申海强）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-dubbo的设想-主讲（秦金卫）"><span class="nav-number">2.</span> <span class="nav-text">apache dubbo的设想 主讲（秦金卫）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -589,6 +826,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
