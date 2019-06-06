@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Nou的技术逆袭">
 <meta property="og:description" content="java集合、java并发、java网络、java虚拟机 面向对象是java的一句代表 面向对象的特征？四点记住！封装、继承、多态、抽象。 面向对象—封装封装给对象提供了隐藏内部特性和行为的能力，对象提供一些给其他对象改变自己内部参数的方法。这么一说比较绕，简单来讲就是我们常见的四种类修饰符：private、friendly、projected、public。这些修饰符给对象赋予了不同的访问权限。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-25T04:57:50.755Z">
+<meta property="og:updated_time" content="2019-06-06T08:56:31.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我是菜鸟---java基础通用复习篇">
 <meta name="twitter:description" content="java集合、java并发、java网络、java虚拟机 面向对象是java的一句代表 面向对象的特征？四点记住！封装、继承、多态、抽象。 面向对象—封装封装给对象提供了隐藏内部特性和行为的能力，对象提供一些给其他对象改变自己内部参数的方法。这么一说比较绕，简单来讲就是我们常见的四种类修饰符：private、friendly、projected、public。这些修饰符给对象赋予了不同的访问权限。">
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.9k
+                  3.2k
                 </span>
               
 
@@ -385,7 +385,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10
+                  12
                 </span>
               
             </div>
@@ -496,6 +496,94 @@
 <h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>我们去调一个方法，参数不同，行为不同。</p>
 <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组其实也是一个对象，记住里面对应每一个组标的数据可以看作是对象的成员变量。</p>
 <h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><p>final修饰的方法不能重写、类不能继承、修饰字符串则为字符串常量。</p>
+<h2 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h2><p>`<br>   public static void main(String[] args) {</p>
+<pre><code>    String abc = &quot;hello java&quot;;
+
+    String def = &quot;HELLo java&quot;;
+
+
+
+    System.out.println(abc.substring(0, 9));
+
+    System.out.println(abc == def);
+
+    System.out.println(abc.equalsIgnoreCase(def));
+
+
+
+    System.out.println(abc.replaceAll(&quot;java&quot;,&quot;asd&quot;));
+
+
+    System.out.println(abc.compareTo(&quot;123&quot;));
+
+    String[] array = {&quot;1&quot;,&quot;2&quot;,&quot;3&quot;};
+
+    System.out.println(JSON.toJSONString(testDeleteArrayOfIndex(array, 0)));
+
+    System.out.println(ArrayUtils.toString(testInsertArrayOfIndex(array, 1,2)));
+
+}
+
+/**
+ * 删除指定数组元素
+ * @param array
+ * @param index
+ * @return
+ */
+public static String[] testDeleteArrayOfIndex(String[] array, Integer index){
+</code></pre><p>//        String[] array2 = new String[array.length -1];<br>        System.arraycopy(array,index+1 , array, index, array.length - index  -1);<br>        array[array.length -1 ] = null;<br>        return array;</p>
+<pre><code>}
+
+public static String[] testInsertArrayOfIndex(String[] array, Object param, Integer index){
+</code></pre><p>//        String[] array2 = new String[array.length -1];<br>        array = extendArray(array, 1);<br>        System.out.println(array.length);<br>        System.arraycopy(array, index , array, index+1, array.length-index - 1);<br>        array[index] = param.toString();<br>        return array;</p>
+<pre><code>}
+/**
+ * 数组扩容
+ * @param array
+ * @param length
+ * @return
+ */
+public static String[] extendArray(String[] array, Integer length){
+    String[] s1 = {&quot;1&quot;,&quot;2&quot;,&quot;3&quot;};
+
+    String[] s2 = new String[s1.length + length];
+
+    System.arraycopy(s1, 0 , s2, 0, s1.length);
+
+    return s2;
+}`
+</code></pre><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p>`   public static void main(String[] args) {</p>
+<pre><code>    String[] array = {&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;};
+
+    System.out.println(midSort(array, &quot;6&quot;));
+}
+public static int midSort(String[] array, String value){
+
+    int left = 0;
+
+    int right = array.length - 1;
+
+    while ( left &lt;= right){
+
+        int mid = (left + right)/2 ;
+        if(array[mid].equals(value)){
+            return mid;
+        }
+
+        if(Integer.valueOf(value) &gt; Integer.valueOf(array[mid])){
+            left = mid+1;
+        }
+        if(Integer.valueOf(value) &lt; Integer.valueOf(array[mid])){
+            right = mid-1;
+        }
+    }
+    return  -1;
+}
+</code></pre><p>`</p>
+<h2 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h2><p>`<br>    public static void main(String[] args) {<br>        List<string> list01 = new ArrayList&lt;&gt;();<br>        list01.add(“01”);<br>        list01.add(“02”);<br>        list01.add(“03”);<br>        List<string> list02 = new ArrayList&lt;&gt;();<br>        list02.add(“01”);<br>        list02.add(“02”);<br>        list02.add(“04”);<br>        list02.add(“05”);<br>        list01.removeAll(list02);<br>        System.out.println(list01);</string></string></p>
+<pre><code>    System.out.println(list01);
+}
+</code></pre><p>`</p>
 
       
     </div>
@@ -644,7 +732,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -722,7 +810,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象—封装"><span class="nav-number">1.</span> <span class="nav-text">面向对象—封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象—继承"><span class="nav-number">2.</span> <span class="nav-text">面向对象—继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象—多态"><span class="nav-number">3.</span> <span class="nav-text">面向对象—多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象—抽象"><span class="nav-number">4.</span> <span class="nav-text">面向对象—抽象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向过程与面向对象的区别"><span class="nav-number">5.</span> <span class="nav-text">面向过程与面向对象的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重载和重写的区别？"><span class="nav-number">6.</span> <span class="nav-text">重载和重写的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-中，什么是构造方法？什么是构造方法重载？什么是拷贝构造方法？"><span class="nav-number">7.</span> <span class="nav-text">Java 中，什么是构造方法？什么是构造方法重载？什么是拷贝构造方法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK、JRE、JVM-分别是什么关系？"><span class="nav-number">8.</span> <span class="nav-text">JDK、JRE、JVM 分别是什么关系？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么-Java-被称作是“平台无关的编程语言”？"><span class="nav-number">9.</span> <span class="nav-text">为什么 Java 被称作是“平台无关的编程语言”？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK-各版本的新特性？"><span class="nav-number">10.</span> <span class="nav-text">JDK 各版本的新特性？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-和-C-的区别？"><span class="nav-number">11.</span> <span class="nav-text">Java 和 C++ 的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是字节码？采用字节码的最大好处是什么？"><span class="nav-number">12.</span> <span class="nav-text">什么是字节码？采用字节码的最大好处是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java集合"><span class="nav-number">13.</span> <span class="nav-text">java集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归的使用"><span class="nav-number">14.</span> <span class="nav-text">递归的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向过程和面向对象"><span class="nav-number">15.</span> <span class="nav-text">面向过程和面向对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">16.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类和对象"><span class="nav-number">17.</span> <span class="nav-text">类和对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java虚拟机-jvm"><span class="nav-number">18.</span> <span class="nav-text">java虚拟机 jvm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造方法"><span class="nav-number">19.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收机制"><span class="nav-number">20.</span> <span class="nav-text">垃圾回收机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">21.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和-equal"><span class="nav-number">22.</span> <span class="nav-text">== 和 equal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">23.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">24.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">25.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final"><span class="nav-number">26.</span> <span class="nav-text">final</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象—封装"><span class="nav-number">1.</span> <span class="nav-text">面向对象—封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象—继承"><span class="nav-number">2.</span> <span class="nav-text">面向对象—继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象—多态"><span class="nav-number">3.</span> <span class="nav-text">面向对象—多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象—抽象"><span class="nav-number">4.</span> <span class="nav-text">面向对象—抽象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向过程与面向对象的区别"><span class="nav-number">5.</span> <span class="nav-text">面向过程与面向对象的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重载和重写的区别？"><span class="nav-number">6.</span> <span class="nav-text">重载和重写的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-中，什么是构造方法？什么是构造方法重载？什么是拷贝构造方法？"><span class="nav-number">7.</span> <span class="nav-text">Java 中，什么是构造方法？什么是构造方法重载？什么是拷贝构造方法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK、JRE、JVM-分别是什么关系？"><span class="nav-number">8.</span> <span class="nav-text">JDK、JRE、JVM 分别是什么关系？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么-Java-被称作是“平台无关的编程语言”？"><span class="nav-number">9.</span> <span class="nav-text">为什么 Java 被称作是“平台无关的编程语言”？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK-各版本的新特性？"><span class="nav-number">10.</span> <span class="nav-text">JDK 各版本的新特性？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-和-C-的区别？"><span class="nav-number">11.</span> <span class="nav-text">Java 和 C++ 的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是字节码？采用字节码的最大好处是什么？"><span class="nav-number">12.</span> <span class="nav-text">什么是字节码？采用字节码的最大好处是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java集合"><span class="nav-number">13.</span> <span class="nav-text">java集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归的使用"><span class="nav-number">14.</span> <span class="nav-text">递归的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向过程和面向对象"><span class="nav-number">15.</span> <span class="nav-text">面向过程和面向对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">16.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类和对象"><span class="nav-number">17.</span> <span class="nav-text">类和对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java虚拟机-jvm"><span class="nav-number">18.</span> <span class="nav-text">java虚拟机 jvm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造方法"><span class="nav-number">19.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收机制"><span class="nav-number">20.</span> <span class="nav-text">垃圾回收机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">21.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和-equal"><span class="nav-number">22.</span> <span class="nav-text">== 和 equal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">23.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">24.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">25.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final"><span class="nav-number">26.</span> <span class="nav-text">final</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组-1"><span class="nav-number">27.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分查找"><span class="nav-number">28.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List接口"><span class="nav-number">29.</span> <span class="nav-text">List接口</span></a></li></ol></div>
             
 
           </div>
@@ -759,7 +847,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">18.7k</span>
+    <span title="Site words total count">19.6k</span>
   
 </div>
 
