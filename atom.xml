@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.nouyc.com/"/>
-  <updated>2019-06-06T09:12:36.640Z</updated>
+  <updated>2019-07-01T09:41:20.009Z</updated>
   <id>https://www.nouyc.com/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dubbo深度搞一搞</title>
+    <link href="https://www.nouyc.com/2019/07/01/dubbo%E6%B7%B1%E5%BA%A6%E6%90%9E%E4%B8%80%E6%90%9E/"/>
+    <id>https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/</id>
+    <published>2019-07-01T09:41:19.000Z</published>
+    <updated>2019-07-01T09:41:20.009Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>产品讨论 --- 联创科技马云龙 2019.6.6</title>
@@ -44,9 +58,9 @@
     <link href="https://www.nouyc.com/2019/05/30/%E4%B8%80%E5%A5%97%E5%AE%A2%E6%9C%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AB%AF/"/>
     <id>https://www.nouyc.com/2019/05/30/一套客服系统的服务端/</id>
     <published>2019-05-30T03:05:10.000Z</published>
-    <updated>2019-05-31T09:33:20.230Z</updated>
+    <updated>2019-06-24T07:18:10.858Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="我的客服IM"><a href="#我的客服IM" class="headerlink" title="我的客服IM"></a>我的客服IM</h2><h2 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h2><p>gate</p><p>###创建场景、登陆jwt校验、获取会话列表和会话页、种类消息、消息推送、结束评价</p><p>###</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="我的客服IM"><a href="#我的客服IM" class="headerlink" title="我的客服IM"></a>我的客服IM</h2><h2 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h2><p>gate</p><p>###创建场景、登陆jwt校验、获取会话列表和会话页、种类消息、消息推送、结束评价</p><p>###</p><h2 id="网络编程思想"><a href="#网络编程思想" class="headerlink" title="网络编程思想"></a>网络编程思想</h2><p>通信协议、通信接口</p>]]></content>
     
     <summary type="html">
     
