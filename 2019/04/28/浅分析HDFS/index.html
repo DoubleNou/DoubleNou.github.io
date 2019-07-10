@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/WAL.jpg">
 <meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/second行为.jpg">
 <meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/主备切换.jpg">
-<meta property="og:updated_time" content="2019-04-28T14:30:14.332Z">
+<meta property="og:updated_time" content="2019-07-10T07:58:34.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅分析HDFS">
 <meta name="twitter:description" content="前言和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是菜狗。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。唯一的欣慰点是这样的压力促进了我加快学习。压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—  目标 运用HBase把海量数据查询和写入搞定">
@@ -471,8 +471,7 @@
 <p>WAL只是解决了不全部回追数据的问题，NameNode还是很大的问题没有解决。SecondNameNode出场，他会定期将WAL日志存入fsimage中，然后清空WAL日志，就相当于跑个定时。<br>刚才说的，主NameNode挂了，集群中另一个NameNode顶上，可不是这个SecondNameNode啊，完全两回事。<br><img src="/2019/04/28/浅分析HDFS/second行为.jpg" alt></p>
 <h2 id="破壁4—相爱相杀的Master和Active"><a href="#破壁4—相爱相杀的Master和Active" class="headerlink" title="破壁4—相爱相杀的Master和Active"></a>破壁4—相爱相杀的Master和Active</h2><p>hadoop2.x之前，整个集群只能有一个NameNode，是有可能发生单点故障的，所以hadoop1.x有本身的不稳定性。但是hadoop2.x之后，我们可以在集群中配置多个NameNode，就不会有这个问题了，但是配置多个NameNode，需要注意的地方就更多了，系统就更加复杂了。Hadoop1.0也想到了系统的稳定性，但这和系统的设计理念是有关系的，虽然hadoop1.x存在一个NameNode单点，但是它大大简化了系统的复杂度，并且数据量在一定范围内时，NameNode并没有这么容易挂，所以那个时代是被接受的。但是随着数据量越来越大，这个单点始终是个隐患，所以设计者不得不升级为更加复杂的hadoop2.x，来保证NameNode的高可靠。俗话说一山不容二虎，两个NameNode只能有一个是活跃状态active，另一个是备份状态standby，我们看一下两个NameNode的架构图。<br><img src="/2019/04/28/浅分析HDFS/主备切换.jpg" alt></p>
 <p>变的复杂了吧，多看几遍就会了。active的NameNode挂了之后，standby的NameNode要马上接替它，所以它们的数据要时刻保持一致，在写入数据的时候，两个NameNode内存中都要记录数据的元信息，并保持一致。这个JournalNode就是用来在两个NameNode中同步数据的，并且standby NameNode实现了SecondNameNode的功能。<br>注意，hadoop2.x如果只部署一个NameNode，还是会用SecondNameNode。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>面试常考的！！！</p>
-<p>HDFS优缺点：hdfs可以存储海量数据，并且是高可用的，任何一台机器挂了都有备份，不会影响整个系统的使用，也不会造成数据丢失。HDFS不适合存大批量的小文件，每一个小文件都有元信息，它们都存在NameNode里面，可能造成NameNode的内存不足。HDFS设计之初就是为了存储，不实用与编辑。所以，控制好你的业务方向…随机读写的效率很低。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>HDFS优缺点：hdfs可以存储海量数据，并且是高可用的，任何一台机器挂了都有备份，不会影响整个系统的使用，也不会造成数据丢失。HDFS不适合存大批量的小文件，每一个小文件都有元信息，它们都存在NameNode里面，可能造成NameNode的内存不足。HDFS设计之初就是为了存储，不实用与编辑。所以，控制好你的业务方向…随机读写的效率很低。</p>
 <p>1、hdfs是一个分布式文件系统，简单理解就是多台机器组成的一个文件系统。</p>
 <p>2、hdfs中有3个重要的模块，client对外提供统一操作接口，DataNode真正存储数据，NameNode协调和管理数据，是一个典型的master-slave架构。</p>
 <p>3、hdfs会对大文件进行切块，并且每个切块会存储备份，保证数据的高可用，适合存储大数据。</p>
