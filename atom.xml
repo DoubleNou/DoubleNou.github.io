@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.nouyc.com/"/>
-  <updated>2019-07-08T07:32:41.551Z</updated>
+  <updated>2019-07-11T09:56:34.641Z</updated>
   <id>https://www.nouyc.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>普罗米修斯监控</title>
+    <link href="https://www.nouyc.com/2019/07/11/%E6%99%AE%E7%BD%97%E7%B1%B3%E4%BF%AE%E6%96%AF%E7%9B%91%E6%8E%A7/"/>
+    <id>https://www.nouyc.com/2019/07/11/普罗米修斯监控/</id>
+    <published>2019-07-11T09:47:12.000Z</published>
+    <updated>2019-07-11T09:56:34.641Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>作为新一代的监控框架，Prometheus 具有以下特点：</p><p> · 强大的多维度数据模型：<br>   时间序列数据通过 metric 名和键值对来区分。<br>   所有的 metrics 都可以设置任意的多维标签。<br>   数据模型更随意，不需要刻意设置为以点分隔的字符串。<br>   可以对数据模型进行聚合，切割和切片操作。<br>   支持双精度浮点类型，标签可以设为全 unicode。<br> · 灵活而强大的查询语句（PromQL）：<br> · 易于管理： Prometheus server 是一个单独的二进制文件，可直接在本地工作，不依赖于分布式存储。<br>·高效：平均每个采样点仅占 3.5 bytes，且一个 Prometheus server ·可以处理数百万的 metrics。<br>·使用 pull 模式采集时间序列数据，这样不仅有利于本机测试而且可以避免有问题的服务器推送坏的 metrics。<br>·可以采用 push gateway 的方式把时间序列数据推送至 Prometheus server 端。<br>·可以通过服务发现或者静态配置去获取监控的 targets。<br>·有多种可视化图形界面。<br>·易于伸缩。<br>·需要指出的是，由于数据采集可能会有丢失，所以Prometheus不适用对采集数据要 100%准确的情形。但如果用于记录时间序列数据，Prometheus具有很大的查询优势，此外，Prometheus 适用于微服务的体系架构。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;作为新一代的监控框架，Prometheus 具有以下特点：&lt;/p&gt;
+&lt;p&gt; · 强大的多维度数据模型：&lt;br&gt;   时间序列数据通过 met
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>dubbo深度搞一搞</title>
