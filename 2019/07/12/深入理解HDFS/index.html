@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/写文件.png">
 <meta property="og:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/副本存放.png">
 <meta property="og:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/Hadoop节点距离.png">
-<meta property="og:updated_time" content="2019-07-12T07:56:35.290Z">
+<meta property="og:updated_time" content="2019-07-12T08:00:59.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解HDFS">
 <meta name="twitter:description" content="胡思乱想HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。 HDFS的小目">
@@ -456,7 +456,7 @@
 Block的抽象也简化了存储系统，对于Block，无需关注其权限，所有者等内容（这些内容都在文件级别上进行控制）。Block作为容错和高可用机制中的副本单元，即以Block为单位进行复制。
 </code></pre></li>
 <li><p>Namenode &amp; Datanode</p>
-<p> 整个HDFS集群由Namenode和Datanode构成master-worker（主从）模式。Namenode负责构建命名空间，管理文件的元数据等，而Datanode负责实际存储数据，负责读写工作。</p>
+<p>  整个HDFS集群由Namenode和Datanode构成master-worker（主从）模式。Namenode负责构建命名空间，管理文件的元数据等，而Datanode负责实际存储数据，负责读写工作。</p>
 <p> ·Namenode</p>
 <pre><code>Namenode存放文件系统树及所有文件、目录的元数据。元数据持久化为2种形式：namespcae image/edit log
 但是持久化数据中不包括Block所在的节点列表，及文件的Block分布在集群中的哪些节点上，这些信息是在系统重启的时候重新构建（通过Datanode汇报的Block信息）。 
@@ -467,19 +467,16 @@ Block的抽象也简化了存储系统，对于Block，无需关注其权限，�
 <pre><code>Secondary节点定期合并主Namenode的namespace image和edit log， 避免edit log过大，通过创建检查点checkpoint来合并。它会维护一个合并后的namespace image副本， 可用于在Namenode完全崩溃时恢复数据。
 Secondary Namenode通常运行在另一台机器，因为合并操作需要耗费大量的CPU和内存。其数据落后于Namenode，因此当Namenode完全崩溃时，会出现数据丢失。 通常做法是拷贝NFS中的备份元数据到Second，将其作为新的主Namenode。 
 在HA（High Availability高可用性）中可以运行一个Hot Standby，作为热备份，在Active Namenode故障之后，替代原有Namenode成为Active Namenode。
-</code></pre><p> ·Datanode</p>
+</code></pre><p>  ·Datanode</p>
 <pre><code>数据节点负责存储和提取Block，读写请求可能来自namenode，也可能直接来自客户端。数据节点周期性向Namenode汇报自己节点上所存储的Block相关信息。
 </code></pre></li>
-<li><p>Block Caching</p>
-<p> DataNode通常直接从磁盘读取数据，但是频繁使用的Block可以在内存中缓存。默认情况下，一个Block只有一个数据节点会缓存。但是可以针对每个文件可以个性化配置。<br> 作业调度器可以利用缓存提升性能，例如MapReduce可以把任务运行在有Block缓存的节点上。<br> 用户或者应用可以向NameNode发送缓存指令（缓存哪个文件，缓存多久）， 缓存池的概念用于管理一组缓存的权限和资源。</p>
+<li><p>Block Caching<br> DataNode通常直接从磁盘读取数据，但是频繁使用的Block可以在内存中缓存。默认情况下，一个Block只有一个数据节点会缓存。但是可以针对每个文件可以个性化配置。<br> 作业调度器可以利用缓存提升性能，例如MapReduce可以把任务运行在有Block缓存的节点上。<br> 用户或者应用可以向NameNode发送缓存指令（缓存哪个文件，缓存多久）， 缓存池的概念用于管理一组缓存的权限和资源。</p>
 </li>
-<li><p>HDFS Federation</p>
-<p> 我们知道NameNode的内存会制约文件数量，HDFS Federation提供了一种横向扩展NameNode的方式。在Federation模式中，每个NameNode管理命名空间的一部分，例如一个NameNode管理/user目录下的文件， 另一个NameNode管理/share目录下的文件。<br> 每个NameNode管理一个namespace volumn，所有volumn构成文件系统的元数据。每个NameNode同时维护一个Block Pool，保存Block的节点映射等信息。各NameNode之间是独立的，一个节点的失败不会导致其他节点管理的文件不可用。<br> 客户端使用mount table将文件路径映射到NameNode。mount table是在Namenode群组之上封装了一层，这一层也是一个Hadoop文件系统的实现，通过viewfs:协议访问。</p>
+<li><p>HDFS Federation<br> 我们知道NameNode的内存会制约文件数量，HDFS Federation提供了一种横向扩展NameNode的方式。在Federation模式中，每个NameNode管理命名空间的一部分，例如一个NameNode管理/user目录下的文件， 另一个NameNode管理/share目录下的文件。<br> 每个NameNode管理一个namespace volumn，所有volumn构成文件系统的元数据。每个NameNode同时维护一个Block Pool，保存Block的节点映射等信息。各NameNode之间是独立的，一个节点的失败不会导致其他节点管理的文件不可用。<br> 客户端使用mount table将文件路径映射到NameNode。mount table是在Namenode群组之上封装了一层，这一层也是一个Hadoop文件系统的实现，通过viewfs:协议访问。</p>
 </li>
 </ol>
 <ol start="5">
-<li><p>HDFS HA(High Availability高可用性)</p>
-<p> 在HDFS集群中，NameNode依然是单点故障（SPOF: Single Point Of Failure）。元数据同时写到多个文件系统以及Second NameNode定期checkpoint有利于保护数据丢失，但是并不能提高可用性。<br> 这是因为NameNode是唯一一个对文件元数据和file-block映射负责的地方， 当它挂了之后，包括MapReduce在内的作业都无法进行读写。</p>
+<li><p>HDFS HA(High Availability高可用性)<br> 在HDFS集群中，NameNode依然是单点故障（SPOF: Single Point Of Failure）。元数据同时写到多个文件系统以及Second NameNode定期checkpoint有利于保护数据丢失，但是并不能提高可用性。<br> 这是因为NameNode是唯一一个对文件元数据和file-block映射负责的地方， 当它挂了之后，包括MapReduce在内的作业都无法进行读写。</p>
 <p> 当NameNode故障时，常规的做法是使用元数据备份重新启动一个NameNode。元数据备份可能来源于：</p>
 <p> ·多文件系统写入中的备份<br> Second NameNode的检查点文件<br> 启动新的Namenode之后，需要重新配置客户端和DataNode的NameNode信息。另外重启耗时一般比较久，稍具规模的集群重启经常需要几十分钟甚至数小时，造成重启耗时的原因大致有：<br> 1） 元数据镜像文件载入到内存耗时较长。<br> 2） 需要重放edit log<br> 3） 需要收到来自DataNode的状态报告并且满足条件后才能离开安全模式提供写服务。</p>
 </li>
