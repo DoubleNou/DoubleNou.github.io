@@ -87,10 +87,15 @@
 <meta property="og:site_name" content="Nou的技术逆袭">
 <meta property="og:description" content="胡说八道HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。 HDFS设计原">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-12T03:53:51.651Z">
+<meta property="og:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/nfs文件系统.png">
+<meta property="og:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/xitongdexuande.png">
+<meta property="og:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/http访问.png">
+<meta property="og:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/代理访问.png">
+<meta property="og:updated_time" content="2019-07-12T06:26:41.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解HDFS">
 <meta name="twitter:description" content="胡说八道HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。 HDFS设计原">
+<meta name="twitter:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/nfs文件系统.png">
 
 
 
@@ -391,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  381
+                  921
                 </span>
               
 
@@ -407,7 +412,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -428,7 +433,7 @@
       
 
       
-        <h2 id="胡说八道"><a href="#胡说八道" class="headerlink" title="胡说八道"></a>胡说八道</h2><p>HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。</p>
+        <h2 id="胡说八道"><a href="#胡说八道" class="headerlink" title="胡说八道"></a>胡说八道</h2><p><img src="/2019/07/12/深入理解HDFS/nfs文件系统.png" alt="nfs文件系统"><br>HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。</p>
 <h2 id="HDFS设计原则"><a href="#HDFS设计原则" class="headerlink" title="HDFS设计原则"></a>HDFS设计原则</h2><ol>
 <li><p>设计目标</p>
 <p>· 存储非常大的文件<br>· 采用流式的数据访问方式: HDFS基于这样的一个假设：最有效的数据处理      模式是一次写入、多次读取数据集经常从数据源生成或者拷贝一次<br>· 运行于商业硬件上</p>
@@ -456,7 +461,13 @@
 <li>Standby替代Secondary NameNode</li>
 </ol>
 <h2 id="命令行接口"><a href="#命令行接口" class="headerlink" title="命令行接口"></a>命令行接口</h2><p>HDFS提供了各种交互方式，例如通过Java API、HTTP、shell命令行的。命令行的交互主要通过hadoop fs来操作。例如：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -copyFromLocal <span class="comment">// 从本地复制文件到HDFS</span></span><br><span class="line">hadoop fs <span class="keyword">mkdir</span> <span class="comment">// 创建目录</span></span><br><span class="line">hadoop fs -<span class="keyword">ls</span>  <span class="comment">// 列出文件列表</span></span><br></pre></td></tr></table></figure></p>
-
+<h2 id="Hadoop文件系统"><a href="#Hadoop文件系统" class="headerlink" title="Hadoop文件系统"></a>Hadoop文件系统</h2><p>前面Hadoop的文件系统概念是抽象的，HDFS只是其中的一种实现。Hadoop提供的实现如下图：<br><img src="/2019/07/12/深入理解HDFS/xitongdexuande.png" alt="Hadoop文件系统"><br>Local是对本地文件系统的抽象，hdfs就是我们最常见的，两种web形式（webhdfs，swebhdfs）的实现通过HTTP提供文件操作接口。har是Hadoop体系下的压缩文件，当文件很多的时候可以压缩成一个大文件，可以有效减少元数据的数量。viewfs就是我们前面介绍HDFS Federation张提到的，用来在客户端屏蔽多个Namenode的底层细节。ftp顾名思义，就是使用ftp协议来实现，对文件的操作转化为ftp协议。s3a是对Amazon云服务提供的存储系统的实现，azure则是微软的云服务平台实现。</p>
+<p>前面我们提到了使用命令行跟HDFS交互，事实上还有很多方式来操作文件系统。例如Java应用程序可以使用org.apache.hadoop.fs.FileSystem来操作，其他形式的操作也都是基于FileSystem进行封装。我们这里主要介绍一下HTTP的交互方式。<br>WebHDFS和SWebHDFS协议将文件系统暴露HTTP操作，这种交互方式比原生的Java客户端慢，不适合操作大文件。通过HTTP，有2种访问方式，直接访问和通过代理访问<br><img src="http访问.png" alt="http访问"></p>
+<p>Namenode和Datanode默认打开了嵌入式web server，即dfs.webhdfs.enabled默认为true。webhdfs通过这些服务器来交互。元数据的操作通过namenode完成，文件的读写首先发到namenode，然后重定向到datanode读取（写入）实际的数据流。</p>
+<p>采用代理的示意图如下所示。 使用代理的好处是可以通过代理实现负载均衡或者对带宽进行限制，或者防火墙设置。代理通过HTTP或者HTTPS暴露为WebHDFS，对应为webhdfs和swebhdfs URL Schema。</p>
+<p>代理作为独立的守护进程，独立于namenode和datanode，使用httpfs.sh脚本，默认运行在14000端口</p>
+<p>除了FileSystem直接操作，命令行，HTTTP外，还有C语言API，NFS，FUSER等方式，这里不做过多介绍。<br><img src="/2019/07/12/深入理解HDFS/代理访问.png" alt="代理访问"></p>
+<h2 id="Java接口"><a href="#Java接口" class="headerlink" title="Java接口"></a>Java接口</h2>
       
     </div>
     
@@ -678,7 +689,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#胡说八道"><span class="nav-number">1.</span> <span class="nav-text">胡说八道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS设计原则"><span class="nav-number">2.</span> <span class="nav-text">HDFS设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS核心概念"><span class="nav-number">3.</span> <span class="nav-text">HDFS核心概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop的HA方案"><span class="nav-number">4.</span> <span class="nav-text">Hadoop的HA方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行接口"><span class="nav-number">5.</span> <span class="nav-text">命令行接口</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#胡说八道"><span class="nav-number">1.</span> <span class="nav-text">胡说八道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS设计原则"><span class="nav-number">2.</span> <span class="nav-text">HDFS设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS核心概念"><span class="nav-number">3.</span> <span class="nav-text">HDFS核心概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop的HA方案"><span class="nav-number">4.</span> <span class="nav-text">Hadoop的HA方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行接口"><span class="nav-number">5.</span> <span class="nav-text">命令行接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop文件系统"><span class="nav-number">6.</span> <span class="nav-text">Hadoop文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java接口"><span class="nav-number">7.</span> <span class="nav-text">Java接口</span></a></li></ol></div>
             
 
           </div>
@@ -715,7 +726,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">20.2k</span>
+    <span title="Site words total count">20.7k</span>
   
 </div>
 
