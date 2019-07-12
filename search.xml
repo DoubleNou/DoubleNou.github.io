@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[深入理解HDFS]]></title>
+    <url>%2F2019%2F07%2F12%2F%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3HDFS%2F</url>
+    <content type="text"><![CDATA[胡说八道HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。 HDFS设计原则 设计目标 · 存储非常大的文件· 采用流式的数据访问方式: HDFS基于这样的一个假设：最有效的数据处理 模式是一次写入、多次读取数据集经常从数据源生成或者拷贝一次· 运行于商业硬件上 HDFS不适合的应用类型 ·低延时的数据访问·大量小文件·多方读写，需要任意的文件修改 HDFS核心概念 Blocks Namenode &amp; Datanode Block Caching HDFS Federation HDFS HA(High Availability高可用性) Hadoop的HA方案 主备需共享edit log存储 DataNode需要同时往主备发送Block Report 客户端需要配置failover模式（失效备援模式，对用户透明） Standby替代Secondary NameNode 命令行接口HDFS提供了各种交互方式，例如通过Java API、HTTP、shell命令行的。命令行的交互主要通过hadoop fs来操作。例如：123hadoop fs -copyFromLocal // 从本地复制文件到HDFShadoop fs mkdir // 创建目录hadoop fs -ls // 列出文件列表]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>HDFS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[普罗米修斯监控]]></title>
     <url>%2F2019%2F07%2F11%2F%E6%99%AE%E7%BD%97%E7%B1%B3%E4%BF%AE%E6%96%AF%E7%9B%91%E6%8E%A7%2F</url>
     <content type="text"><![CDATA[简介作为新一代的监控框架，Prometheus 具有以下特点： · 强大的多维度数据模型： 时间序列数据通过 metric 名和键值对来区分。 所有的 metrics 都可以设置任意的多维标签。 数据模型更随意，不需要刻意设置为以点分隔的字符串。 可以对数据模型进行聚合，切割和切片操作。 支持双精度浮点类型，标签可以设为全 unicode。 · 灵活而强大的查询语句（PromQL）： · 易于管理： Prometheus server 是一个单独的二进制文件，可直接在本地工作，不依赖于分布式存储。·高效：平均每个采样点仅占 3.5 bytes，且一个 Prometheus server ·可以处理数百万的 metrics。·使用 pull 模式采集时间序列数据，这样不仅有利于本机测试而且可以避免有问题的服务器推送坏的 metrics。·可以采用 push gateway 的方式把时间序列数据推送至 Prometheus server 端。·可以通过服务发现或者静态配置去获取监控的 targets。·有多种可视化图形界面。·易于伸缩。·需要指出的是，由于数据采集可能会有丢失，所以Prometheus不适用对采集数据要 100%准确的情形。但如果用于记录时间序列数据，Prometheus具有很大的查询优势，此外，Prometheus 适用于微服务的体系架构。]]></content>

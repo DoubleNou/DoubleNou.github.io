@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,My BLog">
+  <meta name="keywords" content="HDFS,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
-<meta name="keywords" content="后端,HBase,IM,消息队列,dubbo,SpringBoot,SpringCloud,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Nou的技术逆袭">
-<meta property="og:url" content="https://www.nouyc.com/tags/kafka/index.html">
+<meta name="description" content="胡说八道HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。 HDFS设计原">
+<meta name="keywords" content="HDFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解HDFS">
+<meta property="og:url" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
-<meta property="og:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta property="og:description" content="胡说八道HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。 HDFS设计原">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-12T03:53:51.651Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nou的技术逆袭">
-<meta name="twitter:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta name="twitter:title" content="深入理解HDFS">
+<meta name="twitter:description" content="胡说八道HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。 HDFS设计原">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.nouyc.com/tags/kafka/">
+  <link rel="canonical" href="https://www.nouyc.com/2019/07/12/深入理解HDFS/">
 
 
 
 
 
-  <title>标签: kafka | Nou的技术逆袭</title>
+  <title>深入理解HDFS | Nou的技术逆袭</title>
   
 
 
@@ -144,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -269,52 +270,275 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>kafka<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.nouyc.com/2019/07/12/深入理解HDFS/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nou">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nou的技术逆袭">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/21/SpringBoot改造/" itemprop="url">
-              
-                <span itemprop="name">SpringBoot深入剖析，够用了。</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">深入理解HDFS</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-21T16:52:10+08:00" content="2019-04-21">
-          04-21
-        </time>
-      </div>
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-12T11:37:53+08:00">
+                2019-07-12
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/12/深入理解HDFS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/12/深入理解HDFS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/07/12/深入理解HDFS/" class="leancloud_visitors" data-flag-title="深入理解HDFS">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  381
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="胡说八道"><a href="#胡说八道" class="headerlink" title="胡说八道"></a>胡说八道</h2><p>HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。</p>
+<h2 id="HDFS设计原则"><a href="#HDFS设计原则" class="headerlink" title="HDFS设计原则"></a>HDFS设计原则</h2><ol>
+<li><p>设计目标</p>
+<p>· 存储非常大的文件<br>· 采用流式的数据访问方式: HDFS基于这样的一个假设：最有效的数据处理      模式是一次写入、多次读取数据集经常从数据源生成或者拷贝一次<br>· 运行于商业硬件上</p>
+</li>
+<li><p>HDFS不适合的应用类型</p>
+<p>·低延时的数据访问<br>·大量小文件<br>·多方读写，需要任意的文件修改</p>
+</li>
+</ol>
+<h2 id="HDFS核心概念"><a href="#HDFS核心概念" class="headerlink" title="HDFS核心概念"></a>HDFS核心概念</h2><ol>
+<li><p>Blocks</p>
+</li>
+<li><p>Namenode &amp; Datanode</p>
+</li>
+<li><p>Block Caching</p>
+</li>
+<li><p>HDFS Federation</p>
+</li>
+<li><p>HDFS HA(High Availability高可用性)</p>
+</li>
+</ol>
+<h2 id="Hadoop的HA方案"><a href="#Hadoop的HA方案" class="headerlink" title="Hadoop的HA方案"></a>Hadoop的HA方案</h2><ol>
+<li>主备需共享edit log存储</li>
+<li>DataNode需要同时往主备发送Block Report</li>
+<li>客户端需要配置failover模式（失效备援模式，对用户透明） </li>
+<li>Standby替代Secondary NameNode</li>
+</ol>
+<h2 id="命令行接口"><a href="#命令行接口" class="headerlink" title="命令行接口"></a>命令行接口</h2><p>HDFS提供了各种交互方式，例如通过Java API、HTTP、shell命令行的。命令行的交互主要通过hadoop fs来操作。例如：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -copyFromLocal <span class="comment">// 从本地复制文件到HDFS</span></span><br><span class="line">hadoop fs <span class="keyword">mkdir</span> <span class="comment">// 创建目录</span></span><br><span class="line">hadoop fs -<span class="keyword">ls</span>  <span class="comment">// 列出文件列表</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏下哇 ，贡献更多优质原创</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.jpg" alt="Nou 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HDFS/" rel="tag"># HDFS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/11/普罗米修斯监控/" rel="next" title="普罗米修斯监控">
+                <i class="fa fa-chevron-left"></i> 普罗米修斯监控
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -322,6 +546,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -342,8 +573,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -428,6 +668,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#胡说八道"><span class="nav-number">1.</span> <span class="nav-text">胡说八道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS设计原则"><span class="nav-number">2.</span> <span class="nav-text">HDFS设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS核心概念"><span class="nav-number">3.</span> <span class="nav-text">HDFS核心概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop的HA方案"><span class="nav-number">4.</span> <span class="nav-text">Hadoop的HA方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行接口"><span class="nav-number">5.</span> <span class="nav-text">命令行接口</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -588,6 +844,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

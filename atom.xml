@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.nouyc.com/"/>
-  <updated>2019-07-11T09:56:34.641Z</updated>
+  <updated>2019-07-12T03:53:51.651Z</updated>
   <id>https://www.nouyc.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>深入理解HDFS</title>
+    <link href="https://www.nouyc.com/2019/07/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3HDFS/"/>
+    <id>https://www.nouyc.com/2019/07/12/深入理解HDFS/</id>
+    <published>2019-07-12T03:37:53.000Z</published>
+    <updated>2019-07-12T03:53:51.651Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="胡说八道"><a href="#胡说八道" class="headerlink" title="胡说八道"></a>胡说八道</h2><p>HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。</p><h2 id="HDFS设计原则"><a href="#HDFS设计原则" class="headerlink" title="HDFS设计原则"></a>HDFS设计原则</h2><ol><li><p>设计目标</p><p>· 存储非常大的文件<br>· 采用流式的数据访问方式: HDFS基于这样的一个假设：最有效的数据处理      模式是一次写入、多次读取数据集经常从数据源生成或者拷贝一次<br>· 运行于商业硬件上</p></li><li><p>HDFS不适合的应用类型</p><p>·低延时的数据访问<br>·大量小文件<br>·多方读写，需要任意的文件修改</p></li></ol><h2 id="HDFS核心概念"><a href="#HDFS核心概念" class="headerlink" title="HDFS核心概念"></a>HDFS核心概念</h2><ol><li><p>Blocks</p></li><li><p>Namenode &amp; Datanode</p></li><li><p>Block Caching</p></li><li><p>HDFS Federation</p></li><li><p>HDFS HA(High Availability高可用性)</p></li></ol><h2 id="Hadoop的HA方案"><a href="#Hadoop的HA方案" class="headerlink" title="Hadoop的HA方案"></a>Hadoop的HA方案</h2><ol><li>主备需共享edit log存储</li><li>DataNode需要同时往主备发送Block Report</li><li>客户端需要配置failover模式（失效备援模式，对用户透明） </li><li>Standby替代Secondary NameNode</li></ol><h2 id="命令行接口"><a href="#命令行接口" class="headerlink" title="命令行接口"></a>命令行接口</h2><p>HDFS提供了各种交互方式，例如通过Java API、HTTP、shell命令行的。命令行的交互主要通过hadoop fs来操作。例如：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -copyFromLocal <span class="comment">// 从本地复制文件到HDFS</span></span><br><span class="line">hadoop fs <span class="keyword">mkdir</span> <span class="comment">// 创建目录</span></span><br><span class="line">hadoop fs -<span class="keyword">ls</span>  <span class="comment">// 列出文件列表</span></span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;胡说八道&quot;&gt;&lt;a href=&quot;#胡说八道&quot; class=&quot;headerlink&quot; title=&quot;胡说八道&quot;&gt;&lt;/a&gt;胡说八道&lt;/h2&gt;&lt;p&gt;HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Had
+      
+    
+    </summary>
+    
+      <category term="大数据" scheme="https://www.nouyc.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+      <category term="HDFS" scheme="https://www.nouyc.com/tags/HDFS/"/>
+    
+  </entry>
   
   <entry>
     <title>普罗米修斯监控</title>
