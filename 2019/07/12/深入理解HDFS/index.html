@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/写文件.png">
 <meta property="og:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/副本存放.png">
 <meta property="og:image" content="https://www.nouyc.com/2019/07/12/深入理解HDFS/Hadoop节点距离.png">
-<meta property="og:updated_time" content="2019-07-12T07:30:54.115Z">
+<meta property="og:updated_time" content="2019-07-12T07:43:27.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解HDFS">
 <meta name="twitter:description" content="胡思乱想HDFS，是Hadoop Distributed File System的简称，是Hadoop抽象文件系统的一种实现。Hadoop抽象文件系统可以与本地系统、Amazon S3等集成，甚至可以通过Web协议（webhsfs）来操作。HDFS的文件分布在集群机器上，同时提供副本进行容错及可靠性保证。例如客户端写入读取文件的直接操作都是分布在集群各个机器上的，没有单点性能压力。 HDFS的小目">
@@ -457,11 +457,11 @@
 <li>Namenode &amp; Datanode</li>
 </ol>
 <p>整个HDFS集群由Namenode和Datanode构成master-worker（主从）模式。Namenode负责构建命名空间，管理文件的元数据等，而Datanode负责实际存储数据，负责读写工作。</p>
-<p>###Namenode<br>Namenode存放文件系统树及所有文件、目录的元数据。元数据持久化为2种形式：</p>
+<p>#Namenode<br>Namenode存放文件系统树及所有文件、目录的元数据。元数据持久化为2种形式：</p>
 <p>namespcae image<br>edit log<br>但是持久化数据中不包括Block所在的节点列表，及文件的Block分布在集群中的哪些节点上，这些信息是在系统重启的时候重新构建（通过Datanode汇报的Block信息）。<br>在HDFS中，Namenode可能成为集群的单点故障，Namenode不可用时，整个文件系统是不可用的。HDFS针对单点故障提供了2种解决机制：<br>1）备份持久化元数据<br>将文件系统的元数据同时写到多个文件系统， 例如同时将元数据写到本地文件系统及NFS。这些备份操作都是同步的、原子的。</p>
 <p>2）Secondary Namenode<br>Secondary节点定期合并主Namenode的namespace image和edit log， 避免edit log过大，通过创建检查点checkpoint来合并。它会维护一个合并后的namespace image副本， 可用于在Namenode完全崩溃时恢复数据。</p>
 <p>Secondary Namenode通常运行在另一台机器，因为合并操作需要耗费大量的CPU和内存。其数据落后于Namenode，因此当Namenode完全崩溃时，会出现数据丢失。 通常做法是拷贝NFS中的备份元数据到Second，将其作为新的主Namenode。<br>在HA（High Availability高可用性）中可以运行一个Hot Standby，作为热备份，在Active Namenode故障之后，替代原有Namenode成为Active Namenode。</p>
-<p>###Datanode<br>数据节点负责存储和提取Block，读写请求可能来自namenode，也可能直接来自客户端。数据节点周期性向Namenode汇报自己节点上所存储的Block相关信息。</p>
+<p>#Datanode<br>数据节点负责存储和提取Block，读写请求可能来自namenode，也可能直接来自客户端。数据节点周期性向Namenode汇报自己节点上所存储的Block相关信息。</p>
 <ol start="3">
 <li>Block Caching</li>
 </ol>
