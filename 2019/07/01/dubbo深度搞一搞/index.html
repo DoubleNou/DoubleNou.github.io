@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,My BLog">
+  <meta name="keywords" content="dubbo,">
 
 
 
@@ -80,9 +80,9 @@
 
 
 <meta name="description" content="各层说明总结（参考dubbo源码） ==================== Business ====================Service 业务层：业务代码的接口与实现。我们实际使用 Dubbo==================== RPC ====================config 配置层：对外配置接口，以 ServiceConfig, ReferenceConfig 为">
-<meta name="keywords" content="后端,HBase,IM,消息队列,dubbo,SpringBoot,SpringCloud,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
+<meta name="keywords" content="dubbo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dubbo深度搞一搞">
+<meta property="og:title" content="dubbo项目结构搞一搞">
 <meta property="og:url" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
 <meta property="og:description" content="各层说明总结（参考dubbo源码） ==================== Business ====================Service 业务层：业务代码的接口与实现。我们实际使用 Dubbo==================== RPC ====================config 配置层：对外配置接口，以 ServiceConfig, ReferenceConfig 为">
@@ -94,9 +94,15 @@
 <meta property="og:image" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/dubbo-remoting.png">
 <meta property="og:image" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/dubbo-rpc.png">
 <meta property="og:image" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/dubbo-cluster.png">
-<meta property="og:updated_time" content="2019-08-20T08:08:22.851Z">
+<meta property="og:image" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/cluster-整体.png">
+<meta property="og:image" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/dubbo-monitor.png">
+<meta property="og:image" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/dubbo-config.png">
+<meta property="og:image" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/dubbo-container.png">
+<meta property="og:image" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/dubbo-filter.png">
+<meta property="og:image" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/MavenPOM.png">
+<meta property="og:updated_time" content="2019-08-20T09:04:08.085Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dubbo深度搞一搞">
+<meta name="twitter:title" content="dubbo项目结构搞一搞">
 <meta name="twitter:description" content="各层说明总结（参考dubbo源码） ==================== Business ====================Service 业务层：业务代码的接口与实现。我们实际使用 Dubbo==================== RPC ====================config 配置层：对外配置接口，以 ServiceConfig, ReferenceConfig 为">
 <meta name="twitter:image" content="https://www.nouyc.com/2019/07/01/dubbo深度搞一搞/dubbo项目预览.png">
 
@@ -134,7 +140,7 @@
 
 
 
-  <title>dubbo深度搞一搞 | Nou的技术逆袭</title>
+  <title>dubbo项目结构搞一搞 | Nou的技术逆袭</title>
   
 
 
@@ -309,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">dubbo深度搞一搞</h1>
+          <h1 class="post-title" itemprop="name headline">dubbo项目结构搞一搞</h1>
         
 
         <div class="post-meta">
@@ -350,7 +356,7 @@
 
           
           
-             <span id="/2019/07/01/dubbo深度搞一搞/" class="leancloud_visitors" data-flag-title="dubbo深度搞一搞">
+             <span id="/2019/07/01/dubbo深度搞一搞/" class="leancloud_visitors" data-flag-title="dubbo项目结构搞一搞">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -377,7 +383,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  2.1k
                 </span>
               
 
@@ -393,7 +399,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  8
                 </span>
               
             </div>
@@ -498,6 +504,62 @@
 <li>合并返回结果，用于分组聚合。</li>
 <li>拓展参见 《Dubbo 用户指南 —— 分组聚合》 和 《Dubbo 开发指南 —— 合并结果扩展》 文档。</li>
 </ul>
+<p>整体流程如下：</p>
+<p><img src="/2019/07/01/dubbo深度搞一搞/cluster-整体.png" alt></p>
+<p>3.5 dubbo-registry</p>
+<p>dubbo-registry 注册中心模块：基于注册中心下发地址的集群方式，以及对各种注册中心的抽象。</p>
+<ul>
+<li>dubbo-registry-api ，抽象注册中心的注册与发现接口。</li>
+<li>其他模块，实现 dubbo-registry-api ，提供对应的注册中心实现。在 《用户指南 —— 注册中心参考手册》 中，可以看到每种注册中心的介绍。</li>
+<li>另外，dubbo-registry-default 对应 Simple 注册中心。</li>
+<li>拓展参见 《Dubbo 开发指南 —— 注册中心扩展》 文档。</li>
+</ul>
+<p>3.6 dubbo-monitor<br>dubbo-monitor 监控模块：统计服务调用次数，调用时间的，调用链跟踪的服务。<br><img src="/2019/07/01/dubbo深度搞一搞/dubbo-monitor.png" alt></p>
+<ul>
+<li>拓展参见 《Dubbo 开发指南 —— 监控中心扩展》 。</li>
+<li>目前社区里，有对 Dubbo 监控中心进行重构的项目，例如 ：</li>
+<li><a href="https://github.com/handuyishe/dubbo-monitor" target="_blank" rel="noopener">https://github.com/handuyishe/dubbo-monitor</a></li>
+<li><a href="https://github.com/zhongxig/dubbo-d-monitor" target="_blank" rel="noopener">https://github.com/zhongxig/dubbo-d-monitor</a></li>
+</ul>
+<p>3.7 dubbo-config</p>
+<p>dubbo-config 配置模块：是 Dubbo 对外的 API，用户通过 Config 使用Dubbo，隐藏 Dubbo 所有细节。</p>
+<p><img src="/2019/07/01/dubbo深度搞一搞/dubbo-config.png" alt></p>
+<ul>
+<li>dubbo-config-api ，实现了 API 配置 和 属性配置 功能。</li>
+<li>dubbo-config-spring ，实现了 XML 配置 和 注解配置 功能。</li>
+<li>推荐阅读 《Dubbo 开发指南 —— 配置设计》。</li>
+</ul>
+<p>3.8 dubbo-container<br>dubbo-container 容器模块：是一个 Standlone 的容器，以简单的 Main 加载 Spring 启动，因为服务通常不需要 Tomcat/JBoss 等 Web 容器的特性，没必要用 Web 容器去加载服务。</p>
+<p><img src="/2019/07/01/dubbo深度搞一搞/dubbo-container.png" alt></p>
+<ul>
+<li>dubbo-container-api ：定义了 com.alibaba.dubbo.container.Container 接口，并提供 加载所有容器启动的 Main 类。</li>
+<li>实现 dubbo-container-api</li>
+<li>dubbo-container-spring ，提供了 com.alibaba.dubbo.container.spring.SpringContainer 。</li>
+<li>dubbo-container-log4j ，提供了 com.alibaba.dubbo.container.log4j.Log4jContainer 。</li>
+<li>dubbo-container-logback ，提供了 com.alibaba.dubbo.container.logback.LogbackContainer 。</li>
+<li>拓展参考 《Dubbo 用户指南 —— 服务容器》 和 《Dubbo 开发指南 —— 容器扩展》 文档。</li>
+</ul>
+<p>3.9 dubbo-filter</p>
+<p>dubbo-filter 过滤器模块：提供了内置的过滤器。</p>
+<p><img src="/2019/07/01/dubbo深度搞一搞/dubbo-filter.png" alt></p>
+<ul>
+<li>dubbo-filter-cache ，缓存过滤器。</li>
+<li>拓展参考 《Dubbo 用户指南 —— 结果缓存》 和 《Dubbo 开发指南 —— 缓存拓展》 文档。</li>
+<li>dubbo-filter-validation ，参数验证过滤器。</li>
+<li>拓展参考 《Dubbo 用户指南 —— 参数验证》 和 《Dubbo 开发指南 —— 验证扩展》 文档。</li>
+</ul>
+<p>3.10 dubbo-plugin</p>
+<ul>
+<li>dubbo-plugin 插件模块：提供了内置的插件。</li>
+<li>dubbo-qos ，提供在线运维命令。</li>
+<li>拓展参考 《Dubbo 用户指南 —— 新版本 telnet 命令使用说明》 和 《Dubbo 开发指南 —— Telnet 命令扩展》 文档。</li>
+</ul>
+<p>3.11 hessian-lite<br>hessian-lite ：Dubbo 对 Hessian 2 的 序列化 部分的精简、改进、BugFix 。</p>
+<p>3.14 Maven POM</p>
+<p><img src="/2019/07/01/dubbo深度搞一搞/MavenPOM.png" alt></p>
+<p>3.14.1 dubbo-all</p>
+<p>dubbo/all/pom.xml ，Dubbo All Pom ，定义了 Dubbo 的打包脚本。</p>
+<p>我们在使用 Dubbo 库时，引入该 pom 文件。</p>
 
       
     </div>
@@ -536,6 +598,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dubbo/" rel="tag"># dubbo</a>
+          
+        </div>
       
 
       
@@ -755,7 +823,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">27.2k</span>
+    <span title="Site words total count">27.8k</span>
   
 </div>
 
