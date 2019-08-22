@@ -371,7 +371,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  639
+                  644
                 </span>
               
 
@@ -411,10 +411,11 @@
         
           
           
-进入hbase的shell hbase提供了一个shell的终端给用户交互1[root@hadoop3 conf]# hbase shell
+进入hbase的shell hbase提供了一个shell的终端给用户交互
+1[root@hadoop3 conf]# hbase shell
+ 退出使用quit或者ctrl+c 需要关闭hadoop的安全模式不然进行一些操作，比如scan会卡住 进入到hadoop的bin目录下 在启动hbase之前
 
 
-退出使用quit或者ctrl+c需要关闭hadoop的安全模式不然进行一些操作，比如scan会卡住进入到hadoop的bin目录下在启动hbase之前
 1[root@hadoop3 conf]# hadoop dfsadmin -safemode leave
 
 创建表
@@ -424,7 +425,7 @@
 1list
 
 描述表
-12345678describe 'user'Table user is ENAB
+12345678describe 'user'Table user is
           ...
           <!--noindex-->
           <div class="post-button text-center">
