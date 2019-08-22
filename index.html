@@ -975,7 +975,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  29
+                  2.7k
                 </span>
               
 
@@ -991,7 +991,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  10
                 </span>
               
             </div>
@@ -1021,9 +1021,17 @@ HBase为什么这么快。
 
 主键的所有属性？
 
+为什么提前region分区，等待他自动分裂也可以？
+
+HMaster的主从切换?
 
 
-          
+负责架构
+一个RS上只有一个HLog
+
+client职责：
+12345678910111213第 1 步：Client 请求 ZooKeeper 获取.META.所在的 RegionServer 的地址。		.META.：记录了用户所有表拆分出来的的 Region 映射信息，.META.可以有多个 Regoin第 2 步：Client 请求.META.所在的 RegionServer 获
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/19/HBase分享问题总结/#more" rel="contents">
@@ -2376,7 +2384,7 @@ undoLog确定是存在数
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">28.5k</span>
+    <span title="Site words total count">31.1k</span>
   
 </div>
 
