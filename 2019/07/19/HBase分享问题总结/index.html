@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="rowkey的put排序问题，涉及底层region和HFile的排序。  HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   负责架构 一个RS上只有一个HLog  client职责： 12345678910111213第 1 步：Client 请求 ZooKeeper 获取.META.所在的 RegionServ">
+<meta name="description" content="rowkey的put排序问题，涉及底层region和HFile的排序。  HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   问题为什么这么快？ 写入快 写入内存、顺序写入。  删除更新功能：删除数据不是进行实质上的删除，也就是磁盘上仍然存在此条数据。只不过是对删除的数据打上了墓碑标记。利用墓碑标记，读数据会忽略此">
 <meta name="keywords" content="HDFS,hbase">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HBase分享问题总结">
 <meta property="og:url" content="https://www.nouyc.com/2019/07/19/HBase分享问题总结/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
-<meta property="og:description" content="rowkey的put排序问题，涉及底层region和HFile的排序。  HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   负责架构 一个RS上只有一个HLog  client职责： 12345678910111213第 1 步：Client 请求 ZooKeeper 获取.META.所在的 RegionServ">
+<meta property="og:description" content="rowkey的put排序问题，涉及底层region和HFile的排序。  HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   问题为什么这么快？ 写入快 写入内存、顺序写入。  删除更新功能：删除数据不是进行实质上的删除，也就是磁盘上仍然存在此条数据。只不过是对删除的数据打上了墓碑标记。利用墓碑标记，读数据会忽略此">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.nouyc.com/2019/07/19/HBase分享问题总结/hbase结构.png">
-<meta property="og:updated_time" content="2019-08-22T06:56:08.769Z">
+<meta property="og:updated_time" content="2019-08-22T07:22:00.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HBase分享问题总结">
-<meta name="twitter:description" content="rowkey的put排序问题，涉及底层region和HFile的排序。  HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   负责架构 一个RS上只有一个HLog  client职责： 12345678910111213第 1 步：Client 请求 ZooKeeper 获取.META.所在的 RegionServ">
+<meta name="twitter:description" content="rowkey的put排序问题，涉及底层region和HFile的排序。  HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   问题为什么这么快？ 写入快 写入内存、顺序写入。  删除更新功能：删除数据不是进行实质上的删除，也就是磁盘上仍然存在此条数据。只不过是对删除的数据打上了墓碑标记。利用墓碑标记，读数据会忽略此">
 <meta name="twitter:image" content="https://www.nouyc.com/2019/07/19/HBase分享问题总结/hbase结构.png">
 
 
@@ -393,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.7k
+                  3k
                 </span>
               
 
@@ -409,7 +409,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10
+                  11
                 </span>
               
             </div>
@@ -442,6 +442,19 @@
 <li><p>HMaster的主从切换?</p>
 </li>
 </ol>
+<p>问题为什么这么快？</p>
+<h2 id="写入快"><a href="#写入快" class="headerlink" title="写入快"></a>写入快</h2><ol>
+<li>写入内存、顺序写入。 </li>
+<li>删除更新功能：删除数据不是进行实质上的删除，也就是磁盘上仍然存在此条数据。只不过是对删除的数据打上了墓碑标记。利用墓碑标记，读数据会忽略此条数据。当进行小文件合并时，才会进行实质上删除。</li>
+<li>剩下的合并、flush、compact都由region进行搞</li>
+</ol>
+<h2 id="读取快"><a href="#读取快" class="headerlink" title="读取快"></a>读取快</h2><p>B+树的应用场景：主要用在传统的行数据库中，因为查询速度快。但是如有有大量的数据需要查询时就暴露出其弊端。</p>
+<p>LSM树的应用场景：Hbase就是使用了LSM树。</p>
+<p>主要的实现方式：写数据时，第一步，写到预写日志中，目的是防止数据在写入时丢失；</p>
+<p>　　第二步，将数据放入到内存中。</p>
+<p>　　第三步，当内存的大小超过指定值，会把内存中的数据写入到磁盘上。</p>
+<p>需要注意一个关键点：磁盘的数据是有序的，这是利用预写日志和内存把随机写数据进行排序后写入，因此也能保证稳定的数据插入速率。</p>
+<p>LSM的优点：能快速进行数据的合并和拆分。</p>
 <h2 id="负责架构"><a href="#负责架构" class="headerlink" title="负责架构"></a>负责架构</h2><p><img src="/2019/07/19/HBase分享问题总结/hbase结构.png" alt></p>
 <p>一个RS上只有一个HLog</p>
 <ol>
@@ -620,7 +633,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -698,7 +711,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#负责架构"><span class="nav-number">1.</span> <span class="nav-text">负责架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理架构"><span class="nav-number">2.</span> <span class="nav-text">物理架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读写过程："><span class="nav-number">3.</span> <span class="nav-text">读写过程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memstore-执行刷盘操作的的触发条件："><span class="nav-number">4.</span> <span class="nav-text">Memstore 执行刷盘操作的的触发条件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-的三种默认的-Split-策略："><span class="nav-number">5.</span> <span class="nav-text">HBase 的三种默认的 Split 策略：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Minor-Compact-和-Major-Compact-的区别："><span class="nav-number">6.</span> <span class="nav-text">Minor_Compact 和 Major_Compact 的区别：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写入快"><span class="nav-number">1.</span> <span class="nav-text">写入快</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读取快"><span class="nav-number">2.</span> <span class="nav-text">读取快</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负责架构"><span class="nav-number">3.</span> <span class="nav-text">负责架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理架构"><span class="nav-number">4.</span> <span class="nav-text">物理架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读写过程："><span class="nav-number">5.</span> <span class="nav-text">读写过程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memstore-执行刷盘操作的的触发条件："><span class="nav-number">6.</span> <span class="nav-text">Memstore 执行刷盘操作的的触发条件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase-的三种默认的-Split-策略："><span class="nav-number">7.</span> <span class="nav-text">HBase 的三种默认的 Split 策略：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Minor-Compact-和-Major-Compact-的区别："><span class="nav-number">8.</span> <span class="nav-text">Minor_Compact 和 Major_Compact 的区别：</span></a></li></ol></div>
             
 
           </div>
@@ -735,7 +748,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">31.1k</span>
+    <span title="Site words total count">31.4k</span>
   
 </div>
 
