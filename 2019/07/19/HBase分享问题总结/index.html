@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="rowkey的put排序问题，涉及底层region和HFile的排序。  HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   问题为什么这么快？ 写入快 写入内存、顺序写入。  删除更新功能：删除数据不是进行实质上的删除，也就是磁盘上仍然存在此条数据。只不过是对删除的数据打上了墓碑标记。利用墓碑标记，读数据会忽略此">
+<meta name="description" content="HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   问题为什么这么快？ 写入快 写入内存、顺序写入。  删除更新功能：删除数据不是进行实质上的删除，也就是磁盘上仍然存在此条数据。只不过是对删除的数据打上了墓碑标记。利用墓碑标记，读数据会忽略此条数据。当进行小文件合并时，才会进行实质上删除。 剩下的合并、flush、">
 <meta name="keywords" content="HDFS,hbase">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HBase分享问题总结">
 <meta property="og:url" content="https://www.nouyc.com/2019/07/19/HBase分享问题总结/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
-<meta property="og:description" content="rowkey的put排序问题，涉及底层region和HFile的排序。  HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   问题为什么这么快？ 写入快 写入内存、顺序写入。  删除更新功能：删除数据不是进行实质上的删除，也就是磁盘上仍然存在此条数据。只不过是对删除的数据打上了墓碑标记。利用墓碑标记，读数据会忽略此">
+<meta property="og:description" content="HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   问题为什么这么快？ 写入快 写入内存、顺序写入。  删除更新功能：删除数据不是进行实质上的删除，也就是磁盘上仍然存在此条数据。只不过是对删除的数据打上了墓碑标记。利用墓碑标记，读数据会忽略此条数据。当进行小文件合并时，才会进行实质上删除。 剩下的合并、flush、">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.nouyc.com/2019/07/19/HBase分享问题总结/hbase结构.png">
-<meta property="og:updated_time" content="2019-08-22T07:22:00.923Z">
+<meta property="og:updated_time" content="2019-08-22T07:44:58.587Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HBase分享问题总结">
-<meta name="twitter:description" content="rowkey的put排序问题，涉及底层region和HFile的排序。  HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   问题为什么这么快？ 写入快 写入内存、顺序写入。  删除更新功能：删除数据不是进行实质上的删除，也就是磁盘上仍然存在此条数据。只不过是对删除的数据打上了墓碑标记。利用墓碑标记，读数据会忽略此">
+<meta name="twitter:description" content="HBase为什么这么快。  主键的所有属性？  为什么提前region分区，等待他自动分裂也可以？  HMaster的主从切换?   问题为什么这么快？ 写入快 写入内存、顺序写入。  删除更新功能：删除数据不是进行实质上的删除，也就是磁盘上仍然存在此条数据。只不过是对删除的数据打上了墓碑标记。利用墓碑标记，读数据会忽略此条数据。当进行小文件合并时，才会进行实质上删除。 剩下的合并、flush、">
 <meta name="twitter:image" content="https://www.nouyc.com/2019/07/19/HBase分享问题总结/hbase结构.png">
 
 
@@ -431,8 +431,6 @@
 
       
         <ol>
-<li><p>rowkey的put排序问题，涉及底层region和HFile的排序。</p>
-</li>
 <li><p>HBase为什么这么快。</p>
 </li>
 <li><p>主键的所有属性？</p>
