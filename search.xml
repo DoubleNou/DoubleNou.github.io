@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HBase技术分享]]></title>
+    <url>%2F2019%2F10%2F14%2FHBase%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB%2F</url>
+    <content type="text"><![CDATA[HBase的定义 HBase是一种分布式、可扩展、支持海量数据存储的NoSql数据库。 HBase的数据模型 逻辑上，HBase的数据模型同关系型数据库很类似，数据存储在一张表中，有行有列。但从HBase的底层物理存储结构（k-v）来看，HBase更像是一个多维度的Map。 HBase逻辑结构 HBase物理存储结构 HBase数据模型 Name Space 命名空间，类似于关系型数据库的DataBase的概念，每个命名空间下有多个表。HBase自带两个命名空间，分别是hbase和default。hbase中存放的是hbase自带的表。default表示用户默认的使用空间。 Region 类似于关系型数据库的表概念。不同的是，HBase在定义表的时候只需要声明列族即可，不需要声明具体的列。这意味着，在往HBase写入数据时，字段可以动态、按需指定。因此和关系型数据库相比，HBase能轻松应对字段变更的场景。 Row HBase表中的每行数据都是由一个RowKe+多个Column组成，数据是按照RowKey的字典序存储的，并且查询数据时只能根据RowKey进行检索，所以RowKey的设计十分重要。 Column HBase中的每个列都由Column Family（列族）和Column Qualifier（列限定符）进行限定，例如 imkf：chat_id, imkf: msg_id。建表时，只需指明列族，而列限定符无需预先定义。 Time Stamp 用于标识数据的不同版本（version），每条数据写入时，如果不指定时间戳，系统会自动为其加上该字段，其值为写入HBase的时间。 Cell 由 {rowkey, column Family: column Qualifier, time Stamp}唯一确定的单元。cell中的数据时没有类型的，全部是字节码形式存储。 HBase基本结构]]></content>
+      <tags>
+        <tag>HBase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[B树、B+树、LSM树以及其典型应用场景]]></title>
+    <url>%2F2019%2F09%2F02%2FB%E6%A0%91%E3%80%81B-%E6%A0%91%E3%80%81LSM%E6%A0%91%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[HBase基本命令]]></title>
     <url>%2F2019%2F08%2F22%2Fhbase%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%2F</url>
     <content type="text"><![CDATA[进入hbase的shell hbase提供了一个shell的终端给用户交互 1[root@hadoop3 conf]# hbase shell 退出使用quit或者ctrl+c 需要关闭hadoop的安全模式不然进行一些操作，比如scan会卡住 进入到hadoop的bin目录下 在启动hbase之前 1[root@hadoop3 conf]# hadoop dfsadmin -safemode leave 创建表 1create ‘表名’,’列族1’,’列族2’,…’列族n’ 查看所有表 1list 描述表 12345678describe 'user'Table user is ENABLED COLUMN FAMILIES DESCRIPTION &#123;NAME =&gt; 'info1', DATA_BLOCK_ENCODING =&gt; 'NONE', BLOOMFILTER =&gt; 'ROW', REPLICATION_SCOPE =&gt; '0', VERSIONS =&gt; '1', COMPRESSION =&gt; 'NONE', MIN_VERSIONS =&gt; '0', TTL =&gt; 'FOREVER', KEEP_DELETED_CELLS =&gt; 'FALSE', BLOCKSIZE =&gt; '65536', IN_MEMORY =&gt; 'false', BLOCKCACHE =&gt; 'true'&#125; &#123;NAME =&gt; 'info2', DATA_BLOCK_ENCODING =&gt; 'NONE', BLOOMFILTER =&gt; 'ROW', REPLICATION_SCOPE =&gt; '0', VERSIONS =&gt; '1', COMPRESSION =&gt; 'NONE', MIN_VERSIONS =&gt; '0', TTL =&gt; 'FOREVER', KEEP_DELETED_CELLS =&gt; 'FALSE', BLOCKSIZE =&gt; '65536', IN_MEMORY =&gt; 'false', BLOCKCACHE =&gt; 'true'&#125; 2 row(s) in 0.0790 seconds 删除表 12345678hbase(main):033:0&gt; disable 'user'0 row(s) in 1.4110 secondshbase(main):034:0&gt; drop 'user'0 row(s) in 0.2330 secondshbase(main):035:0&gt; listTABLE 0 row(s) in 0.0450 seconds 判断表是否存在 123hbase(main):040:0&gt; exists 'user'Table user does exist 0 row(s) in 0.0980 seconds 向表中添加数据 12hbase(main):041:0&gt; put 'user','1234','info1:name','zhangsan'0 row(s) in 0.1310 seconds hbase没有直接修改操作，但是可以覆盖，只要rowkey跟列族列名一致就会覆盖 比如这里要修改上面插入数据的info:name为’eve’ 扫描整个表 1hbase(main):043:0&gt; scan 'user' 查询记录数 1234hbase(main):066:0&gt; count 'user'2 row(s) in 0.0340 seconds=&gt; 2 查询 123456hbase(main):067:0&gt; get 'user','1234'COLUMN CELL info1:age timestamp=1547125476542, value=18 info1:name timestamp=1547125469727, value=eve info2:favor timestamp=1547125482454, value=eat 3 row(s) in 0.0330 seconds 查询某一个列族 12345hbase(main):068:0&gt; get 'user','1234','info1'COLUMN CELL info1:age timestamp=1547125476542, value=18 info1:name timestamp=1547125469727, value=eve 2 row(s) in 0.0280 seconds 查询某个时间戳版本不知道时间戳先将这一个列族修改为能选择三个版本的列族，可以随便选择查多少个版本，查的版本只要比存的版本少就行 12hbase(main):069:0&gt; alter 'user' ,&#123;NAME=&gt;'info1',VERSIONS=&gt;3&#125;hbase(main):070:0&gt; get 'user'，'1234'，&#123;COLUMN=&gt;'info1:name',VERSIONS=&gt;3&#125; 知道时间戳 1hbase(main):071:0&gt; get 'user', '1234', &#123;COLUMN =&gt; 'info1:name',TIMESTAMP =&gt; 1538014481194&#125; 删除记录删除列族下的某一列 1hbase(main):071:0&gt; delete 'user','1234','info1:name' 删除某一列族 1hbase(main):072:0&gt; delete 'user','1234','info2' 删除某一行 1hbase(main):073:0&gt; deleteall 'user','1234' 清空表 1234567hbase(main):074:0&gt; truncate 'user'Truncating 'user' table (it may take a while): - Disabling table... - Truncating table...0 row(s) in 1.4540 secondshbase(main):075:0&gt; scan 'user'ROW COLUMN+CELL]]></content>
@@ -27,8 +40,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>HDFS</tag>
         <tag>hbase</tag>
+        <tag>HDFS</tag>
       </tags>
   </entry>
   <entry>

@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,My BLog">
+  <meta name="keywords" content="HBase,">
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
-<meta name="keywords" content="后端,HBase,IM,消息队列,dubbo,SpringBoot,SpringCloud,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="踩坑血泪史">
-<meta property="og:url" content="https://www.nouyc.com/踩坑血泪史/index.html">
+<meta name="description" content="HBase的定义  HBase是一种分布式、可扩展、支持海量数据存储的NoSql数据库。 HBase的数据模型  逻辑上，HBase的数据模型同关系型数据库很类似，数据存储在一张表中，有行有列。但从HBase的底层物理存储结构（k-v）来看，HBase更像是一个多维度的Map。 HBase逻辑结构 HBase物理存储结构 HBase数据模型 Name Space 命名空间，类似于关系型数据库的Da">
+<meta name="keywords" content="HBase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HBase技术分享">
+<meta property="og:url" content="https://www.nouyc.com/2019/10/14/HBase技术分享/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
-<meta property="og:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta property="og:description" content="HBase的定义  HBase是一种分布式、可扩展、支持海量数据存储的NoSql数据库。 HBase的数据模型  逻辑上，HBase的数据模型同关系型数据库很类似，数据存储在一张表中，有行有列。但从HBase的底层物理存储结构（k-v）来看，HBase更像是一个多维度的Map。 HBase逻辑结构 HBase物理存储结构 HBase数据模型 Name Space 命名空间，类似于关系型数据库的Da">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-25T09:20:03.080Z">
+<meta property="og:image" content="https://www.nouyc.com/2019/10/14/HBase技术分享/HBase逻辑结构.png">
+<meta property="og:image" content="https://www.nouyc.com/2019/10/14/HBase技术分享/![](HBase物理存储结构.png">
+<meta property="og:updated_time" content="2019-10-15T03:02:02.551Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="踩坑血泪史">
-<meta name="twitter:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta name="twitter:title" content="HBase技术分享">
+<meta name="twitter:description" content="HBase的定义  HBase是一种分布式、可扩展、支持海量数据存储的NoSql数据库。 HBase的数据模型  逻辑上，HBase的数据模型同关系型数据库很类似，数据存储在一张表中，有行有列。但从HBase的底层物理存储结构（k-v）来看，HBase更像是一个多维度的Map。 HBase逻辑结构 HBase物理存储结构 HBase数据模型 Name Space 命名空间，类似于关系型数据库的Da">
+<meta name="twitter:image" content="https://www.nouyc.com/2019/10/14/HBase技术分享/HBase逻辑结构.png">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://www.nouyc.com/踩坑血泪史/">
+  <link rel="canonical" href="https://www.nouyc.com/2019/10/14/HBase技术分享/">
 
 
 
 
 
-  <title>踩坑血泪史 | Nou的技术逆袭</title>
+  <title>HBase技术分享 | Nou的技术逆袭</title>
   
 
 
@@ -272,33 +275,246 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.nouyc.com/2019/10/14/HBase技术分享/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nou">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nou的技术逆袭">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">踩坑血泪史</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">HBase技术分享</h1>
+        
+
+        <div class="post-meta">
           
-        
-      </div>
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T09:56:51+08:00">
+                2019-10-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/14/HBase技术分享/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/14/HBase技术分享/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/10/14/HBase技术分享/" class="leancloud_visitors" data-flag-title="HBase技术分享">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  464
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="HBase的定义"><a href="#HBase的定义" class="headerlink" title="HBase的定义"></a>HBase的定义</h2><p>  HBase是一种分布式、可扩展、支持海量数据存储的NoSql数据库。</p>
+<h2 id="HBase的数据模型"><a href="#HBase的数据模型" class="headerlink" title="HBase的数据模型"></a>HBase的数据模型</h2><p>  逻辑上，HBase的数据模型同关系型数据库很类似，数据存储在一张表中，有行有列。但从HBase的底层物理存储结构（k-v）来看，HBase更像是一个多维度的Map。</p>
+<h2 id="HBase逻辑结构"><a href="#HBase逻辑结构" class="headerlink" title="HBase逻辑结构"></a>HBase逻辑结构</h2><p><img src="/2019/10/14/HBase技术分享/HBase逻辑结构.png" alt></p>
+<h2 id="HBase物理存储结构"><a href="#HBase物理存储结构" class="headerlink" title="HBase物理存储结构"></a>HBase物理存储结构</h2><p><img src="/2019/10/14/HBase技术分享/![](HBase物理存储结构.png" alt></p>
+<h2 id="HBase数据模型"><a href="#HBase数据模型" class="headerlink" title="HBase数据模型"></a>HBase数据模型</h2><ol>
+<li><p>Name Space</p>
+<p>命名空间，类似于关系型数据库的DataBase的概念，每个命名空间下有多个表。HBase自带两个命名空间，分别是hbase和default。hbase中存放的是hbase自带的表。default表示用户默认的使用空间。</p>
+</li>
+<li><p>Region</p>
+<p>类似于关系型数据库的表概念。不同的是，HBase在定义表的时候只需要声明列族即可，不需要声明具体的列。这意味着，在往HBase写入数据时，字段可以动态、按需指定。因此和关系型数据库相比，HBase能轻松应对字段变更的场景。</p>
+</li>
+<li><p>Row</p>
+<p>HBase表中的每行数据都是由一个RowKe+多个Column组成，数据是按照RowKey的字典序存储的，并且查询数据时只能根据RowKey进行检索，所以RowKey的设计十分重要。</p>
+</li>
+<li><p>Column</p>
+<p>HBase中的每个列都由Column Family（列族）和Column Qualifier（列限定符）进行限定，例如 imkf：chat_id, imkf: msg_id。建表时，只需指明列族，而列限定符无需预先定义。</p>
+</li>
+<li><p>Time Stamp</p>
+<p>用于标识数据的不同版本（version），每条数据写入时，如果不指定时间戳，系统会自动为其加上该字段，其值为写入HBase的时间。</p>
+</li>
+<li><p>Cell</p>
+<p>由 {rowkey, column Family: column Qualifier, time Stamp}唯一确定的单元。cell中的数据时没有类型的，全部是字节码形式存储。</p>
+</li>
+</ol>
+<h2 id="HBase基本结构"><a href="#HBase基本结构" class="headerlink" title="HBase基本结构"></a>HBase基本结构</h2>
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏下哇 ，贡献更多优质原创</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.jpg" alt="Nou 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HBase/" rel="tag"># HBase</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/02/B树、B-树、LSM树以及其典型应用场景/" rel="next" title="B树、B+树、LSM树以及其典型应用场景">
+                <i class="fa fa-chevron-left"></i> B树、B+树、LSM树以及其典型应用场景
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -334,8 +550,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -420,6 +645,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase的定义"><span class="nav-number">1.</span> <span class="nav-text">HBase的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase的数据模型"><span class="nav-number">2.</span> <span class="nav-text">HBase的数据模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase逻辑结构"><span class="nav-number">3.</span> <span class="nav-text">HBase逻辑结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase物理存储结构"><span class="nav-number">4.</span> <span class="nav-text">HBase物理存储结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase数据模型"><span class="nav-number">5.</span> <span class="nav-text">HBase数据模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase基本结构"><span class="nav-number">6.</span> <span class="nav-text">HBase基本结构</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
