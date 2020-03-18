@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="HDFS,">
+  <meta name="keywords" content="dubbo,">
 
 
 
@@ -79,27 +79,18 @@
 
 
 
-<meta name="description" content="前言和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是菜狗。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。唯一的欣慰点是这样的压力促进了我加快学习。压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—  目标 运用HBase把海量数据查询和写入搞定">
-<meta name="keywords" content="HDFS">
+<meta name="description" content="废话不说，在上面基础上，我们把http协议改为dubbo协议吧。在protocol的dubbo目录下穿件netty的相关组件。  NettyServer、NettyCient、NettyServerHandler、NettyClientHandler。 这里用到了netty的架构，没了解过netty架构的同学这里先照搬吧，多看几遍就有点门路了。 /NettyClient/123456789101">
+<meta name="keywords" content="dubbo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅分析HDFS">
-<meta property="og:url" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/index.html">
+<meta property="og:title" content="手撸一套dubbo（3）成熟篇 运用dubbo协议">
+<meta property="og:url" content="https://www.nouyc.com/2020/03/18/手撸一套dubbo（3）成熟篇-运用dubbo协议/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
-<meta property="og:description" content="前言和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是菜狗。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。唯一的欣慰点是这样的压力促进了我加快学习。压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—  目标 运用HBase把海量数据查询和写入搞定">
+<meta property="og:description" content="废话不说，在上面基础上，我们把http协议改为dubbo协议吧。在protocol的dubbo目录下穿件netty的相关组件。  NettyServer、NettyCient、NettyServerHandler、NettyClientHandler。 这里用到了netty的架构，没了解过netty架构的同学这里先照搬吧，多看几遍就有点门路了。 /NettyClient/123456789101">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/上菜.jpg">
-<meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/HDFS架构图.jpg">
-<meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/切片.jpg">
-<meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/一套完整的酒席.jpg">
-<meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/一套完整的酒席2.jpg">
-<meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/WAL.jpg">
-<meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/second行为.jpg">
-<meta property="og:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/主备切换.jpg">
-<meta property="og:updated_time" content="2019-07-10T07:58:34.801Z">
+<meta property="og:updated_time" content="2020-03-18T09:14:24.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅分析HDFS">
-<meta name="twitter:description" content="前言和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是菜狗。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。唯一的欣慰点是这样的压力促进了我加快学习。压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—  目标 运用HBase把海量数据查询和写入搞定">
-<meta name="twitter:image" content="https://www.nouyc.com/2019/04/28/浅分析HDFS/上菜.jpg">
+<meta name="twitter:title" content="手撸一套dubbo（3）成熟篇 运用dubbo协议">
+<meta name="twitter:description" content="废话不说，在上面基础上，我们把http协议改为dubbo协议吧。在protocol的dubbo目录下穿件netty的相关组件。  NettyServer、NettyCient、NettyServerHandler、NettyClientHandler。 这里用到了netty的架构，没了解过netty架构的同学这里先照搬吧，多看几遍就有点门路了。 /NettyClient/123456789101">
 
 
 
@@ -129,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.nouyc.com/2019/04/28/浅分析HDFS/">
+  <link rel="canonical" href="https://www.nouyc.com/2020/03/18/手撸一套dubbo（3）成熟篇-运用dubbo协议/">
 
 
 
 
 
-  <title>浅分析HDFS | Nou的技术逆袭</title>
+  <title>手撸一套dubbo（3）成熟篇 运用dubbo协议 | Nou的技术逆袭</title>
   
 
 
@@ -293,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.nouyc.com/2019/04/28/浅分析HDFS/">
+    <link itemprop="mainEntityOfPage" href="https://www.nouyc.com/2020/03/18/手撸一套dubbo（3）成熟篇-运用dubbo协议/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Nou">
@@ -310,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浅分析HDFS</h1>
+          <h1 class="post-title" itemprop="name headline">手撸一套dubbo（3）成熟篇 运用dubbo协议</h1>
         
 
         <div class="post-meta">
@@ -323,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T15:37:46+08:00">
-                2019-04-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T14:59:28+08:00">
+                2020-03-18
               </time>
             
 
@@ -334,28 +325,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -364,8 +333,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/04/28/浅分析HDFS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/28/浅分析HDFS/" itemprop="commentCount"></span>
+                <a href="/2020/03/18/手撸一套dubbo（3）成熟篇-运用dubbo协议/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/18/手撸一套dubbo（3）成熟篇-运用dubbo协议/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -373,7 +342,7 @@
 
           
           
-             <span id="/2019/04/28/浅分析HDFS/" class="leancloud_visitors" data-flag-title="浅分析HDFS">
+             <span id="/2020/03/18/手撸一套dubbo（3）成熟篇-运用dubbo协议/" class="leancloud_visitors" data-flag-title="手撸一套dubbo（3）成熟篇 运用dubbo协议">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -400,7 +369,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.5k
+                  1k
                 </span>
               
 
@@ -416,7 +385,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  12
+                  5
                 </span>
               
             </div>
@@ -437,46 +406,22 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>和大家说说我接触大数据的经历吧。在去年刚毕业的我，一脸懵逼的进了公司，当时所属我的一个标签就是<div>菜狗</div>。什么都是新的，什么也都是挑战的。更糟糕的是面对突入其来的压力，走了很多弯路。其实回想下陌生的恐惧支配了我大部分的经历。唯一的欣慰点是这样的压力促进了我加快学习。<br>压力和工作气氛稍有好转的几天后，一个叫做HBase的玩具交给了我，让我玩一玩。简要来说—</p>
-<ol>
-<li>目标 运用HBase把海量数据查询和写入搞定，代替传统的关系型数据库mysql，我们的mysql日均写入量百万。在接手的时候总库的量已经破了4亿。没错，你在一个亿量级的表里面找条数据（索引失效），你想想后果。其实可以避免索引失效的，具体什么场景我后续来说。</li>
-<li>HBase属于新应用，怎么搞自己去看吧，我tm居然从服务端学了起来，虽然很浅读，但基本HBase架构读了一遍。数据流怎么走的也有了基础掌握，返回头才看client端。我们应用方属于c端，大数据部门原来替我们做了server的管理。（其实我觉得，服务端和客户端都要学，因为调优的参数应用要懂吧、实际业务难免要做业务补偿，比如旧的历史消息bulkload进HBase、安全机制）</li>
-<li>实际业务需求，这里所说的就是我们不敢，甚至任何一家公司新运用HBase也不敢直接取代mysql的地位。但想用HBase，那怎么保留mysql和HBase平等地位呢？<br>欢迎留言探讨。</li>
-<li>压测，我居然搞了jemeter接口测试，过程你懂的。其实HBase有专业的压测，支持多线程。YCSB！</li>
+        <ol>
+<li>废话不说，在上面基础上，我们把http协议改为dubbo协议吧。在protocol的dubbo目录下穿件netty的相关组件。</li>
 </ol>
-<h2 id="HBase的基础—HDFS"><a href="#HBase的基础—HDFS" class="headerlink" title="HBase的基础—HDFS"></a>HBase的基础—HDFS</h2><p>大家不要被大数据搞晕了，其实没什么恐怖的，虽然学起来有些难度，HDFS是大数据存储的底层系统了，从这里我们可以了解到整个Hadoop生态圈，我们先搞定这个，再去玩HBase。进而玩起spark、sqoop、Flink。</p>
-<h2 id="先给大家讲个故事"><a href="#先给大家讲个故事" class="headerlink" title="先给大家讲个故事"></a>先给大家讲个故事</h2><p>一次赵栋请客吃饭，他叫了二十多个人，忆江南并没有大桌，只能分小桌落座。so，众口难调，为了照顾大家，每桌都是自己点菜，赵栋也是忙前忙后，忙着了解大家都点了些啥，毕竟他要结账。<br>服务员一下子面对六桌，菜有点多，有些菜忘了上哪桌，赵栋也会告诉他们。吃着吃着，突然博英桌点的一道猪蹄汤进了一个苍蝇。赵栋说：“没事儿，隔壁桌也点了这个汤。我去给你盛一碗。”</p>
-<p>吃完饭，大家都很开心，一起踏上去小竹签的路上… </p>
-<p>你以为我在说废话，讲故事。这个故事就是HDFS的精髓！</p>
-<h2 id="初识HDFS—分布式文件系统"><a href="#初识HDFS—分布式文件系统" class="headerlink" title="初识HDFS—分布式文件系统"></a>初识HDFS—分布式文件系统</h2><p>先不谈分布式，先说说文件系统：文件系统就是用来管理文件的一个系统，比如你今天送我的mac pro，我在命令行敲一个ls，就能看到当前目录的文件。就算你没有钱、没送我mac。没关系，你给我装一个linux系统，我运行ls出来的显示，同样是直观的文件系统。<br>文件系统官方来说是存储文件、管理文件，并且提供文件系统的crud。问题来了，这些文件存在哪？硬盘！</p>
-<p>知道了吧，万事万物想要持久化都要必进硬盘，别跟我扯什么云….云最后去哪了。</p>
-<p>单台机器，单个硬盘的场景。假设，我有一个文件（600G），但我的mac只有256G，我存个鬼。so，怎么办。有人跟我说加硬盘…你干点别的吧。<br>把这个文件拆开呀！！！我有钱，我有10台mac，那我就拆成10份。每份60G，完全可以放进单台256G的mac了。多台机器形成的系统就是分布式文件系统。那么这里又有一个问题，单台机器单台ls，多台机器每个都要ls吗？否，提供一个统一的查询接口，对使用者而言就像操作一台机器一样！这就是HDFS下的 hdfs dfs -ls ，命令的精髓。也就是分布式文件系统的意思。</p>
-<h2 id="文件切片"><a href="#文件切片" class="headerlink" title="文件切片"></a>文件切片</h2><p>赵栋请吃饭，一下子来20多人，怎么可能坐一桌，拆啊！！！这不就是文件切片的一个意思么。大文件切块后分别存储在多台机器，然后提供统一的操作接口，是不是分布式文件系统hdfs也是挺简单的。</p>
-<h2 id="潜在问题"><a href="#潜在问题" class="headerlink" title="潜在问题"></a>潜在问题</h2><p>我把文件分了这么多份，我想找一个文件所在位置。我怎么去找到确定的一台机器呢？有人说，遍历一遍所有机器….哈哈，这样就太慢了，而且效率很低，是一个o(n)的算法。还有啊，我们刚刚说一个文件分别存在几台机器上，假如其中一台机器坏了，那么这个文件就不能访问了？有人说，机器故障率是0.000001%，然后他就觉得没问题。他这样想属于正常思维，但是一点就是他说的是单台机器。我们有10000000台机器，每台机器的事故率如上，那么这套系统的事故率是多少呢？10%….哪有这么多台机器！？你问问阿里的工程师他们有多少台虚机、物理机….如果要存储PB级或者EB级的数据，成千上万台机器组成的集群是很常见的，所以说分布式系统比单机系统要复杂得多呀。</p>
-<h2 id="潜在问题-1"><a href="#潜在问题-1" class="headerlink" title="潜在问题"></a>潜在问题</h2><h2 id="破壁1——上菜是溯源"><a href="#破壁1——上菜是溯源" class="headerlink" title="破壁1——上菜是溯源"></a>破壁1——上菜是溯源</h2><p>破壁者的使命都是从他们的宿愿说起，了解下HDFS架构至关重要，才能解决这些潜在问题。再回溯到刚才说的吃饭情景。</p>
-<p>服务员上菜的同时，并不知道这是哪桌的菜，“what fuck！5桌人，我该问谁？”。只能问赵栋，菜都是赵栋点的</p>
-<p><img src="/2019/04/28/浅分析HDFS/上菜.jpg" alt><br>同等，我们看看HDFS的架构图<br><img src="/2019/04/28/浅分析HDFS/HDFS架构图.jpg" alt><br>像不像…</p>
-<p>自己类比下啊，你可以把每一桌看作是一个DataNode、每一道菜看成一个文件切片，服务员相当于Client。文件切片具体放到哪个文件中，要去NameNode中寻找。DataNode是真正存储数据的地方，NameNode相当于一个管理者master，它知道每一个DataNode的存储情况，client其实就是那个对外操作的统一接口。<br>讲到这，引申一下，服务员不管上菜（写数据），还是找哪桌的盘子空了（读数据）都要先去赵栋这里询问下，赵栋（NameNode）统一回复服务员。这样时间复杂度是O(1)。效率提升了不少。</p>
-<h2 id="破壁2——掉进猪蹄汤的苍蝇"><a href="#破壁2——掉进猪蹄汤的苍蝇" class="headerlink" title="破壁2——掉进猪蹄汤的苍蝇"></a>破壁2——掉进猪蹄汤的苍蝇</h2><p>假如说某一个DataNode坏了怎么办？像我刚才说的坏了一台机器。再类比吃饭什么情景呢？对，苍蝇掉进了猪蹄汤里。这一桌的人都不想动筷了，但又对这些美食抗拒不住。其他桌有相同的菜啊！这桌人全部去了隔壁桌….</p>
-<p>听到这里，有没有发现什么。没错，hdfs在写入一个数据块的时候，不会仅仅写入一个DataNode，而是会写入到多个DataNode中，这样，如果其中一个DataNode坏了，还可以从其余的DataNode中拿到数据，保证了数据不丢失。多数据备份不仅在这里体现，大数据生态里面有很多也用到了这样的做法，例如kafka的多数据备份，但是都要分布在不同的机器上，保证一台机器挂了，可以在其他机器节点上找到数据。这样对存储空间的要求就很大，现在SSD都降价了，别说你的存储空间不够用。</p>
-<h2 id="破壁3——上菜都是服务员的事儿"><a href="#破壁3——上菜都是服务员的事儿" class="headerlink" title="破壁3——上菜都是服务员的事儿"></a>破壁3——上菜都是服务员的事儿</h2><p>服务员把美食从后厨端过来的时候，就已经知道要把四盘一样的菜轮番上到不同的四桌。这里代表数据分片已经由Client端做了。</p>
-<p><img src="/2019/04/28/浅分析HDFS/切片.jpg" alt></p>
-<h2 id="破壁4——-一套完整的酒席"><a href="#破壁4——-一套完整的酒席" class="headerlink" title="破壁4—— 一套完整的酒席"></a>破壁4—— 一套完整的酒席</h2><p>从服务员上菜分桌，到同学们吃饭，再到离场撤盘子。这一套完整的酒席，就是HDFS一套完整的交互，流读取。<br>HDFS查询：<br><img src="/2019/04/28/浅分析HDFS/一套完整的酒席.jpg" alt></p>
-<p>HDFS读取：<br><img src="/2019/04/28/浅分析HDFS/一套完整的酒席2.jpg" alt></p>
-<p>写入这里有个问题，就是我们之前说的多数据备份问题。这里不能交给Client做，那不得累死服务员，由同学们自己安排就好了。也就是采用目前比较流行的binlog方法。mysql读写分离也采用这个方法，mysql转数据仓库也用binlog。DataNode之间自己同步，效率有很大提升。服务员只专心上菜。</p>
-<p>中间难免的小插曲，比如说赵栋出去接电话，他这一个NameNode不在了（Down机），服务员正好来上菜。怎么办？所以只能准备多个NameNode，也就是NameNode集群，选举Master进行更替。如果只有一个赵栋的话，出现不在场行为，这酒席进行不下去了。必备的NameNode是必要的。NameNode中存储了整个系统的元数据metadata，是指描述数据的数据，这里指描述文件的数据，比如文件路径，文件被分为几块？每个块在哪些DataNode上等。</p>
-<p>假如所有NameNode都要重启怎么办？防止这种情况，可以持久化到硬盘上啊，重启之后再从硬盘把数据恢复到内存不就行了？那要把所有数据都先写一遍硬盘、再重启后读一遍硬盘、每个metadata都要访问一遍….想想效率问题。HDFS采用WAl思想，所有的写入行为都被追踪到了日志中，一旦系统重启，恢复这个wal日志行为到重启前的样子就可以。</p>
-<p>那WAL这个日志行为你想想跑了几个月有多大，一旦重启…还要回溯到几个月前的行为再来一遍写入吗？不现实。所以hdfs的设计者也想到了这个问题。你看看之前hdfs的架构图，里面有一个SecondNameNode，就是用来解决这个问题。</p>
-<p>刚刚其实只说了一半，NameNode确实会回放editlog，但是不是每次都从头回放，它会先加载一个fsimage，这个文件是之前某一个时刻整个NameNode的文件元数据的内存快照，然后再在这个基础上回放editlog，完成后，会清空editlog，再把当前文件元数据的内存状态写入fsimage，方便下一次加载。<br><img src="/2019/04/28/浅分析HDFS/WAL.jpg" alt><br>一句话，简单来说全量导入变成了增量导入。</p>
-<p>WAL只是解决了不全部回追数据的问题，NameNode还是很大的问题没有解决。SecondNameNode出场，他会定期将WAL日志存入fsimage中，然后清空WAL日志，就相当于跑个定时。<br>刚才说的，主NameNode挂了，集群中另一个NameNode顶上，可不是这个SecondNameNode啊，完全两回事。<br><img src="/2019/04/28/浅分析HDFS/second行为.jpg" alt></p>
-<h2 id="破壁4—相爱相杀的Master和Active"><a href="#破壁4—相爱相杀的Master和Active" class="headerlink" title="破壁4—相爱相杀的Master和Active"></a>破壁4—相爱相杀的Master和Active</h2><p>hadoop2.x之前，整个集群只能有一个NameNode，是有可能发生单点故障的，所以hadoop1.x有本身的不稳定性。但是hadoop2.x之后，我们可以在集群中配置多个NameNode，就不会有这个问题了，但是配置多个NameNode，需要注意的地方就更多了，系统就更加复杂了。Hadoop1.0也想到了系统的稳定性，但这和系统的设计理念是有关系的，虽然hadoop1.x存在一个NameNode单点，但是它大大简化了系统的复杂度，并且数据量在一定范围内时，NameNode并没有这么容易挂，所以那个时代是被接受的。但是随着数据量越来越大，这个单点始终是个隐患，所以设计者不得不升级为更加复杂的hadoop2.x，来保证NameNode的高可靠。俗话说一山不容二虎，两个NameNode只能有一个是活跃状态active，另一个是备份状态standby，我们看一下两个NameNode的架构图。<br><img src="/2019/04/28/浅分析HDFS/主备切换.jpg" alt></p>
-<p>变的复杂了吧，多看几遍就会了。active的NameNode挂了之后，standby的NameNode要马上接替它，所以它们的数据要时刻保持一致，在写入数据的时候，两个NameNode内存中都要记录数据的元信息，并保持一致。这个JournalNode就是用来在两个NameNode中同步数据的，并且standby NameNode实现了SecondNameNode的功能。<br>注意，hadoop2.x如果只部署一个NameNode，还是会用SecondNameNode。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>HDFS优缺点：hdfs可以存储海量数据，并且是高可用的，任何一台机器挂了都有备份，不会影响整个系统的使用，也不会造成数据丢失。HDFS不适合存大批量的小文件，每一个小文件都有元信息，它们都存在NameNode里面，可能造成NameNode的内存不足。HDFS设计之初就是为了存储，不实用与编辑。所以，控制好你的业务方向…随机读写的效率很低。</p>
-<p>1、hdfs是一个分布式文件系统，简单理解就是多台机器组成的一个文件系统。</p>
-<p>2、hdfs中有3个重要的模块，client对外提供统一操作接口，DataNode真正存储数据，NameNode协调和管理数据，是一个典型的master-slave架构。</p>
-<p>3、hdfs会对大文件进行切块，并且每个切块会存储备份，保证数据的高可用，适合存储大数据。</p>
-<p>4、NameNode通过fsimage和editlog来实现数据恢复和高可用。</p>
-<p>5、hdfs不适用于大量小文件存储，不支持并发写入，不支持文件随机修改，查询效率大概在秒级。</p>
+<p>NettyServer、NettyCient、NettyServerHandler、NettyClientHandler。</p>
+<p>这里用到了netty的架构，没了解过netty架构的同学这里先照搬吧，多看几遍就有点门路了。</p>
+<p>/NettyClient/<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NettyClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//客户端需要一个一件循环组</span></span><br><span class="line">        EventLoopGroup eventLoopGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建客户端启动对象</span></span><br><span class="line">        <span class="comment">//客户端使用的是BootStrap</span></span><br><span class="line">        Bootstrap bootstrap = <span class="keyword">new</span> Bootstrap();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置相关参数</span></span><br><span class="line">        bootstrap.group(eventLoopGroup)</span><br><span class="line">                .channel(NioSocketChannel.class)</span><br><span class="line">                .<span class="keyword">handler</span>(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel socketChannel)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        socketChannel.pipeline().addLast(<span class="keyword">new</span> NettyClientHandler());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        System.out.println(<span class="string">"client ok"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//启动客户端，连接服务器</span></span><br><span class="line">        ChannelFuture channelFuture = bootstrap.connect(<span class="string">"127.0.0.1"</span>, <span class="number">6668</span>).sync();</span><br><span class="line"></span><br><span class="line">        channelFuture.channel().closeFuture().sync();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>/NettyClientHandler/<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NettyClientHandler</span> <span class="keyword">extends</span> <span class="title">ChannelInboundHandlerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通道就绪就会触发该方法</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelActive</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        ctx.writeAndFlush(Unpooled.copiedBuffer(<span class="string">"Hello 哈哈哈"</span>, CharsetUtil.UTF_8));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当通道有读取事件时，触发</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelRead</span><span class="params">(ChannelHandlerContext ctx, Object msg)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        ByteBuf buf = (ByteBuf) msg;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"服务器回复的消息 "</span> +  buf.toString(CharsetUtil.UTF_8));</span><br><span class="line">        System.out.println(<span class="string">"服务器地址 "</span> +  ctx.channel().remoteAddress());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exceptionCaught</span><span class="params">(ChannelHandlerContext ctx, Throwable cause)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        cause.printStackTrace();</span><br><span class="line">        ctx.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>/NettyServer/<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NettyServer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1.创建bossGroup 和 workerGroup</span></span><br><span class="line">        <span class="comment">//2.Boss 只处理 accept 、 worker 负责业务处理</span></span><br><span class="line">        <span class="comment">//3.两个都是无限循环</span></span><br><span class="line">        EventLoopGroup  bossLoopGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        EventLoopGroup  workerLoopGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        ServerBootstrap serverBootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//建造者模式</span></span><br><span class="line">        serverBootstrap.group(bossLoopGroup, workerLoopGroup)<span class="comment">//两个组</span></span><br><span class="line">                .channel(NioServerSocketChannel.class)<span class="comment">//使用NioSocketChannel作为服务器的通道实现</span></span><br><span class="line">                .option(ChannelOption.SO_BACKLOG, <span class="number">128</span>)<span class="comment">//设置线程队列得到连接个数</span></span><br><span class="line">                .childOption(ChannelOption.SO_KEEPALIVE,<span class="keyword">true</span>)</span><br><span class="line">                .childHandler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">                    <span class="comment">//pipleline设置处理器</span></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel sc)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        sc.pipeline().addLast(<span class="keyword">new</span> NettyServerHandler());</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"服务器准备好了"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//绑定端口</span></span><br><span class="line">        <span class="comment">//启动服务器</span></span><br><span class="line">        ChannelFuture channelFuture = serverBootstrap.bind(<span class="number">6668</span>).sync();</span><br><span class="line"></span><br><span class="line">        channelFuture.addListener(<span class="keyword">new</span> ChannelFutureListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operationComplete</span><span class="params">(ChannelFuture channelFuture)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(channelFuture.isSuccess())&#123;</span><br><span class="line">                    System.out.println(<span class="string">"1"</span>);</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    System.out.println(<span class="string">"false"</span>);</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        channelFuture.channel().closeFuture().sync();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>/NettyServerHandler/<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NettyServerHandler</span> <span class="keyword">extends</span> <span class="title">ChannelInboundHandlerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//读取客户端的数据</span></span><br><span class="line">    <span class="comment">//1.ctx上下文、含有pipeline还有通道、地址</span></span><br><span class="line">    <span class="comment">//2.msg 客户端发送的数据，默认是object</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelRead</span><span class="params">(ChannelHandlerContext ctx, Object msg)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"服务器读取线程："</span> + Thread.currentThread().getName());</span><br><span class="line">        System.out.println(<span class="string">"server ctx ="</span> + ctx);</span><br><span class="line">        System.out.println(<span class="string">"看看channel 和pipeline 的关系"</span>);</span><br><span class="line">        Channel channel = ctx.channel();</span><br><span class="line">        ChannelPipeline pipeline = ctx.pipeline();<span class="comment">//双向链表、入栈和出栈</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//将msg转为byteBuffer</span></span><br><span class="line">        ByteBuf buf  = (ByteBuf) msg;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"client 发送的消息："</span> + buf.toString(CharsetUtil.UTF_8));</span><br><span class="line">        System.out.println(<span class="string">"client 地址："</span> + channel.remoteAddress());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//数据读取完毕</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelReadComplete</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//把数据写入缓冲并刷新</span></span><br><span class="line">        <span class="comment">//一般来讲，我们对发送的数据进行编码</span></span><br><span class="line">         ctx.writeAndFlush(Unpooled.copiedBuffer(<span class="string">"hello client"</span>, CharsetUtil.UTF_8));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//处理异常</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exceptionCaught</span><span class="params">(ChannelHandlerContext ctx, Throwable cause)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        ctx.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>改版下provider的启动类和consumer的proxy就可以切换 dubbo协议了.由httpServer切换为nettyserver。</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//1. 本地注册</span></span><br><span class="line">    <span class="comment">//&#123;服务名，实现类&#125;</span></span><br><span class="line">    LocalRegister.regiest(HelloService.<span class="keyword">class</span>.getName(), HelloServiceImol.<span class="keyword">class</span>);</span><br><span class="line">    <span class="comment">//2. 远程注册</span></span><br><span class="line">    <span class="comment">//&#123;服务名：list&lt;URL&gt;&#125;</span></span><br><span class="line">    URL url  = <span class="keyword">new</span> URL(<span class="string">"localhost"</span>, <span class="number">8080</span>);</span><br><span class="line">    RemoteRegister.regiest(HelloService.<span class="keyword">class</span>.getName(), url);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3. 启动tomcat，我们以tomcat为例子一步一步搞哈哈哈。</span></span><br><span class="line">    NettyServer server = <span class="keyword">new</span> NettyServer();</span><br><span class="line">    server.serverStart(<span class="string">"localhost"</span>, <span class="number">8080</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同理切换httpClient 为 nettyClient<br><figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyFactory</span> &#123;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> static&lt;T&gt; T getProxy(<span class="class"><span class="keyword">Class</span> <span class="title">interfaceClass</span>)&#123;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), <span class="keyword">new</span> <span class="class"><span class="keyword">Class</span>[]&#123;<span class="title">interfaceClass</span>&#125;, <span class="title">new</span> <span class="title">InvocationHandler</span>() &#123;</span></span><br><span class="line">            @Override</span><br><span class="line">            <span class="keyword">public</span> Object invoke(Object proxy, <span class="function"><span class="keyword">Method</span> <span class="title">method</span>, <span class="title">Object</span>[] <span class="title">args</span>) <span class="title">throws</span> <span class="title">Throwable</span> &#123;</span></span><br><span class="line">                NettyClient nettyClient = <span class="keyword">new</span> NettyClient();</span><br><span class="line">                Invocation invocation = <span class="keyword">new</span> Invocation(interfaceClass.getName(), <span class="function"><span class="keyword">method</span>.<span class="title">getName</span>(</span>), <span class="function"><span class="keyword">method</span>.<span class="title">getParameterTypes</span>(</span>), args);</span><br><span class="line"></span><br><span class="line">                URL url = RemoteRegister.random(interfaceClass.getName());</span><br><span class="line">                String result = nettyClient.send(url.getHostName(), url.getPort(), invocation);</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再调一下，发现没，OK了！</p>
+<p>再进行一次优化，我们发现切换下协议要改好几处代码，很坑爹，所以我们采用一套协议管理dubbo采用哪个协议可行么？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DubboProtocol</span> <span class="keyword">implements</span> <span class="title">Protocol</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">start</span><span class="params">(URL url)</span> </span>&#123;</span><br><span class="line">        NettyServer server = <span class="keyword">new</span> NettyServer();</span><br><span class="line">        server.serverStart(<span class="string">"localhost"</span>, <span class="number">8080</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">send</span><span class="params">(URL url, Invocation invocation)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> NettyClient().send(url.getHostName(), url.getPort(), invocation);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后把NettyServer的启动类换成这个协议的start，还有Proxy的代理的Client换成这个协议类的send。就已经搞定了Dubbo的基本框架。</p>
 
       
     </div>
@@ -518,7 +463,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/HDFS/" rel="tag"># HDFS</a>
+            <a href="/tags/dubbo/" rel="tag"># dubbo</a>
           
         </div>
       
@@ -531,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/26/生动的一次TCP3次握手和4次挥手/" rel="next" title="一次生动的TCP3次握手和4次挥手">
-                <i class="fa fa-chevron-left"></i> 一次生动的TCP3次握手和4次挥手
+              <a href="/2020/03/18/手撸一套dubbo-进阶篇/" rel="next" title="手撸一套dubbo（2） 进阶篇">
+                <i class="fa fa-chevron-left"></i> 手撸一套dubbo（2） 进阶篇
               </a>
             
           </div>
@@ -540,10 +485,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/29/hadoop分布式的节操安装实践/" rel="prev" title="hadoop分布式的节操安装实践">
-                hadoop分布式的节操安装实践 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -598,17 +539,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -693,22 +625,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HBase的基础—HDFS"><span class="nav-number">2.</span> <span class="nav-text">HBase的基础—HDFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先给大家讲个故事"><span class="nav-number">3.</span> <span class="nav-text">先给大家讲个故事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初识HDFS—分布式文件系统"><span class="nav-number">4.</span> <span class="nav-text">初识HDFS—分布式文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件切片"><span class="nav-number">5.</span> <span class="nav-text">文件切片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#潜在问题"><span class="nav-number">6.</span> <span class="nav-text">潜在问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#潜在问题-1"><span class="nav-number">7.</span> <span class="nav-text">潜在问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#破壁1——上菜是溯源"><span class="nav-number">8.</span> <span class="nav-text">破壁1——上菜是溯源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#破壁2——掉进猪蹄汤的苍蝇"><span class="nav-number">9.</span> <span class="nav-text">破壁2——掉进猪蹄汤的苍蝇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#破壁3——上菜都是服务员的事儿"><span class="nav-number">10.</span> <span class="nav-text">破壁3——上菜都是服务员的事儿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#破壁4——-一套完整的酒席"><span class="nav-number">11.</span> <span class="nav-text">破壁4—— 一套完整的酒席</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#破壁4—相爱相杀的Master和Active"><span class="nav-number">12.</span> <span class="nav-text">破壁4—相爱相杀的Master和Active</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">13.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

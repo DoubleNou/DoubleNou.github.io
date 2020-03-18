@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,My BLog">
+  <meta name="keywords" content="dubbo,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
-<meta name="keywords" content="后端,HBase,IM,消息队列,dubbo,SpringBoot,SpringCloud,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Nou的技术逆袭">
-<meta property="og:url" content="https://www.nouyc.com/tags/SpringBoot/index.html">
+<meta name="description" content="我们以上一篇为基础进行开发，做一个成型的dubbo的架构出来。  我们总结下上一篇的问题，我们在consumer手动new出来了一个实现类，站在consumer的角度，这是不可能发生的事儿，我是透明化调用，不可能每次调用，都要手动去写他们的类名啊、方法名啊、参数列表等等。心累…. 那能做一个工厂一样的代理类管理这些呢，是可以的。下面我们搞一个proxy。 1234567891011121314p">
+<meta name="keywords" content="dubbo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手撸一套dubbo（2） 进阶篇">
+<meta property="og:url" content="https://www.nouyc.com/2020/03/18/手撸一套dubbo-进阶篇/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
-<meta property="og:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta property="og:description" content="我们以上一篇为基础进行开发，做一个成型的dubbo的架构出来。  我们总结下上一篇的问题，我们在consumer手动new出来了一个实现类，站在consumer的角度，这是不可能发生的事儿，我是透明化调用，不可能每次调用，都要手动去写他们的类名啊、方法名啊、参数列表等等。心累…. 那能做一个工厂一样的代理类管理这些呢，是可以的。下面我们搞一个proxy。 1234567891011121314p">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-18T06:58:50.526Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nou的技术逆袭">
-<meta name="twitter:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta name="twitter:title" content="手撸一套dubbo（2） 进阶篇">
+<meta name="twitter:description" content="我们以上一篇为基础进行开发，做一个成型的dubbo的架构出来。  我们总结下上一篇的问题，我们在consumer手动new出来了一个实现类，站在consumer的角度，这是不可能发生的事儿，我是透明化调用，不可能每次调用，都要手动去写他们的类名啊、方法名啊、参数列表等等。心累…. 那能做一个工厂一样的代理类管理这些呢，是可以的。下面我们搞一个proxy。 1234567891011121314p">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.nouyc.com/tags/SpringBoot/">
+  <link rel="canonical" href="https://www.nouyc.com/2020/03/18/手撸一套dubbo-进阶篇/">
 
 
 
 
 
-  <title>标签: SpringBoot | Nou的技术逆袭</title>
+  <title>手撸一套dubbo（2） 进阶篇 | Nou的技术逆袭</title>
   
 
 
@@ -144,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -269,52 +270,255 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>SpringBoot<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.nouyc.com/2020/03/18/手撸一套dubbo-进阶篇/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nou">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nou的技术逆袭">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/21/SpringBoot改造/" itemprop="url">
-              
-                <span itemprop="name">SpringBoot深入剖析，够用了。</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">手撸一套dubbo（2） 进阶篇</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-21T16:52:10+08:00" content="2019-04-21">
-          04-21
-        </time>
-      </div>
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T11:02:41+08:00">
+                2020-03-18
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/18/手撸一套dubbo-进阶篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/18/手撸一套dubbo-进阶篇/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/18/手撸一套dubbo-进阶篇/" class="leancloud_visitors" data-flag-title="手撸一套dubbo（2） 进阶篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  747
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>我们以上一篇为基础进行开发，做一个成型的dubbo的架构出来。</li>
+</ol>
+<p>我们总结下上一篇的问题，我们在consumer手动new出来了一个实现类，站在consumer的角度，这是不可能发生的事儿，我是透明化调用，不可能每次调用，都要手动去写他们的类名啊、方法名啊、参数列表等等。心累….</p>
+<p>那能做一个工厂一样的代理类管理这些呢，是可以的。下面我们搞一个proxy。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span>&lt;T&gt; T getProxy(Class interfaceClass)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (T) Proxy.<span class="keyword">new</span><span class="type">ProxyInstance</span>(interfaceClass.getClassLoader(), <span class="keyword">new</span> <span class="type">Class</span>[]&#123;interfaceClass&#125;, <span class="keyword">new</span> <span class="type">InvocationHandler</span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            <span class="keyword">public</span> Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后把consumer中的执行请求移到代理类中。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span>&lt;T&gt; T getProxy(Class interfaceClass)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (T) Proxy.<span class="keyword">new</span><span class="type">ProxyInstance</span>(interfaceClass.getClassLoader(), <span class="keyword">new</span> <span class="type">Class</span>[]&#123;interfaceClass&#125;, <span class="keyword">new</span> <span class="type">InvocationHandler</span>() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            <span class="keyword">public</span> Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">                HttpClient httpClient = <span class="keyword">new</span> <span class="type">HttpClient</span>();</span><br><span class="line">                Invocation invocation = <span class="keyword">new</span> <span class="type">Invocation</span>(HelloService.class.getName(), <span class="string">"sayHello"</span>, <span class="keyword">new</span> <span class="type">Class</span>[]&#123;<span class="keyword">String</span>.class&#125;, <span class="keyword">new</span> <span class="type">Object</span>[]&#123;<span class="string">"耨宇辰"</span>&#125;);</span><br><span class="line">                <span class="keyword">String</span> result = httpClient.send(<span class="string">"localhost"</span>, <span class="number">8080</span>, invocation);</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后再看下，consumer的代码。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">consumer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            HelloService helloService = ProxyFactory.getProxy(HelloService.class);</span><br><span class="line">            String result = helloService.sayHello(<span class="string">"小白"</span>);</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"consumer 调用远程服务："</span>+ result);</span><br><span class="line">        &#125; <span class="keyword">catch</span> ( Exception e ) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>是不是有点dubbo的影子了，然后我继续再优化架构,这时候我们发现ProxyFactory代理工厂中，有很多不通用的写法如下，</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invocation invocation = <span class="keyword">new</span> Invocation(HelloService.<span class="keyword">class</span>.getName(), <span class="string">"sayHello"</span>, <span class="keyword">new</span> Class[]&#123;<span class="built_in">String</span>.<span class="keyword">class</span>&#125;, <span class="keyword">new</span> <span class="built_in">Object</span>[]&#123;<span class="string">"耨宇辰"</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>存在硬编码的操作，所以我们优化下这里。</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invocation invocation = <span class="keyword">new</span> Invocation(interfaceClass.getName(), <span class="function"><span class="keyword">method</span>.<span class="title">getName</span><span class="params">()</span>, <span class="title">method</span>.<span class="title">getParameterTypes</span><span class="params">()</span>, <span class="title">args</span>);</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>因为我们是请求远程服务，这里我们直连，也不是通用的。改吧</li>
+</ol>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> result = httpClient.<span class="built_in">send</span>(<span class="string">"localhost"</span>, <span class="number">8080</span>, invocation)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>优化为如下，我们从远程注册中心拿到我们所需要的服务器地址和端口</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">URL url</span> = (URL) RemoteRegister.get(interfaceClass.getName());</span><br><span class="line"><span class="attribute">String result</span> = httpClient.send(url.getHostName(), url.getPort(), invocation);</span><br></pre></td></tr></table></figure>
+<p>但是又存在多台服务器一起等待服务，所以这里我们加一个负载均衡。这里说下负载均衡通用算法有多种，随机轮询、权重、最短活跃时间。</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">URL <span class="built_in">url</span> = RemoteRegister.random(interfaceClass.getName());</span><br><span class="line"><span class="built_in">String</span> result = httpClient.send(<span class="built_in">url</span>.getHostName(), <span class="built_in">url</span>.getPort(), invocation);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
+<p>最终我们的代理工厂完成,达到通用。</p>
+<figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyFactory</span> &#123;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> static&lt;T&gt; T getProxy(<span class="class"><span class="keyword">Class</span> <span class="title">interfaceClass</span>)&#123;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), <span class="keyword">new</span> <span class="class"><span class="keyword">Class</span>[]&#123;<span class="title">interfaceClass</span>&#125;, <span class="title">new</span> <span class="title">InvocationHandler</span>() &#123;</span></span><br><span class="line">            @Override</span><br><span class="line">            <span class="keyword">public</span> Object invoke(Object proxy, <span class="function"><span class="keyword">Method</span> <span class="title">method</span>, <span class="title">Object</span>[] <span class="title">args</span>) <span class="title">throws</span> <span class="title">Throwable</span> &#123;</span></span><br><span class="line">                HttpClient httpClient = <span class="keyword">new</span> HttpClient();</span><br><span class="line">                Invocation invocation = <span class="keyword">new</span> Invocation(interfaceClass.getName(), <span class="function"><span class="keyword">method</span>.<span class="title">getName</span>(</span>), <span class="function"><span class="keyword">method</span>.<span class="title">getParameterTypes</span>(</span>), args);</span><br><span class="line"></span><br><span class="line">                URL url = RemoteRegister.random(interfaceClass.getName());</span><br><span class="line">                String result = httpClient.send(url.getHostName(), url.getPort(), invocation);</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里面有一个坑啊，你们自己撸下代码会报错。原因可以留言聊下。这里面来说，只能算是http协议的远程调用，dubbo协议的我们接下来搞定。dubbo协议底层使用的是netty。http底层使用的是tomcat。这块我们需要变一下。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏下哇 ，贡献更多优质原创</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.jpg" alt="Nou 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dubbo/" rel="tag"># dubbo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/17/手撸一套模拟dubbo/" rel="next" title="手撸一套模拟dubbo">
+                <i class="fa fa-chevron-left"></i> 手撸一套模拟dubbo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/18/手撸一套dubbo（3）成熟篇-运用dubbo协议/" rel="prev" title="手撸一套dubbo（3）成熟篇 运用dubbo协议">
+                手撸一套dubbo（3）成熟篇 运用dubbo协议 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -322,6 +526,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -582,6 +793,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

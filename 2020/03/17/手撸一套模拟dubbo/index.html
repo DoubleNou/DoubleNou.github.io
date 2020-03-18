@@ -89,7 +89,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.nouyc.com/2020/03/17/手撸一套模拟dubbo/手撸dubbo.png">
 <meta property="og:image" content="https://www.nouyc.com/2020/03/17/手撸一套模拟dubbo/tomcat%20xml.png">
-<meta property="og:updated_time" content="2020-03-17T15:14:33.903Z">
+<meta property="og:image" content="https://www.nouyc.com/2020/03/17/手撸一套模拟dubbo/结果.png">
+<meta property="og:updated_time" content="2020-03-18T03:06:19.235Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="手撸一套模拟dubbo">
 <meta name="twitter:description" content="今天回顾下从一个http服务调用请求，怎么转变为一个负载均衡的rpc。 我们先来看下，解下来要搞定的包。   我们先搞定provider的启动类吧，实现一个 say 方法。作为我们一个预备调用service。 //1. 本地注册 //2. 远程注册  //3. 启动tomcat，我们以tomcat为例子一步一步搞哈哈哈。 注意我们看下tomcat的结构，我们模拟一个httpserver出来。">
@@ -372,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  792
+                  951
                 </span>
               
 
@@ -388,7 +389,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -441,6 +442,16 @@
 <p>这里有个list<url>,为什么换成list呢，突破思维！因为远程的服务是多台。就是分布式服务！<br>然后我们再看下provider的运程注册<br><figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//1. 本地注册</span></span><br><span class="line">    <span class="comment">//&#123;服务名，实现类&#125;</span></span><br><span class="line">    LocalRegister.regiest(HelloService.<span class="keyword">class</span>.getName(), HelloServiceImol.<span class="keyword">class</span>);</span><br><span class="line">    <span class="comment">//2. 远程注册</span></span><br><span class="line">    <span class="comment">//&#123;服务名：list&lt;URL&gt;&#125;</span></span><br><span class="line">    URL url  = <span class="keyword">new</span> URL(<span class="string">"localhost"</span>, <span class="number">8080</span>);</span><br><span class="line">    RemoteRegister.regiest(HelloService.<span class="keyword">class</span>.getName(), url);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3. 启动tomcat，我们以tomcat为例子一步一步搞哈哈哈。</span></span><br><span class="line">    HttpServer server = <span class="keyword">new</span> HttpServer();</span><br><span class="line">    server.start(<span class="string">"localhost"</span>, <span class="number">8080</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></url></p>
 <p>掌声！</p>
 <p>今天写到了这了，明天3-18继续加油！！！搞定consumer我们就可以通信了。</p>
+<ol start="4">
+<li>ok，我们看下consumer的调用代码，其实创建链接不用说了，最主要的是在双端怎么共同一个对象呢？<br>新建一个Invocation类。</li>
+</ol>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Invocation</span> <span class="keyword"><span class="keyword">implements</span> <span class="type">Serializable</span></span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">String</span> interfaceName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">String</span> methodName;</span><br><span class="line">    <span class="keyword">private</span> Class[] paramType;</span><br><span class="line">    <span class="keyword">private</span> Object[] params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们回头再看consumer的源码。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">consumer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            HttpClient httpClient = <span class="keyword">new</span> <span class="type">HttpClient</span>();</span><br><span class="line">            Invocation invocation = <span class="keyword">new</span> <span class="type">Invocation</span>(HelloService.class.getName(), <span class="string">"sayHello"</span>, <span class="keyword">new</span><span class="type"></span></span><br><span class="line"><span class="type"></span>            Class[]&#123;<span class="keyword">String</span>.class&#125;, <span class="keyword">new</span> <span class="type">Object</span>[]&#123;<span class="string">"耨宇辰"</span>&#125;);</span><br><span class="line">            <span class="keyword">String</span> result = httpClient.send(<span class="string">"localhost"</span>, <span class="number">8080</span>, invocation);</span><br><span class="line">            System.out.println(result);</span><br><span class="line">        &#125; <span class="keyword">catch</span> ( MalformedURLException e ) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>第一版最原生的远程服务调用就搞定了，启动provider server、启动 consumer。done。</li>
+</ol>
+<p><img src="/2020/03/17/手撸一套模拟dubbo/结果.png" alt></p>
 
       
     </div>
@@ -504,6 +515,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/18/手撸一套dubbo-进阶篇/" rel="prev" title="手撸一套dubbo（2） 进阶篇">
+                手撸一套dubbo（2） 进阶篇 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -576,7 +591,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -675,7 +690,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">32.7k</span>
+    <span title="Site words total count">34.6k</span>
   
 </div>
 
