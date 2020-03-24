@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Nou的技术逆袭">
 <meta property="og:description" content="废话不说，在上面基础上，我们把http协议改为dubbo协议吧。在protocol的dubbo目录下穿件netty的相关组件。  NettyServer、NettyCient、NettyServerHandler、NettyClientHandler。 这里用到了netty的架构，没了解过netty架构的同学这里先照搬吧，多看几遍就有点门路了。 /NettyClient/123456789101">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-18T09:14:24.776Z">
+<meta property="og:updated_time" content="2020-03-19T07:48:21.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="手撸一套dubbo（3）成熟篇 运用dubbo协议">
 <meta name="twitter:description" content="废话不说，在上面基础上，我们把http协议改为dubbo协议吧。在protocol的dubbo目录下穿件netty的相关组件。  NettyServer、NettyCient、NettyServerHandler、NettyClientHandler。 这里用到了netty的架构，没了解过netty架构的同学这里先照搬吧，多看几遍就有点门路了。 /NettyClient/123456789101">
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1k
+                  1.2k
                 </span>
               
 
@@ -421,7 +421,9 @@
 <p>再调一下，发现没，OK了！</p>
 <p>再进行一次优化，我们发现切换下协议要改好几处代码，很坑爹，所以我们采用一套协议管理dubbo采用哪个协议可行么？</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DubboProtocol</span> <span class="keyword">implements</span> <span class="title">Protocol</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">start</span><span class="params">(URL url)</span> </span>&#123;</span><br><span class="line">        NettyServer server = <span class="keyword">new</span> NettyServer();</span><br><span class="line">        server.serverStart(<span class="string">"localhost"</span>, <span class="number">8080</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">send</span><span class="params">(URL url, Invocation invocation)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> NettyClient().send(url.getHostName(), url.getPort(), invocation);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后把NettyServer的启动类换成这个协议的start，还有Proxy的代理的Client换成这个协议类的send。就已经搞定了Dubbo的基本框架。</p>
+<p>然后把NettyServer的启动类换成这个协议的start，还有Proxy的代理的Client换成这个协议类的send。就已经搞定了Dubbo的基本框架。至于采用哪个协议，我们不能一直改代码，也可以做成工厂动态处理，dubbo是根据URL的注册约定协议的，比如说dubbo:serivice protocol:dubbo ，这里为了简化我们可以配置到jvm系统配置里边。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProtocolFactory</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Protocol getProtocol()&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">String</span> protocol = System.getProperty(<span class="string">"protocol"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(protocol.isEmpty())&#123;</span><br><span class="line">            protocol = <span class="string">"http"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">switch</span> (protocol)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"http "</span>:<span class="type"></span></span><br><span class="line"><span class="type">                return new HttpProtocol</span>();</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"dubbo"</span>:<span class="type"></span></span><br><span class="line"><span class="type">                return new DubboProtocol</span>();</span><br><span class="line">            <span class="keyword">default</span>:<span class="type"></span></span><br><span class="line"><span class="type">                break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">HttpProtocol</span>();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>把用到protocol替换成工厂代理就可以了。这里就不再贴了。</p>
 
       
     </div>
@@ -485,6 +487,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/19/跟着小马哥理解spring核心/" rel="prev" title="跟着小马哥理解spring核心">
+                跟着小马哥理解spring核心 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -557,7 +563,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -579,7 +585,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -656,7 +662,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.6k</span>
+    <span title="Site words total count">35.6k</span>
   
 </div>
 
