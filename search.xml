@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[跟着小马哥学Spring第四天 Aop篇]]></title>
+    <url>%2F2020%2F03%2F25%2F%E8%B7%9F%E7%9D%80%E5%B0%8F%E9%A9%AC%E5%93%A5%E5%AD%A6Spring%E7%AC%AC%E4%B8%89%E5%A4%A9-Aop%E7%AF%87%2F</url>
+    <content type="text"><![CDATA[#Aop spring的aop其实就是cglib和动态代理搞定的。 看下几个基本注解吧，target、Retention、doucument、Inherited @Target 修饰的对象范围 @Retention 定义 被保留的时间长短 @Documented 􏰁述-javadoc @Inherited 阐述了某个被标注的类型是被继承的 Aop的应用 首先一定熟练下那几个注解的概念，JoinPoint、PointCut、然后四种切面方式：前置后置、异常、最终、环绕。除了环绕其他都还简单，环绕牛逼在可以自己去更改打切口类的返回数值。 Aop的源码 先研究一下代理逻辑。记得上一篇博客上我们讲的根据后置处理器自己实现了一个aop机制，其实就是拿到targetObject 变成了 proxyObject，然后把代理对象放进了容器的操作。这个代理一定要清楚哈！ 12345678 createBean ---- doCreateBean&#123; 打码 ----initialBean() targetObject --update-- proxyObject &#125; 进入BeanPostprocessorAfterinitail里面追踪到最后有createAopProxy，会进行if判断看看是否要用jdk动态代理实现还是cglib去实现代理。]]></content>
+      <tags>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[跟着小马哥学Spring第三天]]></title>
+    <url>%2F2020%2F03%2F24%2F%E8%B7%9F%E7%9D%80%E5%B0%8F%E9%A9%AC%E5%93%A5%E5%AD%A6Spring%E7%AC%AC%E4%B8%89%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[#搞了一遍spring的简单使用篇，我们来撸源码和流程吧 FactoryBean spring的bean有两种类型，一个是spring的单个bean，一个是工厂bean SpringBean的生命周期 一句话，Bean怎么被实例化的？（1）spring把类扫描出来？（2）Bean实例化 ###starter！ jvm通过类加载器加载进来class字节码，然后开始扫描。 就以注解版为例子吧，我们看new AnnotationConfigApplicationContext()方法里面的this()方法，初始化了父类的构造方法。这个父类的构造方法很重要，直接new 出来了 SpringBeanFactory — DefaultListableBeanFactory 然后往下看 refresh 方法。里面调用了12个方法。其中invokeBeanFactoryPostProcessors会对工程里的class扫描拿到符合spring的类。 123456invokeBeanFactoryPostProcessors(beanFactory)&#123; 处理了各种@Import 扫描到符合spring的类 循环new BeanDefination()保存Bean的元信息，把它放入到map中。&#125; 然后我们看这个方法的上一个预留接口方法，看到一个BeanPostFactoryProcessor()这个是spring留给工程师自己的一个添加接口，可以对bean进行实例化前的操作。偷梁换柱！123456789101112@Componentpublic class QuestionBeanPostFactoryProcessor implements BeanFactoryPostProcessor &#123; @Override public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException &#123; GenericBeanDefinition definition = (GenericBeanDefinition) beanFactory.getBeanDefinition("c"); System.out.println(definition.getBeanClassName()); definition.setBeanClass(TestService02.class); System.out.println(definition.getBeanClassName()); &#125;&#125; 这里的”c”是我在service里面建的一个bean。123@Component("c")public class TestService01 &#123;&#125; 可以运行一下，看看是不是被我偷梁换柱了！ 这时候的map就是一个成形的map！当然只是演示去和spring协作构建BeanDefination。然后这个map通过preInstantinateSingletons()方法去同步到spring的单例池里边。 再往下看有一个，registerBeanPostProcessors()方法（）,9个地方、5个后置处理器，思考下什么是实例化、什么是初始化？ BeanPostProcessor是插手了Bean初始化之前的过程， A — new — XXXBeanPostProcessor A XXXBeanPostProcessor 例自动注入 — lifecicleCallBack — BeanPostProcessor 这里边多一句就是，其实aop和autowired都可以用后置处理器去实现。 加一个代理类就可以，这里加的代理类一定要注意，放到容器中的缓存中可就是代理类了，这块要注意，而不再是刚刚new出来的。 ok，再往下就是初始化bean了,这里面有getBean的方法，beanFactory.preInstantiateSingletons()，打开其实就是首次create单例的Bean。一句话，在初始化Bean的时候也会调用doGetBean这个方法singletonObjects这个单例池存放spring所有单例Bean。第一次实例化的时候，会去这个singletonObejcts里面get Bean，绝对是空的。然后再去singletonFactory.getObject();doCreateBean()这才是真正的创建。如果你的Bean加了Aop，那么创建的直接是代理对象。 1finishBeanFactoryInitialization(beanFactory);]]></content>
+      <tags>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[跟着小马哥学Spring第二天]]></title>
     <url>%2F2020%2F03%2F23%2F%E8%B7%9F%E7%9D%80%E5%B0%8F%E9%A9%AC%E5%93%A5%E5%AD%A6Spring%2F</url>
     <content type="text"><![CDATA[#依赖注入方式 构造注入有参数、或者无参构造器 set注入经常用到的注入 延伸注入c、p空间注入 但是需要schema/p | c #依赖注入方式 单例、原型、request、session、websocket #自动装配Bean schema/context。和 context-config #推荐使用java-config配置Spring-Bean #静态代理模式 抽象角色、真实角色、代理角色、客户访问代理角色 代理模式好处: 上层不关心下层，公共服务方便方法扩展代理模式缺点: 一个真实角色就要new 一个代理角色。代码量很大 #动态代理模式 解决静态代理的问题 运用反射机制实现动态代理，看下我的dubbo的consumer通过代理类拿到的Service 12345678910111213141516171819 public class ProxyFactory &#123; public static&lt;T&gt; T getProxy(Class interfaceClass)&#123; return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class[]&#123;interfaceClass&#125;, new InvocationHandler() &#123; @Override public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123; Protocol protocol = ProtocolFactory.getProtocol(); Invocation invocation = new Invocation(interfaceClass.getName(), method.getName(), method.getParameterTypes(), args); URL url = RemoteRegister.random(interfaceClass.getName()); String result = (String) protocol.send(url, invocation); return result; &#125; &#125;); &#125;&#125; 1HelloService helloService = ProxyFactory.getProxy(HelloService.class); #AOP 熟读动态代理]]></content>

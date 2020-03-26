@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.nouyc.com/"/>
-  <updated>2020-03-24T04:50:27.818Z</updated>
+  <updated>2020-03-26T03:06:17.033Z</updated>
   <id>https://www.nouyc.com/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>跟着小马哥学Spring第四天 Aop篇</title>
+    <link href="https://www.nouyc.com/2020/03/25/%E8%B7%9F%E7%9D%80%E5%B0%8F%E9%A9%AC%E5%93%A5%E5%AD%A6Spring%E7%AC%AC%E4%B8%89%E5%A4%A9-Aop%E7%AF%87/"/>
+    <id>https://www.nouyc.com/2020/03/25/跟着小马哥学Spring第三天-Aop篇/</id>
+    <published>2020-03-25T06:07:54.000Z</published>
+    <updated>2020-03-26T03:06:17.033Z</updated>
+    
+    <content type="html"><![CDATA[<p>#Aop</p><ol><li><p>spring的aop其实就是cglib和动态代理搞定的。</p></li><li><p>看下几个基本注解吧，target、Retention、doucument、Inherited</p><p>@Target 修饰的对象范围</p><p>@Retention 定义 被保留的时间长短</p><p>@Documented 􏰁述-javadoc</p><p>@Inherited 阐述了某个被标注的类型是被继承的</p></li><li><p>Aop的应用</p><p>首先一定熟练下那几个注解的概念，JoinPoint、PointCut、然后四种切面方式：前置后置、异常、最终、环绕。除了环绕其他都还简单，环绕牛逼在可以自己去更改打切口类的返回数值。</p></li><li><p>Aop的源码</p><p>先研究一下代理逻辑。记得上一篇博客上我们讲的根据后置处理器自己实现了一个aop机制，其实就是拿到targetObject 变成了 proxyObject，然后把代理对象放进了容器的操作。这个代理一定要清楚哈！</p><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   <span class="comment">createBean</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">doCreateBean&#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span>   <span class="comment">打码</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">initialBean()</span>  </span><br><span class="line"></span><br><span class="line">   <span class="comment">targetObject</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">update</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">proxyObject</span> </span><br><span class="line">  </span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure></li></ol><p>进入BeanPostprocessorAfterinitail里面追踪到最后有createAopProxy，会进行if判断看看是否要用jdk动态代理实现还是cglib去实现代理。</p><p><img src="/2020/03/25/跟着小马哥学Spring第三天-Aop篇/创建Aop代理.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;#Aop&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;spring的aop其实就是cglib和动态代理搞定的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;看下几个基本注解吧，target、Retention、doucument、Inherited&lt;/p&gt;
+&lt;p&gt;@Target 修饰的对象范围&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="spring" scheme="https://www.nouyc.com/tags/spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>跟着小马哥学Spring第三天</title>
+    <link href="https://www.nouyc.com/2020/03/24/%E8%B7%9F%E7%9D%80%E5%B0%8F%E9%A9%AC%E5%93%A5%E5%AD%A6Spring%E7%AC%AC%E4%B8%89%E5%A4%A9/"/>
+    <id>https://www.nouyc.com/2020/03/24/跟着小马哥学Spring第三天/</id>
+    <published>2020-03-24T04:57:01.000Z</published>
+    <updated>2020-03-25T13:25:31.604Z</updated>
+    
+    <content type="html"><![CDATA[<p>#搞了一遍spring的简单使用篇，我们来撸源码和流程吧</p><ol><li><p>FactoryBean</p><p>spring的bean有两种类型，一个是spring的单个bean，一个是工厂bean</p></li><li><p>SpringBean的生命周期</p><p>一句话，Bean怎么被实例化的？<br>（1）spring把类扫描出来？<br>（2）Bean实例化</p></li></ol><p>###starter！</p><ol><li>jvm通过类加载器加载进来class字节码，然后开始扫描。</li><li>就以注解版为例子吧，我们看new AnnotationConfigApplicationContext()方法里面的this()方法，初始化了父类的构造方法。这个父类的构造方法很重要，直接new 出来了 SpringBeanFactory — DefaultListableBeanFactory</li></ol><p>然后往下看 refresh 方法。里面调用了12个方法。其中invokeBeanFactoryPostProcessors会对工程里的class扫描拿到符合spring的类。</p><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">invokeBeanFactoryPostProcessors(beanFactory)&#123;</span><br><span class="line">处理了各种@<span class="keyword">Import</span></span><br><span class="line">扫描到符合spring的类</span><br><span class="line">循环<span class="literal">new</span> BeanDefination()保存Bean的元信息，把它放入到<span class="built_in">map</span>中。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>然后我们看这个方法的上一个预留接口方法，看到一个BeanPostFactoryProcessor()<br>这个是spring留给工程师自己的一个添加接口，可以对bean进行实例化前的操作。偷梁换柱！<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuestionBeanPostFactoryProcessor</span> <span class="keyword">implements</span> <span class="title">BeanFactoryPostProcessor</span> &#123;</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) <span class="keyword">throws</span> BeansException &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        GenericBeanDefinition definition = (GenericBeanDefinition) beanFactory.getBeanDefinition(<span class="string">"c"</span>);</span><br><span class="line">        System.out.println(definition.getBeanClassName());</span><br><span class="line">        definition.setBeanClass(TestService02.<span class="keyword">class</span>);</span><br><span class="line">        System.out.println(definition.getBeanClassName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>这里的”c”是我在service里面建的一个bean。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component(<span class="meta-string">"c"</span>)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestService01</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>可以运行一下，看看是不是被我偷梁换柱了！</p><p>这时候的map就是一个成形的map！当然只是演示去和spring协作构建BeanDefination。然后这个map通过preInstantinateSingletons()方法去同步到spring的单例池里边。</p><ol start="3"><li>再往下看有一个，registerBeanPostProcessors()方法（）,9个地方、5个后置处理器，思考下什么是实例化、什么是初始化？</li></ol><p>BeanPostProcessor是插手了Bean初始化之前的过程，</p><p>A — new — XXXBeanPostProcessor  A   XXXBeanPostProcessor 例自动注入 — lifecicleCallBack — BeanPostProcessor</p><p>这里边多一句就是，其实aop和autowired都可以用后置处理器去实现。</p><p>加一个代理类就可以，这里加的代理类一定要注意，放到容器中的缓存中可就是代理类了，这块要注意，而不再是刚刚new出来的。</p><ol start="4"><li>ok，再往下就是初始化bean了,这里面有getBean的方法，beanFactory.preInstantiateSingletons()，打开其实就是首次create单例的Bean。一句话，在初始化Bean的时候也会调用doGetBean这个方法<br>singletonObjects这个单例池存放spring所有单例Bean。第一次实例化的时候，会去这个singletonObejcts里面get Bean，绝对是空的。然后再去singletonFactory.getObject();doCreateBean()这才是真正的创建。如果你的Bean加了Aop，那么创建的直接是代理对象。</li></ol><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">finishBeanFactoryInitialization(<span class="name">beanFactory</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;#搞了一遍spring的简单使用篇，我们来撸源码和流程吧&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;FactoryBean&lt;/p&gt;
+&lt;p&gt;spring的bean有两种类型，一个是spring的单个bean，一个是工厂bean&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;SpringBean的生
+      
+    
+    </summary>
+    
+    
+      <category term="spring" scheme="https://www.nouyc.com/tags/spring/"/>
+    
+  </entry>
   
   <entry>
     <title>跟着小马哥学Spring第二天</title>
@@ -473,46 +529,6 @@
     
     
       <category term="java基础" scheme="https://www.nouyc.com/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java基础复习---jvm的几大分区和oom的情况</title>
-    <link href="https://www.nouyc.com/2019/05/13/java%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0-jvm%E7%9A%84%E5%87%A0%E5%A4%A7%E5%88%86%E5%8C%BA%E5%92%8Coom%E7%9A%84%E6%83%85%E5%86%B5/"/>
-    <id>https://www.nouyc.com/2019/05/13/java基础复习-jvm的几大分区和oom的情况/</id>
-    <published>2019-05-13T02:57:21.000Z</published>
-    <updated>2019-05-15T06:30:33.735Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-      <category term="java基础" scheme="https://www.nouyc.com/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>豪猪熔断器</title>
-    <link href="https://www.nouyc.com/2019/05/04/%E8%B1%AA%E7%8C%AA%E7%86%94%E6%96%AD%E5%99%A8/"/>
-    <id>https://www.nouyc.com/2019/05/04/豪猪熔断器/</id>
-    <published>2019-05-04T05:38:44.000Z</published>
-    <updated>2019-05-05T02:12:25.983Z</updated>
-    
-    <content type="html"><![CDATA[<p>熔断器的思想和我们日常所用的保险丝一样，是一款保护全局服务正常调用的工具，防止服务雪崩。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;熔断器的思想和我们日常所用的保险丝一样，是一款保护全局服务正常调用的工具，防止服务雪崩。&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="微服务" scheme="https://www.nouyc.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
   </entry>
   

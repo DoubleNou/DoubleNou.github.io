@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,My BLog">
+  <meta name="keywords" content="spring,">
 
 
 
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
-<meta name="keywords" content="后端,HBase,IM,消息队列,dubbo,SpringBoot,SpringCloud,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Nou的技术逆袭">
-<meta property="og:url" content="https://www.nouyc.com/archives/2019/index.html">
+<meta name="description" content="#Aop  spring的aop其实就是cglib和动态代理搞定的。  看下几个基本注解吧，target、Retention、doucument、Inherited @Target 修饰的对象范围 @Retention 定义 被保留的时间长短 @Documented 􏰁述-javadoc @Inherited 阐述了某个被标注的类型是被继承的  Aop的应用 首先一定熟练下那几个注解的概念，Jo">
+<meta name="keywords" content="spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跟着小马哥学Spring第四天 Aop篇">
+<meta property="og:url" content="https://www.nouyc.com/2020/03/25/跟着小马哥学Spring第三天-Aop篇/index.html">
 <meta property="og:site_name" content="Nou的技术逆袭">
-<meta property="og:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta property="og:description" content="#Aop  spring的aop其实就是cglib和动态代理搞定的。  看下几个基本注解吧，target、Retention、doucument、Inherited @Target 修饰的对象范围 @Retention 定义 被保留的时间长短 @Documented 􏰁述-javadoc @Inherited 阐述了某个被标注的类型是被继承的  Aop的应用 首先一定熟练下那几个注解的概念，Jo">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.nouyc.com/2020/03/25/跟着小马哥学Spring第三天-Aop篇/创建Aop代理.png">
+<meta property="og:updated_time" content="2020-03-26T03:06:17.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nou的技术逆袭">
-<meta name="twitter:description" content="西安理工大学15级本科、18级硕士研究生，现就职于车好多/瓜子二手车/IM。擅长后端技术研发，大数据研发，非专业前端。">
+<meta name="twitter:title" content="跟着小马哥学Spring第四天 Aop篇">
+<meta name="twitter:description" content="#Aop  spring的aop其实就是cglib和动态代理搞定的。  看下几个基本注解吧，target、Retention、doucument、Inherited @Target 修饰的对象范围 @Retention 定义 被保留的时间长短 @Documented 􏰁述-javadoc @Inherited 阐述了某个被标注的类型是被继承的  Aop的应用 首先一定熟练下那几个注解的概念，Jo">
+<meta name="twitter:image" content="https://www.nouyc.com/2020/03/25/跟着小马哥学Spring第三天-Aop篇/创建Aop代理.png">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://www.nouyc.com/archives/2019/">
+  <link rel="canonical" href="https://www.nouyc.com/2020/03/25/跟着小马哥学Spring第三天-Aop篇/">
 
 
 
 
 
-  <title>归档 | Nou的技术逆袭</title>
+  <title>跟着小马哥学Spring第四天 Aop篇 | Nou的技术逆袭</title>
   
 
 
@@ -144,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -269,390 +272,245 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 32 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.nouyc.com/2020/03/25/跟着小马哥学Spring第三天-Aop篇/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nou">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nou的技术逆袭">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">跟着小马哥学Spring第四天 Aop篇</h1>
         
 
-        
+        <div class="post-meta">
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/14/HBase技术分享/" itemprop="url">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
-                <span itemprop="name">HBase技术分享</span>
+                <span class="post-meta-item-text">发表于</span>
               
-            </a>
-        
-      </h2>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-25T14:07:54+08:00">
+                2020-03-25
+              </time>
+            
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-14T09:56:51+08:00" content="2019-10-14">
-          10-14
-        </time>
-      </div>
+            
 
-    </header>
-  </article>
+            
+          </span>
 
+          
 
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/25/跟着小马哥学Spring第三天-Aop篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/25/跟着小马哥学Spring第三天-Aop篇/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/25/跟着小马哥学Spring第三天-Aop篇/" class="leancloud_visitors" data-flag-title="跟着小马哥学Spring第四天 Aop篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  262
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/02/B树、B-树、LSM树以及其典型应用场景/" itemprop="url">
-              
-                <span itemprop="name">B树、B+树、LSM树以及其典型应用场景</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-02T18:57:56+08:00" content="2019-09-02">
-          09-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/22/hbase基本命令/" itemprop="url">
-              
-                <span itemprop="name">HBase基本命令</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-22T14:05:50+08:00" content="2019-08-22">
-          08-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>#Aop</p>
+<ol>
+<li><p>spring的aop其实就是cglib和动态代理搞定的。</p>
+</li>
+<li><p>看下几个基本注解吧，target、Retention、doucument、Inherited</p>
+<p>@Target 修饰的对象范围</p>
+<p>@Retention 定义 被保留的时间长短</p>
+<p>@Documented 􏰁述-javadoc</p>
+<p>@Inherited 阐述了某个被标注的类型是被继承的</p>
+</li>
+<li><p>Aop的应用</p>
+<p>首先一定熟练下那几个注解的概念，JoinPoint、PointCut、然后四种切面方式：前置后置、异常、最终、环绕。除了环绕其他都还简单，环绕牛逼在可以自己去更改打切口类的返回数值。</p>
+</li>
+<li><p>Aop的源码</p>
+<p>先研究一下代理逻辑。记得上一篇博客上我们讲的根据后置处理器自己实现了一个aop机制，其实就是拿到targetObject 变成了 proxyObject，然后把代理对象放进了容器的操作。这个代理一定要清楚哈！</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   <span class="comment">createBean</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">doCreateBean&#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span>   <span class="comment">	打码</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">initialBean()</span>  </span><br><span class="line"></span><br><span class="line">   <span class="comment">	targetObject</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">update</span><span class="literal">-</span><span class="literal">-</span> <span class="comment">proxyObject</span> </span><br><span class="line">  </span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>进入BeanPostprocessorAfterinitail里面追踪到最后有createAopProxy，会进行if判断看看是否要用jdk动态代理实现还是cglib去实现代理。</p>
+<p><img src="/2020/03/25/跟着小马哥学Spring第三天-Aop篇/创建Aop代理.png" alt></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/19/大写的Spring/" itemprop="url">
-              
-                <span itemprop="name">Spring Aop实例@Aspect、@Before、@AfterReturning@Around 注解方式配置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-19T11:27:14+08:00" content="2019-08-19">
-          08-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/07/19/HBase分享问题总结/" itemprop="url">
-              
-                <span itemprop="name">HBase分享问题总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-19T18:53:48+08:00" content="2019-07-19">
-          07-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/07/16/MyBatis扫盲/" itemprop="url">
-              
-                <span itemprop="name">MyBatis扫盲</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-16T09:52:12+08:00" content="2019-07-16">
-          07-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/07/12/深入理解HDFS/" itemprop="url">
-              
-                <span itemprop="name">深入理解HDFS</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-12T11:37:53+08:00" content="2019-07-12">
-          07-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/07/11/普罗米修斯监控/" itemprop="url">
-              
-                <span itemprop="name">普罗米修斯监控</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-11T17:47:12+08:00" content="2019-07-11">
-          07-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/07/01/dubbo深度搞一搞/" itemprop="url">
-              
-                <span itemprop="name">dubbo项目结构搞一搞</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-01T17:41:19+08:00" content="2019-07-01">
-          07-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/30/一套客服系统的服务端/" itemprop="url">
-              
-                <span itemprop="name">一套客服系统的服务端</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-30T11:05:10+08:00" content="2019-05-30">
-          05-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏下哇 ，贡献更多优质原创</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.jpg" alt="Nou 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/24/跟着小马哥学Spring第三天/" rel="next" title="跟着小马哥学Spring第三天">
+                <i class="fa fa-chevron-left"></i> 跟着小马哥学Spring第三天
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="page-number" href="/archives/2019/page/3/">3</a><a class="extend next" rel="next" href="/archives/2019/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -660,6 +518,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -920,6 +785,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
